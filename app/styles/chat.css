@@ -24,7 +24,7 @@
     position: fixed;
     bottom: 90px;
     right: 1.5rem;
-    width: 320px;
+    width: 550px;
     max-height: 500px;
     background-color: var(--card-bg);
     border: 2px solid var(--border-color);
