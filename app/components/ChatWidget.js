@@ -39,7 +39,7 @@ export default function ChatWidget({ onReply }) {
             {isOpen && (
                 <div className="chat-box">
                     <div className="chat-header">
-                        <span>Chat Schulz</span>
+                        <span>Chat Evolve</span>
                         <button onClick={toggleChat}>✖</button>
                     </div>
 
