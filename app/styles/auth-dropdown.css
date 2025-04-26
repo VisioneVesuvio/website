@@ -1,0 +1,50 @@
+.auth-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.auth-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 2px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 0 6px var(--shadow-color);
+}
+
+.auth-button:hover {
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
+    transform: scale(1.05);
+}
+
+.auth-dropdown-menu {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    border-radius: 8px;
+    z-index: 999;
+    min-width: 160px;
+    overflow: hidden;
+}
+
+.auth-dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.auth-dropdown-menu a:hover {
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
+}

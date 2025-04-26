@@ -1,0 +1,223 @@
+/* === CONTAINER === */
+.news-wrapper {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: var(--text-color);
+}
+
+/* === BOTTONE "ULTIME NOTIZIE" === */
+.news-toggle-button {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--button-text);
+    background-color: var(--button-bg);
+    border: 2px solid var(--border-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 6px var(--shadow-color);
+    margin-bottom: 2rem;
+    transition: all 0.2s;
+}
+
+.news-toggle-button:hover {
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
+}
+
+/* === ANIMAZIONE RING === */
+@keyframes ring {
+    0% { transform: rotate(0deg); }
+    5% { transform: rotate(4deg); }
+    10% { transform: rotate(-4deg); }
+    15% { transform: rotate(3deg); }
+    20% { transform: rotate(-3deg); }
+    25% { transform: rotate(2deg); }
+    30% { transform: rotate(-2deg); }
+    35% { transform: rotate(1deg); }
+    40% { transform: rotate(-1deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.news-ring {
+    animation: ring 1.5s ease-in-out infinite;
+    display: inline-block;
+    transform-origin: center;
+}
+
+/* === GALLERIA === */
+.news-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+}
+
+/* === CARD NOTIZIA === */
+.news-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 0 6px var(--shadow-color);
+    gap: 1rem;
+}
+
+.news-image {
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.news-info {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.news-info h3 {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin: 0;
+    flex: 1 1 60%;
+}
+
+.news-open {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--shadow-color);
+    transition: all 0.2s ease;
+}
+
+.news-open:hover {
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
+}
+
+/* === POPUP === */
+.news-popup {
+    position: fixed;
+    top: 15vh;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    padding: 2rem 1.5rem 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 25px var(--shadow-color);
+    z-index: 1000;
+    text-align: center;
+}
+
+.news-popup h2 {
+    margin-top: 1rem;
+    color: var(--primary);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.news-popup-close {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    color: var(--border-color);
+    border: 1px solid var(--border-color);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.7;
+    box-shadow: 0 0 4px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+}
+
+.news-popup-close:hover {
+    opacity: 1;
+}
+
+/* === DESCRIZIONE + CTA === */
+.news-description {
+    max-height: 250px;
+    overflow-y: auto;
+    text-align: left;
+    line-height: 1.6;
+    font-size: 1rem;
+    padding-right: 0.5rem;
+}
+
+.news-cta {
+    margin-top: 1.5rem;
+}
+
+.news-action {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 2px solid var(--border-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 6px var(--shadow-color);
+}
+
+.news-action:hover {
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
+}
+
+/* === ANIMAZIONI POPUP === */
+@keyframes fadeElectricIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30%) scale(0.95);
+        box-shadow: 0 0 0 var(--shadow-color);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--shadow-color);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+        box-shadow: 0 0 20px var(--shadow-color);
+    }
+}
+
+@keyframes fadeElectricOut {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+        box-shadow: 0 0 20px var(--shadow-color);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -30%) scale(0.95);
+        box-shadow: 0 0 0 var(--shadow-color);
+    }
+}
+
+.popup-in {
+    animation: fadeElectricIn 0.4s ease-out forwards;
+}
+
+.popup-out {
+    animation: fadeElectricOut 0.4s ease-in forwards;
+}

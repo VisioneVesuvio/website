@@ -1,0 +1,41 @@
+/* ============================= */
+/* BASE CSS */
+/* ============================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* o "flex-start" se vuoi partire dall’alto */
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Link base */
+a {
+    color: var(--link-color, var(--text-color));
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
