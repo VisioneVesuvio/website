@@ -1,0 +1,84 @@
+.ruota-container {
+    position: relative;
+    margin: 2rem auto;
+    width: min(90vw, 700px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, #0c0c0c 40%, #000 90%);
+    box-shadow: 0 0 30px var(--shadow-color);
+    overflow: visible;
+    z-index: 0;
+}
+
+.ruota-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+    transform-style: preserve-3d;
+    z-index: 1;
+}
+
+.ruota-button {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 12px var(--shadow-color);
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    z-index: 9999;
+}
+
+.ruota-button:hover {
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
+    box-shadow: 0 0 25px var(--border-color), inset 0 0 10px #fff;
+    transform: scale(1.1);
+    animation: neonPulseHover 1s infinite alternate;
+}
+
+.ruota-button.active {
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
+    transform: scale(1.1);
+}
+
+.ruota-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 65%;
+    height: 65%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--border-color);
+    background-color: var(--card-bg);
+    box-shadow: 0 0 15px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-color);
+    padding: 0.5rem;
+    overflow: hidden;
+    z-index: 2;
+}
+
+@keyframes neonPulseHover {
+    from {
+        box-shadow: 0 0 6px var(--shadow-color);
+    }
+    to {
+        box-shadow: 0 0 20px var(--shadow-color);
+    }
+}

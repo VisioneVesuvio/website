@@ -13,6 +13,7 @@ export default function DashboardLayout({ children }) {
         { label: 'Chatbot', href: '/dashboard/chatbot' },
         { label: 'News', href: '/dashboard/news' },
         { label: 'Archivio', href: '/dashboard/archivio' },
+        { label: 'Ruota', href: '/dashboard/ruota' },
     ];
 
     return (
