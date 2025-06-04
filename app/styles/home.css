@@ -1,0 +1,157 @@
+/* globals.css */
+
+/* Stili per la sezione principale della homepage */
+.home-section {
+    display: flex;
+    flex-direction: column; /* Impila i figli (video-container, event-details-wrapper) verticalmente */
+    align-items: center;   /* Centra i figli orizzontalmente */
+    padding: 2rem 0;       /* Spazio sopra e sotto la sezione */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Contenitore per il video */
+.video-container-global {
+    width: 100%;
+    max-width: 10000px;  /* Mantenuto come da tuo CSS */
+    margin: 0 auto 3rem auto; /* Centrato, con margine inferiore */
+    height: 80vh;       /* Mantenuto come da tuo CSS */
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Stili per l'elemento video stesso */
+.looping-video-global {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* --- STILI PER LA SEZIONE DETTAGLI EVENTO --- */
+.event-details-wrapper {
+    width: 100%;
+    max-width: 10000px; /* Mantenuto come da tuo CSS */
+    margin: 0 auto 2rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.event-details-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 19rem; /* Mantenuto come da tuo CSS (valore molto grande) */
+    color: var(--text-color, #B8C2F2);
+}
+
+.event-text-left {
+    text-align: left;
+}
+
+.event-kicker {
+    font-family: var(--font-main, 'Syne', sans-serif);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--accent-bright-blue, #B8C2F2);
+    margin-bottom: 5.3rem; /* Mantenuto come da tuo CSS */
+    letter-spacing: 0.05em;
+}
+
+.event-headline {
+    font-family: var(--font-main, 'Syne', sans-serif);
+    font-size: 3.8rem;
+    font-weight: 700;
+    color: var(--text-color, #B8C2F2);
+    line-height: 1.1;
+    margin: 0;
+}
+
+.event-text-right {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.event-date-location {
+    font-family: var(--font-main, 'Syne', sans-serif);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-color, #B8C2F2);
+    margin: 0;
+}
+
+/* --- Media Query per la Responsività della Sezione Evento --- */
+@media (max-width: 768px) {
+    .video-container-global {
+        height: 45vh;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+    }
+
+    .event-details-wrapper {
+        margin-top: 0;
+        padding: 0 1.5rem;
+    }
+
+    .event-details-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem; /* Ridotto gap per la visualizzazione stacked */
+    }
+
+    .event-text-right {
+        text-align: left;
+        margin-top: 0.5rem;
+    }
+
+    .event-headline {
+        font-size: 2.5rem;
+    }
+
+    .event-kicker,
+    .event-date-location {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-container-global {
+        height: 35vh;
+        border-radius: 6px;
+    }
+
+    .event-headline {
+        font-size: 2rem;
+    }
+}
+
+/* --- STILI PER LA NUOVA SEZIONE IMMAGINE FULLWIDTH --- */
+.fullwidth-image-wrapper {
+    width: 100%;
+    /* Se vuoi che anche questa immagine rispetti una larghezza massima,
+       usa lo stesso valore degli altri wrapper. Altrimenti, occuperà
+       la larghezza del .home-section (che è 100% del viewport meno eventuali padding del body/html) */
+    max-width: 10000px; /* Mantenuto come da tuo CSS per coerenza con gli altri wrapper */
+    margin: 3rem auto 2rem auto; /* Spazio sopra/sotto e centrato se max-width è attivo */
+    line-height: 0; /* Rimuove eventuale spazio extra sotto l'immagine se è inline-block (anche se <Image> renderizza block) */
+}
+
+/* Stili per l'immagine stessa (next/image) sono gestiti principalmente tramite props e lo style inline.
+   Non sono necessarie regole CSS specifiche per .fullwidth-image-wrapper img qui,
+   a meno di non voler fare override complessi.
+   L'importante è che le props width/height sull'Image siano le dimensioni intrinseche
+   e lo style={{ width: '100%', height: 'auto' }} la renda responsiva.
+*/
+
+/* Aggiustamenti responsive per il wrapper dell'immagine se necessario */
+@media (max-width: 10000px) {
+    .fullwidth-image-wrapper {
+        margin-top: 0rem;
+        /* Se vuoi che su mobile l'immagine sia veramente edge-to-edge e non rispetti
+           il padding del .home-section, dovresti usare tecniche più avanzate
+           come margini negativi, ma per ora si adatterà al padding del .home-section. */
+    }
+}

@@ -1,37 +1,113 @@
+/* app/styles/footer.css */
+
 .footer {
-    width: 100%;
-    background-color: var(--card-bg);
-    color: var(--text-color);
-    border-top: 1px solid var(--border-color);
-    box-shadow: 0 -2px 6px var(--shadow-color);
-    padding: 1rem 2rem;
-    text-align: center;
+    background-color: var(--navbar-bg-color, #161444); /* Usa il colore di sfondo della tua navbar o un altro colore scuro */
+    color: var(--text-color, #ffffff);
+    padding: 2.5rem 1rem; /* Più padding verticale */
+    border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1)); /* Un sottile bordo superiore opzionale */
 }
 
-.footer-content {
+.footer-content-wrapper {
+    max-width: 800px; /* Controlla la larghezza massima del contenuto del footer */
+    margin: 0 auto; /* Centra il contenuto */
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column; /* Impila le sezioni verticalmente */
+    align-items: center; /* Centra le sezioni orizzontalmente */
+    text-align: center; /* Centra il testo all'interno delle sezioni */
+    gap: 1.8rem; /* Spazio tra le sezioni del footer */
 }
 
-.footer-text {
-    font-size: 0.9rem;
+.footer-section {
+    width: 100%; /* Ogni sezione occupa la larghezza disponibile */
 }
 
-.footer-social {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.footer-social a {
-    color: var(--link-color, var(--text-color));
+/* Stile per il link dell'email */
+.footer-email-link {
+    color: var(--accent-bright-blue, #B8C2F2); /* Un colore che risalti leggermente */
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
+    font-size: 0.95rem;
+    transition: color 0.2s ease-in-out;
 }
 
-.footer-social a:hover {
-    color: var(--primary);
+.footer-email-link:hover,
+.footer-email-link:focus-visible {
+    color: var(--primary, #ff3cac); /* Colore hover, es. il tuo rosa neon */
+    text-decoration: underline;
+}
+
+/* Stile per l'intestazione "SEGUICI:" */
+.footer-social-heading {
+    font-size: 1rem;
+    font-weight: 500; /* Leggermente più bold */
+    margin-bottom: 0.8rem; /* Spazio prima dei loghi */
+    color: var(--text-color, #ffffff);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Contenitore per i loghi social */
+.footer-social-icon-group {
+    display: flex;
+    justify-content: center; /* Centra i loghi se non occupano tutto lo spazio */
+    gap: 1.5rem; /* Spazio tra i loghi */
+}
+
+/* Stile per i singoli link social (che contengono gli SVG) */
+.social-icon-link {
+    color: var(--text-color, #ffffff); /* Colore iniziale dell'icona SVG */
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    display: inline-block; /* Per applicare transform */
+}
+
+.social-icon-link:hover,
+.social-icon-link:focus-visible {
+    color: var(--primary, #ff3cac); /* Colore al passaggio del mouse, es. rosa neon */
+    transform: scale(1.1); /* Leggero ingrandimento al passaggio del mouse */
+}
+
+/* Stile per gli SVG dei loghi */
+.social-svg-icon {
+    width: 28px;  /* Dimensione dei loghi */
+    height: 28px; /* Dimensione dei loghi */
+    fill: currentColor; /* L'SVG eredita il colore dal genitore .social-icon-link */
+}
+
+/* Stile per il testo del copyright */
+.footer-copyright-text {
+    font-size: 0.85rem;
+    color: var(--text-color-secondary, rgba(255, 255, 255, 0.7)); /* Un colore leggermente meno brillante per il copyright */
+    margin: 0;
+}
+
+/* Responsive: se vuoi che su schermi più grandi gli elementi si affianchino,
+   puoi aggiungere una media query. Per ora, è sempre impilato.
+   Esempio per affiancare su desktop:
+*/
+@media (min-width: 768px) {
+    .footer-content-wrapper {
+        flex-direction: row; /* Elementi affiancati su schermi più larghi */
+        justify-content: space-between; /* Distribuisce lo spazio tra gli elementi */
+        align-items: center; /* Allinea verticalmente al centro */
+        text-align: left; /* Ripristina l'allineamento a sinistra per le sezioni */
+        gap: 2rem;
+    }
+
+    .footer-section {
+        width: auto; /* La larghezza sarà determinata dal contenuto o da flex-grow */
+    }
+
+    .footer-section.footer-social {
+        /* Potresti voler centrare il testo "SEGUICI" e i loghi anche su desktop */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra "SEGUICI" e il gruppo di icone */
+    }
+
+    .footer-social-icon-group {
+        justify-content: center; /* Mantiene i loghi centrati sotto "SEGUICI" */
+    }
+
+    .footer-copyright {
+        text-align: right; /* Allinea il copyright a destra su desktop */
+    }
 }

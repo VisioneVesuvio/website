@@ -1,43 +1,64 @@
+/* globals.css o il tuo file CSS principale */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+
 :root {
-    /* TEMA DI DEFAULT - MINT FRESCO */
-    --bg-color: #d2fff0;
-    --text-color: #1e3f36;
-    --primary: #60e6b8;
-    --card-bg: #eafff9;
-    --hover-bg: #93f2cf;
-    --hover-text: #002e25;
-    --border-color: #48cfa1;
-    --shadow-color: rgba(72, 207, 161, 0.3);
-    --link-color: #227a65;
-    --button-bg: #60e6b8;
-    --button-text: #1e3f36;
+    /* TEMA BASE - DARK FUTURISTICO */
+    --bg-color: #161444;
+    --text-color: #b8c2f2;
+    --primary: #ff3cac;
+
+    --card-bg: #161444;
+
+    /* Colori specifici per la Navbar */
+    --navbar-bg-color: var(--bg-color);
+    --navbar-link-color: var(--text-color);
+
+    --accent-bright-blue: #B8C2F2;
+
+    --navbar-active-link-bg: var(--accent-bright-blue);
+    --navbar-active-link-text: #161444;
+    --navbar-active-link-border-color: var(--accent-bright-blue);
+    --navbar-active-link-shadow: none;
+    --navbar-link-hover-shadow: var(--shadow-color);
+
+    /* --- NUOVE PROPRIETÀ FONT PER NAVBAR MENU (da immagine) --- */
+    --navbar-font-family: 'Syne', sans-serif; /* Ora Syne dovrebbe essere disponibile */
+    --navbar-font-weight: 500;
+    --navbar-font-size: 25px;
+    --navbar-line-height: 100%;
+    --navbar-letter-spacing: 0%;
+
+    /* Colori per Bottoni Generici */
+    --button-base-bg-color: transparent;
+    --button-base-text-color: var(--accent-bright-blue);
+    --button-base-border-color: var(--accent-bright-blue);
+
+    --button-hover-bg: var(--accent-bright-blue);
+    --button-hover-text: #000000;
+    --button-hover-border: var(--accent-bright-blue);
+    --button-border-radius: 999px;
+
+    /* Colori per Link Generici */
+    --link-color: var(--text-color);
+    --link-hover-color: var(--accent-bright-blue);
+
+    /* Bordi e Ombre */
+    --border-color: var(--accent-bright-blue);
+    --shadow-color: var(--accent-bright-blue);
+
+    /* Extra */
+    --accent-blue: #2bd2ff;
+
+    /* Font Globale */
+    --font-main: 'Syne', sans-serif; /* Applica Syne globalmente */
 }
 
-body[data-theme="theme-pastel"] {
-    --bg-color: #e7fce1;
-    --text-color: #2e3b1d;
-    --primary: #8dc78a;
-    --card-bg: #f0fdf4;
-    --hover-bg: #a3d9a5;
-    --hover-text: #1c2b10;
-    --border-color: #77b377;
-    --shadow-color: rgba(100, 150, 100, 0.3);
-    --link-color: #406030;
-    --button-bg: #8dc78a;
-    --button-text: #2e3b1d;
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
-body[data-theme="theme-neon"] {
-    --bg-color: #0d0f0c;
-    --text-color: #b4ff00;
-    --primary: #00ff00;
-    --card-bg: #1a1f1a;
-    --hover-bg: #00ff00;
-    --hover-text: #000000;
-    --border-color: #00ff00;
-    --shadow-color: rgba(0, 255, 0, 0.6);
-    --link-color: #66ff66;
-    --button-bg: #00ff00;
-    --button-text: #000000;
-}
-
+/* Assicurati che globals.css sia importato nel tuo _app.js o _app.tsx */
+/* Esempio in _app.js: import '../styles/globals.css'; */

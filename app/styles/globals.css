@@ -5,5 +5,7 @@
 @import 'base.css';
 @import 'buttons.css';
 @import 'theme.css';
+@import 'home.css';
+@import 'rassegne.css';
 
-/* NOTA: Layout poi te li importerà automaticamente ovunque */
+/* globals.css */

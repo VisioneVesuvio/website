@@ -8,7 +8,7 @@ import '@/app/styles/auth-dropdown.css';
  * Componente `AuthDropdown`
  * - Mostra un bottone "Accedi"
  * - Al passaggio del mouse, mostra un menu a tendina con:
- *    - Link al login (/signin)
+ *    - Link al calendario (/signin)
  *    - Link alla registrazione (/signup)
  * - Rimane aperto per 5 secondi anche dopo l'uscita del mouse (cooldown)
  */

@@ -1,34 +1,59 @@
+// app/page.js (o il percorso della tua homepage)
+import Image from 'next/image'; // Importa il componente Image
+import FilmGrid from '@/app/components/FilmGrid';
+
 export default function HomePage() {
     return (
-        <section className="home">
-            <h1>Benvenuto su Evolve</h1>
-            <p>
-                Questo non è solo un sito. È un sistema in continua definizione, dove ogni elemento che vedi —
-                dallo sfondo ai bottoni, dalle parole al loro spazio — è frutto di una struttura pensata per evolvere.
-            </p>
+        <section className="home-section"> {/* Contenitore principale per i contenuti della homepage */}
 
-            <p>
-                In Evolve, i <strong>layout</strong> non sono semplici contenitori: sono <em>leggi fondamentali</em> che
-                regolano l’universo delle pagine. Stabiliscono la gravità del tema, il tempo della navigazione, lo spazio
-                dell’interazione. Ogni pagina che nasce lo fa all’interno di queste regole cosmiche.
-            </p>
+            {/* --- CONTENITORE DEL VIDEO --- */}
+            <div className="video-container-global">
+                <video
+                    className="looping-video-global"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                >
+                    {/* ATTENZIONE: Il tipo "video/mp4" con un src ".mov" è errato.
+                        Dovresti convertire loop_sito.mov in loop_sito.mp4 e usare:
+                        <source src="/loop_sito.mp4" type="video/mp4" />
+                        Per ora lascio il tuo src, ma è probabile che non funzioni correttamente.
+                    */}
+                    <source src="/loop_sito.mov" type="video/mp4" />
+                    {/* <source src="/loop_sito.webm" type="video/webm" /> */}
+                    Il tuo browser non supporta il tag video o i formati forniti.
+                </video>
+            </div>
 
-            <p>
-                Le <strong>componenti</strong> sono come <em>frame dentro frame</em>, entità modulari che si auto-completano.
-                Riutilizzabili, tematizzabili, vivono indipendenti ma coesistono armonicamente. Possono essere isolate
-                o parte di un sistema più grande — un bottone, una navbar, un intero blocco funzionale.
-            </p>
+            {/* --- SEZIONE DETTAGLI EVENTO --- */}
+            <div className="event-details-wrapper">
+                <div className="event-details-row">
+                    <div className="event-text-left">
+                        <p className="event-kicker">Cinefilia partenopea</p>
+                        <h2 className="event-headline">ESTATE 2K25</h2>
+                    </div>
+                    <div className="event-text-right">
+                        {/* Data aggiornata come da tuo ultimo JSX */}
+                        <p className="event-date-location">Giugno-Settembre, 2025 | Napoli</p>
+                    </div>
+                </div>
+            </div>
 
-            <p>
-                Abbiamo costruito tutto con attenzione al dettaglio: stili dichiarativi, temi switchabili, strutture accessibili.
-                Il codice è separato con rispetto, ogni file ha il suo ruolo. Il risultato? Una base solida, flessibile e pronta
-                per ospitare qualsiasi nuova forma.
-            </p>
+            {/* --- NUOVA SEZIONE IMMAGINE FULLWIDTH --- */}
+            <div className="fullwidth-image-wrapper">
+                <Image
+                    src="/S&A.png"  // Assicurati che S&A.png sia nella cartella /public
+                    alt="Artwork S&A" // Testo alternativo descrittivo
+                    width={1920} // SOSTITUISCI con la LARGHEZZA REALE della tua immagine S&A.png
+                    height={1080} // SOSTITUISCI con l'ALTEZZA REALE della tua immagine S&A.png
+                    style={{ width: '100%', height: 'auto', display: 'block' }} // Per renderla responsiva
+                    priority // Aggiungi se l'immagine è critica per il Largest Contentful Paint (LCP)
+                />
+            </div>
 
-            <p>
-                Questa è la pagina zero. Non è solo una homepage — è il manifesto di un metodo: leggibile, scalabile, e
-                soprattutto <em>vivente</em>.
-            </p>
+            <FilmGrid />
+
         </section>
     );
 }

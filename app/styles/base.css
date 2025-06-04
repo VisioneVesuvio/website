@@ -1,18 +1,18 @@
-/* ============================= */
-/* BASE CSS */
-/* ============================= */
-
 * {
     box-sizing: border-box;
+    margin: 0; /* Reset base per margin e padding */
+    padding: 0;
 }
 
 html, body {
-    margin: 0;
-    padding: 0;
+    /* margin: 0; Rimossi perché già in * */
+    /* padding: 0; Rimossi perché già in * */
     height: 100%;
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: sans-serif;
+    font-family: var(--font-main); /* Applicato globalmente */
+    -webkit-font-smoothing: antialiased; /* Migliora resa font */
+    -moz-osx-font-smoothing: grayscale; /* Migliora resa font */
 }
 
 body {
@@ -25,17 +25,33 @@ main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* o "flex-start" se vuoi partire dall’alto */
-    align-items: center;
-    padding: 2rem;
+    /* justify-content: flex-start; Rimosso per flessibilità */
+    /* align-items: center; Rimosso per flessibilità */
+    padding: 2rem; /* Padding generico per il contenuto principale */
+    width: 100%; /* Assicura che main occupi la larghezza */
 }
 
-/* Link base */
 a {
-    color: var(--link-color, var(--text-color));
+    color: var(--link-color); /* Colore link generico */
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-a:hover {
-    text-decoration: underline;
+a:not([class*="navbar-"]):not([class*="button"]):hover, /* Esclude link navbar e bottoni per non sovrascrivere stili specifici */
+a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
+    color: var(--link-hover-color); /* Colore primario per hover su link generici */
+    text-decoration: underline; /* Sottolineatura per chiarezza su hover/focus */
+}
+
+/* Utility per nascondere visualmente ma mantenere accessibile per screen reader */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }

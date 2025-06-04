@@ -1,0 +1,161 @@
+/* globals.css */
+
+/* ... (i tuoi stili globali esistenti e variabili :root) ... */
+/* Esempio di variabili placeholder se non le hai già:
+:root {
+    --text-color: #ffffff;
+    --text-color-secondary: rgba(255, 255, 255, 0.85);
+    --font-main: 'Syne', sans-serif;
+    --accent-bright-blue: #B8C2F2;
+    --placeholder-bg: #2a2a40;
+    --placeholder-text-color: #777799;
+    --placeholder-border-color: #444466;
+}
+*/
+
+/* --- Stili per la Pagina Rassegne --- */
+.rassegne-page-container {
+    width: 100%;
+    max-width: 1100px; /* Larghezza massima per il contenuto della pagina */
+    margin: 0 auto; /* Centra il contenitore */
+    padding: 2.5rem 1.5rem; /* Padding generale della pagina */
+    color: var(--text-color, #ffffff);
+    font-family: var(--font-main, 'Syne', sans-serif);
+    box-sizing: border-box;
+}
+
+.rassegne-main-title {
+    font-size: 2.8rem; /* Dimensione per "RASSEGNE" */
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 3rem; /* Spazio sotto il titolo principale */
+    text-align: left;
+    color: var(--text-color, #ffffff);
+}
+
+.rassegna-section {
+    margin-bottom: 3.5rem; /* Spazio tra le sezioni "PROSSIMA" e "PASSATE", e tra le stagioni */
+}
+
+.rassegna-section-subtitle { /* Per "PROSSIMA", "PASSATE" */
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+    color: var(--text-color, #ffffff);
+    padding-bottom: 0.6rem;
+    /* border-bottom: 1px solid var(--accent-bright-blue, #B8C2F2); /* Linea separatrice opzionale */
+}
+
+/* Sezione "PROSSIMA" */
+.rassegna-prossima .rassegna-prossima-poster-wrapper {
+    width: 100%;
+    max-width: 380px; /* Larghezza del poster grande per "PROSSIMA" */
+    /* margin: 0 auto; /* Se vuoi centrarlo e dargli meno di max-width */
+}
+
+/* Sezione "PASSATE" - Blocco Stagione */
+.rassegna-stagione-block {
+    margin-bottom: 3rem; /* Spazio tra una stagione e l'altra */
+}
+
+.rassegna-stagione-name { /* Es. "Stagione invernale 2025..." */
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: var(--text-color, rgba(255, 255, 255, 0.85));
+}
+
+.rassegna-stagione-layout { /* Contenitore flex per poster grande e griglia piccola */
+    display: flex;
+    gap: 2rem; /* Spazio tra il poster grande a sx e la griglia a dx */
+    align-items: flex-start; /* Allinea gli elementi in alto */
+}
+
+.rassegna-stagione-large-poster-item {
+    flex: 0 0 300px; /* Base fissa per il poster grande, non cresce, non si restringe. Regola larghezza. */
+    /* Oppure usa flex-basis e flex-grow/shrink se vuoi più flessibilità */
+    /* width: 300px; */ /* Alternativa a flex-basis */
+}
+
+.rassegna-stagione-small-grid-items {
+    flex-grow: 1; /* La griglia occupa lo spazio rimanente */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Griglia 2x2 */
+    gap: 1rem; /* Spazio tra i poster piccoli */
+}
+
+/* Stili per il componente ImagePlaceholder sono inline nel JSX,
+   ma puoi definirli anche qui se preferisci usare una classe.
+   Le variabili --placeholder-* sono usate negli stili inline.
+*/
+
+
+/* --- Media Query per Responsività --- */
+@media (max-width: 992px) {
+    .rassegne-main-title {
+        font-size: 2.4rem;
+    }
+    .rassegna-section-subtitle {
+        font-size: 1.4rem;
+    }
+    .rassegna-stagione-name {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .rassegne-main-title {
+        text-align: center; /* Centra il titolo su mobile */
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+    .rassegna-section-subtitle {
+        text-align: center; /* Centra i sottotitoli su mobile */
+        font-size: 1.3rem;
+    }
+    .rassegna-stagione-name {
+        text-align: center;
+    }
+
+    .rassegna-prossima .rassegna-prossima-poster-wrapper {
+        max-width: 280px; /* Riduci la dimensione del poster grande */
+        margin-left: auto;
+        margin-right: auto; /* Centra */
+    }
+
+    .rassegna-stagione-layout {
+        flex-direction: column; /* Impila il poster grande e la griglia */
+        align-items: center; /* Centra gli elementi impilati */
+        gap: 1.5rem;
+    }
+
+    .rassegna-stagione-large-poster-item {
+        flex-basis: auto; /* Resetta flex-basis */
+        width: 100%;
+        max-width: 300px; /* Limita la larghezza del poster grande quando impilato */
+    }
+
+    .rassegna-stagione-small-grid-items {
+        width: 100%;
+        max-width: 450px; /* Limita la larghezza della griglia 2x2 */
+        /* grid-template-columns: repeat(2, 1fr); /* Mantiene 2 colonne se c'è spazio */
+    }
+}
+
+@media (max-width: 480px) {
+    .rassegne-main-title {
+        font-size: 1.9rem;
+    }
+    .rassegna-section-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 1.2rem;
+    }
+    .rassegna-stagione-name {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    .rassegna-stagione-small-grid-items {
+        gap: 0.75rem; /* Riduci ulteriormente il gap tra i poster piccoli */
+    }
+}

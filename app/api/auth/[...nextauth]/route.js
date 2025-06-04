@@ -10,7 +10,7 @@ import bcrypt from 'bcrypt';
  * Configurazione per NextAuth:
  * - Usa JWT per gestire la sessione (stateless)
  * - Utilizza un provider custom con email/password (Credentials)
- * - Collega il login al database MongoDB per validazione
+ * - Collega il calendario al database MongoDB per validazione
  */
 export const authOptions = {
     // 🔐 Secret per firmare JWT e sessioni
@@ -28,7 +28,7 @@ export const authOptions = {
                 password: { label: 'Password', type: 'password' },
             },
 
-            // 🔍 Logica di validazione dell’utente al login
+            // 🔍 Logica di validazione dell’utente al calendario
             async authorize(credentials) {
                 await connectToDatabase();
 
@@ -60,7 +60,7 @@ export const authOptions = {
     // 🔁 Callback per token e sessione (JWT strategy)
     callbacks: {
         /**
-         * Aggiunge `id` e `role` al JWT al momento della login
+         * Aggiunge `id` e `role` al JWT al momento della calendario
          */
         async jwt({ token, user }) {
             if (user) {
@@ -80,9 +80,9 @@ export const authOptions = {
         },
     },
 
-    // 📄 Pagina personalizzata di login
+    // 📄 Pagina personalizzata di calendario
     pages: {
-        signIn: '/login',
+        signIn: '/calendario',
     },
 };
 
