@@ -24,7 +24,7 @@
     margin-top: 0; /* Rimuovi se vuoi che sia attaccato in alto al .home-section (o gestisci con padding di .home-section) */
     margin-bottom: 3rem; /* Manteniamo uno spazio sotto il video */
 
-    height: 90vh; /* Esempio: Altezza del 70% del viewport. Puoi regolare questo valore (es. 50vh, 60vh, 400px) per definire l'altezza della "striscia" di video. Il tuo ultimo CSS aveva 80vh. */
+    height: 120vh; /* Esempio: Altezza del 70% del viewport. Puoi regolare questo valore (es. 50vh, 60vh, 400px) per definire l'altezza della "striscia" di video. Il tuo ultimo CSS aveva 80vh. */
     background-color: #000; /* Sfondo nero mentre il video carica o per letterboxing */
     overflow: hidden;    /* Importante se il video (con object-fit: cover) dovesse teoricamente sbordare (ma con width/height 100% non dovrebbe) */
 
