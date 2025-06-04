@@ -10,25 +10,38 @@
     box-sizing: border-box;
 }
 
+/* globals.css */
+
+/* ... (altri tuoi stili, inclusi quelli per .home-section) ... */
+
 /* Contenitore per il video */
 .video-container-global {
-    width: 100%;
-    max-width: 10000px;  /* Mantenuto come da tuo CSS */
-    margin: 0 auto 3rem auto; /* Centrato, con margine inferiore */
-    height: 80vh;       /* Mantenuto come da tuo CSS */
-    background-color: #000;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Fa sì che il contenitore usi tutta la larghezza del suo genitore (.home-section) */
+    /* max-width: 10000px; */ /* Questo era già impostato, va bene per "tutta larghezza" se .home-section è già full-width */
+
+    margin-left: 0;  /* Assicura che non ci sia margine laterale che lo sposti */
+    margin-right: 0; /* Assicura che non ci sia margine laterale che lo sposti */
+    margin-top: 0; /* Rimuovi se vuoi che sia attaccato in alto al .home-section (o gestisci con padding di .home-section) */
+    margin-bottom: 3rem; /* Manteniamo uno spazio sotto il video */
+
+    height: 90vh; /* Esempio: Altezza del 70% del viewport. Puoi regolare questo valore (es. 50vh, 60vh, 400px) per definire l'altezza della "striscia" di video. Il tuo ultimo CSS aveva 80vh. */
+    background-color: #000; /* Sfondo nero mentre il video carica o per letterboxing */
+    overflow: hidden;    /* Importante se il video (con object-fit: cover) dovesse teoricamente sbordare (ma con width/height 100% non dovrebbe) */
+
+    /* --- MODIFICHE PRINCIPALI QUI SOTTO --- */
+    border-radius: 0; /* RIMUOVI i bordi arrotondati */
+    box-shadow: none;   /* RIMUOVI l'ombra */
+    /* --- FINE MODIFICHE PRINCIPALI --- */
 }
 
 /* Stili per l'elemento video stesso */
 .looping-video-global {
     display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%;       /* Occupa tutta la larghezza del .video-container-global */
+    height: 100%;      /* Occupa tutta l'altezza del .video-container-global */
+    object-fit: cover; /* Il video copre l'area, mantenendo le proporzioni (potrebbe tagliare parti del video per adattarsi) */
 }
+
 
 
 /* --- STILI PER LA SEZIONE DETTAGLI EVENTO --- */

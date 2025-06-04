@@ -1,7 +1,6 @@
 // components/FlippableCard.js
 import React from 'react';
-import Image from 'next/image'; // Useremo next/image per le locandine
-import '@/app/styles/flip.css';
+import Image from 'next/image';
 
 export default function FlippableCard({ filmData }) {
     const { frontImage, frontText, backText, title } = filmData;
@@ -16,7 +15,7 @@ export default function FlippableCard({ filmData }) {
                             alt={title || 'Locandina film'}
                             layout="fill"
                             objectFit="cover"
-                            className="card-image"
+                            className="card-image" // Usata per border-radius sull'immagine se necessario
                         />
                     ) : (
                         <div className="card-text-content">
@@ -25,7 +24,20 @@ export default function FlippableCard({ filmData }) {
                     )}
                 </div>
                 <div className="card-face card-back">
-                    <p className="card-back-text">{backText}</p>
+                    {/* Immagine di sfondo per il retro della card */}
+                    {frontImage && (
+                        <Image
+                            src={frontImage}
+                            alt="" // Immagine decorativa, l'alt principale è sul fronte
+                            layout="fill"
+                            objectFit="cover"
+                            className="card-back-background-image" // Nuova classe per l'opacità e z-index
+                        />
+                    )}
+                    {/* Contenuto testuale sopra l'immagine di sfondo */}
+                    <div className="card-back-content">
+                        <p className="card-back-text">{backText}</p>
+                    </div>
                 </div>
             </div>
         </div>

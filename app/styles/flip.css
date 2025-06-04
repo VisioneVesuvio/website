@@ -3,38 +3,36 @@
 /* --- Sezione Griglia Film --- */
 .film-grid-section {
     width: 100%;
-    max-width: 1200px; /* O la larghezza massima del tuo contenuto principale */
-    margin: 4rem auto; /* Spazio sopra/sotto e centrato */
-    padding: 0 1rem; /* Padding laterale */
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 1rem;
     box-sizing: border-box;
-    text-align: center; /* Per centrare il titolo e il bottone se non occupano tutta la larghezza */
+    text-align: center;
 }
 
 .film-grid-title {
     text-align: left;
     font-family: var(--font-main, 'Syne', sans-serif);
-    font-size: 2.8rem; /* Regola dimensione */
-    font-weight: 700; /* O il peso che preferisci */
-    color: var(--accent-bright-blue);;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--accent-bright-blue);
     margin-bottom: 6rem;
     text-transform: uppercase;
 }
 
 .film-grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Griglia 3 colonne */
-    gap: 1.5rem; /* Spazio tra le card */
-    margin-bottom: 3rem; /* Spazio prima del bottone */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 /* --- Stili per Flippable Card --- */
 .flippable-card-container {
-    width: 100%; /* Le card occuperanno la larghezza della cella della griglia */
-    aspect-ratio: 2 / 3; /* Mantiene le proporzioni (es. per locandine), regola se necessario */
-    /* Esempio di altezza fissa se non usi aspect-ratio: height: 280px; */
-    /* min-height: 250px; /* Altezza minima per le card */
-    background-color: transparent; /* Necessario per iOS per non "vedere attraverso" durante il flip */
-    perspective: 1000px; /* Profondità per l'effetto 3D */
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background-color: transparent;
+    perspective: 1000px;
     cursor: pointer;
 }
 
@@ -45,7 +43,7 @@
     text-align: center;
     transition: transform 0.7s;
     transform-style: preserve-3d;
-    border-radius: 10px; /* Bordi arrotondati per l'intera card */
+    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -63,51 +61,76 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Per tagliare l'immagine se usi object-fit */
+    overflow: hidden; /* Importante per tagliare l'immagine ai bordi arrotondati */
 }
 
 .card-front {
-    background-color: var(--card-bg, #1a1a2e); /* Sfondo di fallback o per card testuali */
+    background-color: var(--card-bg, #1a1a2e);
     color: var(--text-color, white);
-    /* position: relative; /* Necessario per next/image con layout="fill" */
+    /* position: relative; /* next/image con layout="fill" lo gestisce internamente */
 }
 
-.card-image { /* Classe per il componente next/image */
-    border-radius: 10px; /* Assicura che l'immagine segua i bordi arrotondati */
+.card-image { /* Classe per il componente next/image sul fronte */
+    /* next/image con layout="fill" e objectFit="cover" gestirà il riempimento.
+       Il border-radius è gestito da overflow:hidden su .card-face */
 }
 
 .card-text-content {
     padding: 1rem;
     font-family: var(--font-main, 'Syne', sans-serif);
-    font-size: 1.5rem; /* Regola per il testo sulla card frontale */
+    font-size: 1.5rem;
     font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
     text-align: center;
-    color: var(--text-color, #ffffff); /* Colore per il testo tipo "ANNIE HALL" */
-    background-color: var(--card-bg, #2c2c54); /* Sfondo specifico per card solo testo */
+    color: var(--text-color, #ffffff);
+    background-color: var(--card-bg, #2c2c54);
 }
 
-
+/* --- MODIFICHE PER IL RETRO DELLA CARD --- */
 .card-back {
-    background-color: var(--accent-bright-blue, #B8C2F2); /* Colore brillante per il retro */
-    color: var(--bg-color, #161444); /* Testo scuro su sfondo brillante */
+    background-color: var(--accent-bright-blue, #B8C2F2); /* Colore di base sotto l'immagine trasparente */
+    color: var(--bg-color, #161444); /* Colore del testo, come prima */
     transform: rotateY(180deg);
-    padding: 1rem;
     font-family: var(--font-main, 'Syne', sans-serif);
+    padding: 1rem; /* Padding per il contenuto testuale */
+    position: relative; /* Per posizionare l'immagine di sfondo e il contenuto */
+    /* display, align-items, justify-content sono già su .card-face */
+    /* overflow: hidden; è già su .card-face */
+}
+
+.card-back-background-image { /* Classe per l'Image component sul retro */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3; /* Immagine con 60% di trasparenza (40% opacità) */
+    z-index: 0;   /* Sta sotto il contenuto testuale */
+    /* objectFit="cover" e layout="fill" sono gestiti dalle props del componente Image */
+    /* Il border-radius è gestito da overflow:hidden su .card-face (che è .card-back) */
+}
+
+.card-back-content { /* Wrapper per il testo sul retro */
+    position: relative; /* Per assicurare che sia sopra l'immagine di sfondo */
+    z-index: 1;
+    /* Eventuali stili aggiuntivi per questo blocco di testo se necessario */
 }
 
 .card-back-text {
-    font-size: 1.8rem; /* Dimensione per la data */
+    font-size: 1.8rem;
     font-weight: 600;
     margin: 0;
+    /* Il colore è ereditato da .card-back */
 }
+/* --- FINE MODIFICHE RETRO CARD --- */
+
 
 /* --- Stili per il Bottone --- */
 .film-grid-button-container {
-    text-align: center; /* Centra il bottone */
+    text-align: center;
 }
 
 .film-grid-button {
@@ -117,10 +140,9 @@
     font-size: 1rem;
     font-weight: 500;
     color: var(--text-color, #ffffff);
-    background: linear-gradient(90deg, #8A2BE2, #4B0082); /* Esempio gradiente viola */
-    /* Oppure usa le tue variabili: background: var(--button-primary-bg, #8A2BE2); */
+    background: linear-gradient(90deg, #8A2BE2, #4B0082);
     border: none;
-    border-radius: 999px; /* Forma a pillola */
+    border-radius: 999px;
     text-decoration: none;
     cursor: pointer;
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
@@ -130,8 +152,7 @@
 .film-grid-button:hover,
 .film-grid-button:focus-visible {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 12px rgba(var(--primary-rgb, 138, 43, 226), 0.5); /* Usa RGB del tuo colore primario per l'ombra */
-    /* text-decoration: none; /* Già impostato */
+    box-shadow: 0 4px 12px rgba(var(--primary-rgb, 138, 43, 226), 0.5);
 }
 
 
@@ -143,11 +164,8 @@
     }
 
     .film-grid-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 colonne su tablet */
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
-    }
-    .flippable-card-container {
-        /* aspect-ratio: 2 / 2.8; /* Leggermente meno alte se necessario */
     }
 }
 
@@ -157,17 +175,16 @@
     }
 
     .film-grid-container {
-        grid-template-columns: 1fr; /* 1 colonna su mobile */
-        gap: 1.5rem; /* Aumenta un po' il gap se sono impilate */
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .flippable-card-container {
-        max-width: 300px; /* Limita la larghezza della card quando è singola colonna */
-        margin: 0 auto; /* Centra la card singola */
-        /* aspect-ratio: 2 / 2.5; /* Ancora più quadrate se necessario */
+        max-width: 300px;
+        margin: 0 auto;
     }
 
-    .card-text-content span {
+    .card-text-content span { /* Assumendo che il testo sia dentro uno span se necessario */
         font-size: 1.3rem;
     }
 
