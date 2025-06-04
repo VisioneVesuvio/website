@@ -39,7 +39,7 @@
     display: block;
     width: 100%;       /* Occupa tutta la larghezza del .video-container-global */
     height: 100%;      /* Occupa tutta l'altezza del .video-container-global */
-    object-fit: cover; /* Il video copre l'area, mantenendo le proporzioni (potrebbe tagliare parti del video per adattarsi) */
+    object-fit: fill; /* Il video copre l'area, mantenendo le proporzioni (potrebbe tagliare parti del video per adattarsi) */
 }
 
 
