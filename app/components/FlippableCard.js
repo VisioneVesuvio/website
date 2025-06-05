@@ -14,7 +14,7 @@ export default function FlippableCard({ filmData }) {
                             src={frontImage}
                             alt={title || 'Locandina film'}
                             layout="fill"
-                            objectFit="cover"
+                            objectFit="contain"
                             className="card-image" // Usata per border-radius sull'immagine se necessario
                         />
                     ) : (

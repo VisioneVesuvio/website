@@ -44,7 +44,6 @@
     transition: transform 0.7s;
     transform-style: preserve-3d;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .flippable-card-container:hover .flippable-card-inner {

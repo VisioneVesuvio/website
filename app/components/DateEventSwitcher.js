@@ -13,7 +13,7 @@ const eventsByDate = [
         fullDateLabel: 'Domenica 15/06/25',
         event: {
             title: 'IN THE MOOD FOR LOVE',
-            posterUrl: '/film/in_the_mood_for_love.jpg',
+            posterUrl: '/film/in_the_mood_for_love.png',
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
@@ -28,7 +28,7 @@ const eventsByDate = [
         fullDateLabel: 'Domenica 22/06/25',
         event: {
             title: 'HER',
-            posterUrl: '/film/her.jpg',
+            posterUrl: '/film/her.png',
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
@@ -43,7 +43,7 @@ const eventsByDate = [
         fullDateLabel: 'Domenica 29/06/25',
         event: {
             title: 'EX MACHINA',
-            posterUrl: '/film/ex-machina.jpg',
+            posterUrl: '/film/ex_machina.png',
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
@@ -58,7 +58,7 @@ const eventsByDate = [
         fullDateLabel: 'Domenica 06/07/25',
         event: {
             title: 'ANNIE HALL',
-            posterUrl: '/film/hannie_hall.jpg', // Come da tua lista
+            posterUrl: '/film/hannie_hall.png', // Come da tua lista
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
@@ -73,7 +73,7 @@ const eventsByDate = [
         fullDateLabel: 'Domenica 13/07/25',
         event: {
             title: 'BLUE VELVET', // Film cambiato rispetto al tuo primo esempio, basandomi sulla tua lista di 9 film
-            posterUrl: '/film/blue_velvet.jpg',
+            posterUrl: '/film/blue_velvet.png',
             location: '(Luogo della proiezione da specificare, es. VILLA FLORIDIANA)',
             entryTime: 'Ingresso dalle ore (es. 20:15)',
             startTime: 'Inizio proiezione ore (es. 21:00)',
@@ -88,7 +88,7 @@ const eventsByDate = [
         fullDateLabel: 'Domenica 20/07/25',
         event: {
             title: '8½',
-            posterUrl: '/film/8_1_2.jpg',
+            posterUrl: '/film/8_1_2.png',
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
@@ -103,7 +103,7 @@ const eventsByDate = [
         fullDateLabel: 'Domenica 27/07/25',
         event: {
             title: 'ALICE WONDERLAND', // Film cambiato rispetto al tuo primo esempio ("FILM DA DEFINIRE")
-            posterUrl: '/film/alice.jpg',
+            posterUrl: '/film/alice.png',
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
@@ -118,7 +118,7 @@ const eventsByDate = [
         fullDateLabel: 'Domenica 03/08/25',
         event: {
             title: 'BRAZIL',
-            posterUrl: '/film/brazil.jpg',
+            posterUrl: '/film/brazil.png',
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
@@ -133,7 +133,7 @@ const eventsByDate = [
         fullDateLabel: 'Domenica 10/08/25',
         event: {
             title: 'PARIS, TEXAS',
-            posterUrl: '/film/paris_texas.jpg',
+            posterUrl: '/film/paris_texas.png',
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
