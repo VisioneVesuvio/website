@@ -392,8 +392,18 @@ a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
         }
 
         .contact-logo-container {
-            /* Centra il logo se il blocco è text-align: center */
-            display: inline-block; /* Per rispettare text-align:center del genitore */
+            display: flex;
+            justify-content: center;
+            width: 80vw; /* Imposta la larghezza all'80% della larghezza del viewport */
+            /* oppure usa max-width per un controllo più flessibile */
+            /* max-width: 500px; */ /* Imposta una larghezza massima in pixel */
+            margin-left: auto; /* Necessario con width o max-width per centrare */
+            margin-right: auto; /* Necessario con width o max-width per centrare */
+        }
+
+        .contact-logo-container img { /* Assumendo che il logo sia un'immagine */
+            max-width: 100%; /* Assicura che l'immagine non superi la larghezza del container */
+            height: auto;    /* Mantiene le proporzioni dell'immagine */
         }
         /* Se il logo è un <Image> con width/height fisse, si centrerà se il suo contenitore
            .contact-logo-container è reso inline-block e il genitore .contact-block è text-align:center */
