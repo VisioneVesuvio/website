@@ -1,40 +1,27 @@
-/* globals.css */
 
-/* ... (i tuoi stili globali esistenti e variabili :root) ... */
-/* Esempio di variabili placeholder se non le hai già:
-:root {
-    --text-color: #ffffff;
-    --text-color-secondary: rgba(255, 255, 255, 0.85);
-    --font-main: 'Syne', sans-serif;
-    --accent-bright-blue: #B8C2F2;
-    --placeholder-bg: #2a2a40;
-    --placeholder-text-color: #777799;
-    --placeholder-border-color: #444466;
-}
-*/
 
-/* --- Stili per la Pagina Rassegne --- */
+/* --- STRUTTURA PAGINA RASSEGNE --- */
 .rassegne-page-container {
     width: 100%;
-    max-width: 1100px; /* Larghezza massima per il contenuto della pagina */
-    margin: 0 auto; /* Centra il contenitore */
-    padding: 2.5rem 1.5rem; /* Padding generale della pagina */
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
     color: var(--text-color, #ffffff);
     font-family: var(--font-main, 'Syne', sans-serif);
     box-sizing: border-box;
 }
 
 .rassegne-main-title {
-    font-size: 2.8rem; /* Dimensione per "RASSEGNE" */
+    font-size: 2.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 3rem; /* Spazio sotto il titolo principale */
+    margin-bottom: 3rem;
     text-align: left;
     color: var(--text-color, #ffffff);
 }
 
 .rassegna-section {
-    margin-bottom: 3.5rem; /* Spazio tra le sezioni "PROSSIMA" e "PASSATE", e tra le stagioni */
+    margin-bottom: 3.5rem;
 }
 
 .rassegna-section-subtitle { /* Per "PROSSIMA", "PASSATE" */
@@ -44,118 +31,148 @@
     margin-bottom: 1.8rem;
     color: var(--text-color, #ffffff);
     padding-bottom: 0.6rem;
-    /* border-bottom: 1px solid var(--accent-bright-blue, #B8C2F2); /* Linea separatrice opzionale */
 }
 
-/* Sezione "PROSSIMA" */
-.rassegna-prossima .rassegna-prossima-poster-wrapper {
+/* --- LAYOUT SPECIFICI PER LE SEZIONI DEI POSTER --- */
+
+/* Contenitore per il poster della rassegna "PROSSIMA" */
+.rassegna-prossima-poster-wrapper {
     width: 100%;
-    max-width: 380px; /* Larghezza del poster grande per "PROSSIMA" */
-    /* margin: 0 auto; /* Se vuoi centrarlo e dargli meno di max-width */
+    max-width: 450px; /* TUA MODIFICA: Larghezza del poster grande per "PROSSIMA" */
+    margin-bottom: 8rem;
 }
 
-/* Sezione "PASSATE" - Blocco Stagione */
+
+/* Contenitore per il blocco di una stagione "PASSATA" */
 .rassegna-stagione-block {
-    margin-bottom: 3rem; /* Spazio tra una stagione e l'altra */
+    margin-bottom: 8rem;
 }
 
-.rassegna-stagione-name { /* Es. "Stagione invernale 2025..." */
+.rassegna-stagione-name {
     font-size: 1.25rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
     color: var(--text-color, rgba(255, 255, 255, 0.85));
 }
 
-.rassegna-stagione-layout { /* Contenitore flex per poster grande e griglia piccola */
+/* Layout Flex per poster grande a sinistra e griglia piccola a destra */
+.rassegna-stagione-layout {
     display: flex;
-    gap: 2rem; /* Spazio tra il poster grande a sx e la griglia a dx */
-    align-items: flex-start; /* Allinea gli elementi in alto */
+    gap: 2rem;
+    align-items: flex-start;
 }
 
+/* Contenitore per il poster grande di una stagione "PASSATA" */
 .rassegna-stagione-large-poster-item {
-    flex: 0 0 300px; /* Base fissa per il poster grande, non cresce, non si restringe. Regola larghezza. */
-    /* Oppure usa flex-basis e flex-grow/shrink se vuoi più flessibilità */
-    /* width: 300px; */ /* Alternativa a flex-basis */
+    flex: 0 0 450px; /* TUA MODIFICA: Larghezza fissa per questo contenitore */
 }
 
+/* Griglia per i poster piccoli di una stagione "PASSATA" */
 .rassegna-stagione-small-grid-items {
-    flex-grow: 1; /* La griglia occupa lo spazio rimanente */
+    flex-grow: 0.1; /* TUA MODIFICA */
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Griglia 2x2 */
-    gap: 1rem; /* Spazio tra i poster piccoli */
+    gap: 1rem;
 }
 
-/* Stili per il componente ImagePlaceholder sono inline nel JSX,
-   ma puoi definirli anche qui se preferisci usare una classe.
-   Le variabili --placeholder-* sono usate negli stili inline.
-*/
+/* --- STILI COMUNI PER I WRAPPER DELLE IMMAGINI --- */
+.image-wrapper {
+    position: relative; /* FONDAMENTALE per next/image con prop 'fill' */
+    width: 100%;       /* Occupa la larghezza del suo contenitore genitore */
+    display: block;    /* Comportamento di blocco */
+    border-radius: 8px;/* Bordi arrotondati per l'effetto visivo */
+    overflow: hidden;  /* Nasconde le parti dell'immagine che eccedono */
+    background-color: var(--bg-color, #2a2a40); /* Sfondo mostrato se l'immagine non carica */
+}
+
+/* --- DIMENSIONI DI VISUALIZZAZIONE SPECIFICHE PER I WRAPPER DELLE IMMAGINI --- */
+.prossima-grande-display { /* Per l'immagine dentro .rassegna-prossima-poster-wrapper */
+    height: 600px; /* TUA MODIFICA */
+}
+
+.passate-grande-display { /* Per l'immagine dentro .rassegna-stagione-large-poster-item */
+    height: 600px; /* TUA MODIFICA */
+}
+
+.passate-piccolo-display { /* Per le immagini nella griglia .rassegna-stagione-small-grid-items */
+    height: 292px;  /* TUA MODIFICA */
+    width: 220px;   /* TUA MODIFICA */
+    aspect-ratio: 2 / 3;
+}
 
 
-/* --- Media Query per Responsività --- */
+/* --- MEDIA QUERIES PER RESPONSIVITÀ --- */
 @media (max-width: 992px) {
-    .rassegne-main-title {
-        font-size: 2.4rem;
-    }
-    .rassegna-section-subtitle {
-        font-size: 1.4rem;
-    }
-    .rassegna-stagione-name {
-        font-size: 1.1rem;
-    }
+    .rassegne-main-title { font-size: 2.4rem; }
+    .rassegna-section-subtitle { font-size: 1.4rem; }
+    .rassegna-stagione-name { font-size: 1.1rem; }
 }
 
 @media (max-width: 768px) {
-    .rassegne-main-title {
-        text-align: center; /* Centra il titolo su mobile */
-        font-size: 2.2rem;
-        margin-bottom: 2rem;
-    }
-    .rassegna-section-subtitle {
-        text-align: center; /* Centra i sottotitoli su mobile */
-        font-size: 1.3rem;
-    }
+    .rassegne-main-title,
+    .rassegna-section-subtitle,
     .rassegna-stagione-name {
         text-align: center;
     }
+    .rassegne-main-title { font-size: 2.2rem; margin-bottom: 2rem; }
+    .rassegna-section-subtitle { font-size: 1.3rem; }
 
-    .rassegna-prossima .rassegna-prossima-poster-wrapper {
-        max-width: 280px; /* Riduci la dimensione del poster grande */
+    .rassegna-prossima-poster-wrapper {
+        max-width: 280px;
         margin-left: auto;
-        margin-right: auto; /* Centra */
+        margin-right: auto;
     }
+    .prossima-grande-display { height: 400px; }
 
     .rassegna-stagione-layout {
-        flex-direction: column; /* Impila il poster grande e la griglia */
-        align-items: center; /* Centra gli elementi impilati */
+        flex-direction: column;
+        align-items: center;
         gap: 1.5rem;
     }
 
     .rassegna-stagione-large-poster-item {
-        flex-basis: auto; /* Resetta flex-basis */
+        flex-basis: auto;
         width: 100%;
-        max-width: 300px; /* Limita la larghezza del poster grande quando impilato */
+        max-width: 300px;
+    }
+    .passate-grande-display {
+        height: auto;
+        aspect-ratio: 300 / 380;
     }
 
     .rassegna-stagione-small-grid-items {
         width: 100%;
-        max-width: 450px; /* Limita la larghezza della griglia 2x2 */
-        /* grid-template-columns: repeat(2, 1fr); /* Mantiene 2 colonne se c'è spazio */
+        max-width: 450px;
     }
 }
 
 @media (max-width: 480px) {
-    .rassegne-main-title {
-        font-size: 1.9rem;
+    .rassegne-main-title { font-size: 1.9rem; }
+    .rassegna-section-subtitle { font-size: 1.2rem; margin-bottom: 1.2rem; }
+    .rassegna-stagione-name { font-size: 1rem; margin-bottom: 1rem; }
+
+    .rassegna-stagione-small-grid-items { /* TUA MODIFICA INTEGRATA */
+        justify-items: center;
+        gap: 0.75rem;
+        grid-template-columns: repeat(1, 1fr);
     }
-    .rassegna-section-subtitle {
-        font-size: 1.2rem;
-        margin-bottom: 1.2rem;
+    /* Per far funzionare justify-items: center, .passate-piccolo-display deve avere una larghezza definita
+       che sia potenzialmente inferiore alla colonna 1fr, oppure una max-width. */
+    .passate-piccolo-display { /* All'interno della media query 480px */
+        width: 70%; /* Esempio: rendi la card più stretta della colonna per centrarla */
+        /* Oppure max-width: 180px; o un valore simile */
+        /* height e aspect-ratio rimangono come definiti fuori dalla media query,
+           ma l'altezza si adatterà alla nuova larghezza (70%) se aspect-ratio è attivo
+           e height:292px viene rimosso o adattato.
+           Se width è 70% e hai height fissa e aspect-ratio, il risultato potrebbe essere inatteso.
+           Consiglio di usare width + aspect-ratio OPPURE width + height.
+           Per ora mantengo le tue tre proprietà. */
+        height: 220px;  /* Da tuo input */
+        width: 180px;   /* Da tuo input - ma questo è FISSO, non 70%. */
+        /* Se vuoi centrare, questa width fissa è ciò che verrà centrato
+           all'interno della colonna 1fr, grazie a justify-items:center. */
+        aspect-ratio: 2 / 3; /* Da tuo input */
     }
-    .rassegna-stagione-name {
-        font-size: 1rem;
-        margin-bottom: 1rem;
-    }
-    .rassegna-stagione-small-grid-items {
-        gap: 0.75rem; /* Riduci ulteriormente il gap tra i poster piccoli */
-    }
+
+    .prossima-grande-display { height: 350px; }
 }
