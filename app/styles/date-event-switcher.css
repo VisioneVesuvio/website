@@ -37,7 +37,7 @@
     padding: 0.6rem 1.2rem;
     font-size: 1.1rem;
     font-weight: 500;
-    color: var(--text-color-secondary, rgba(255, 255, 255, 0.7));
+    color: var(#B8C2F2);
     background-color: transparent;
     border: 2px solid transparent; /* Bordo trasparente per mantenere dimensioni */
     border-radius: 999px; /* Forma a pillola */
@@ -108,7 +108,7 @@
     /* height: 270px; /* Altezza fissa, o lascia che sia determinata da aspect-ratio dell'immagine */
     border-radius: 8px;
     overflow: hidden; /* Per i bordi arrotondati dell'immagine */
-    background-color: #ccc; /* Placeholder se l'immagine non carica */
+    background-color: #B8C2F2; /* Placeholder se l'immagine non carica */
 }
 
 .event-card-poster { /* Classe per il tag Image di Next.js */

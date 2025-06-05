@@ -1,18 +1,23 @@
-* {
-    box-sizing: border-box;
-    margin: 0; /* Reset base per margin e padding */
+/* globals.css */
+
+/* --- RESET GLOBALE E IMPOSTAZIONI BASE --- */
+html,
+body {
+    margin: 0;
     padding: 0;
+    width: 100%;
+    background-color: var(--bg-color, #161444);
+    color: var(--text-color, #ffffff);
+    font-family: var(--font-main, 'Syne', sans-serif);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
 }
 
-html, body {
-    /* margin: 0; Rimossi perché già in * */
-    /* padding: 0; Rimossi perché già in * */
-    height: 100%;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: var(--font-main); /* Applicato globalmente */
-    -webkit-font-smoothing: antialiased; /* Migliora resa font */
-    -moz-osx-font-smoothing: grayscale; /* Migliora resa font */
+*, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -21,37 +26,133 @@ body {
     min-height: 100vh;
 }
 
-main {
+main { /* Tag <main> dal RootLayout.js */
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    /* justify-content: flex-start; Rimosso per flessibilità */
-    /* align-items: center; Rimosso per flessibilità */
-    padding: 2rem; /* Padding generico per il contenuto principale */
-    width: 100%; /* Assicura che main occupi la larghezza */
+    width: 100%;
+    padding: 0; /* NESSUN PADDING LATERALE SU MAIN per permettere video full-bleed */
 }
 
 a {
-    color: var(--link-color); /* Colore link generico */
+    color: var(--link-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-a:not([class*="navbar-"]):not([class*="button"]):hover, /* Esclude link navbar e bottoni per non sovrascrivere stili specifici */
+a:not([class*="navbar-"]):not([class*="button"]):hover,
 a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
-    color: var(--link-hover-color); /* Colore primario per hover su link generici */
-    text-decoration: underline; /* Sottolineatura per chiarezza su hover/focus */
+    color: var(--link-hover-color);
+    text-decoration: underline;
 }
 
-/* Utility per nascondere visualmente ma mantenere accessibile per screen reader */
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
 }
+
+/* --- VIDEO CONTAINER (FULL-BLEED) --- */
+.video-container-global {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 90vh; /* Tua preferenza per l'altezza. '120vh' è più alto del viewport. */
+    background-color: #000;
+    overflow: hidden;
+    border-radius: 0; /* Niente bordi arrotondati per effetto edge-to-edge */
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0; /* Lo spazio sotto sarà gestito dal padding-top del .page-content-wrapper */
+}
+
+.looping-video-global {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 'cover' è generalmente preferito a 'fill' per evitare distorsioni.
+                          Se preferisci 'fill' come nel tuo ultimo CSS, puoi cambiarlo,
+                          ma 'cover' mantiene le proporzioni e riempie. */
+}
+
+/* --- WRAPPER PER CONTENUTO PADDATO (SOTTO IL VIDEO) --- */
+.page-content-wrapper {
+    width: 100%;
+    max-width: 1100px; /* Larghezza massima standard del contenuto (come per .rassegne-page-container) */
+    margin: 0 auto;    /* Centra questo contenitore */
+    padding: 2rem 1.5rem; /* Padding generale per il contenuto (2rem sopra/sotto, 1.5rem ai lati) */
+    /* Il padding-top qui crea lo spazio sotto il video. */
+    box-sizing: border-box;
+}
+
+/* Stili per la sezione "home" (ora dentro page-content-wrapper) */
+.home-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* Non serve padding qui se .page-content-wrapper lo gestisce già */
+}
+
+/* --- DETTAGLI EVENTO (dentro .home-section) --- */
+.event-details-wrapper {
+    width: 100%; /* Occupa la larghezza di .home-section */
+    margin-bottom: 2rem;
+    box-sizing: border-box; /* Ereditato, ma esplicito */
+    /* position: relative; z-index: 1; /* Necessario solo se ci sono problemi di sovrapposizione specifici */
+}
+
+.event-details-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 19rem; /* Tuo valore molto grande, mantenuto */
+    color: var(--text-color, #B8C2F2);
+}
+
+.event-text-left { text-align: left; }
+.event-kicker { font-family: var(--font-main, 'Syne', sans-serif); font-size: 0.9rem; font-weight: 400; color: var(--accent-bright-blue, #B8C2F2); margin-bottom: 5.3rem; letter-spacing: 0.05em; }
+.event-headline { font-family: var(--font-main, 'Syne', sans-serif); font-size: 3.8rem; font-weight: 700; color: var(--text-color, #B8C2F2); line-height: 1.1; margin: 0; }
+.event-text-right { text-align: right; white-space: nowrap; }
+.event-date-location { font-family: var(--font-main, 'Syne', sans-serif); font-size: 0.9rem; font-weight: 400; color: var(--text-color, #B8C2F2); margin: 0; }
+
+/* --- IMMAGINE "S&A" (dentro .home-section) --- */
+.fullwidth-image-wrapper { /* "fullwidth" relativo al .page-content-wrapper ora */
+    width: 100%;
+    margin-bottom: 2rem;
+    line-height: 0;
+    /* position: relative; z-index: 1; /* Come sopra */
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 768px) {
+    .video-container-global {
+        height: 45vh;
+        border-radius: 0 !important; /* Assicura NESSUN border-radius */
+    }
+
+    .page-content-wrapper {
+        padding: 1.5rem 1rem; /* Padding leggermente ridotto per mobile */
+    }
+
+    .event-details-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .event-text-right { text-align: left; margin-top: 0.5rem; }
+    .event-headline { font-size: 2.5rem; }
+    .event-kicker, .event-date-location { font-size: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+    .video-container-global {
+        height: 28vh;
+        border-radius: 0 !important; /* Assicura NESSUN border-radius */
+
+    }
+    .event-headline { font-size: 2rem; }
+}
+

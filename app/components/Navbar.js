@@ -3,13 +3,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react'; // Per gestire lo stato del menu mobile
-import '@/app/styles/navbar.css';
+import { useState, useEffect } from 'react';
+import '@/app/styles/navbar.css'; // Assicurati che il percorso sia corretto
 
 /**
  * Componente Navbar principale.
  */
-export default function Navbar() { // Rimosso authComponent dalle props
+export default function Navbar() {
     const pathname = usePathname();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -28,13 +28,13 @@ export default function Navbar() { // Rimosso authComponent dalle props
 
     // Chiudi il menu mobile quando si naviga a una nuova pagina
     useEffect(() => {
-        if (isMobileMenuOpen) { // Chiudi solo se era aperto
+        if (isMobileMenuOpen) {
             setIsMobileMenuOpen(false);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pathname]); // Aggiungi isMobileMenuOpen alle dipendenze se la logica diventa più complessa
+    }, [pathname]);
 
     return (
+        // La classe "navbar" è quella che riceve position: sticky dal tuo CSS
         <nav className="navbar">
             <div className="navbar-logo-container">
                 <Link href="/" className="navbar-logo-link">
@@ -49,7 +49,6 @@ export default function Navbar() { // Rimosso authComponent dalle props
                 </Link>
             </div>
 
-            {/* Il contenitore navbar-right-section ora contiene solo il menu */}
             <div className="navbar-right-section">
                 <ul className={`navbar-menu ${isMobileMenuOpen ? 'mobile-active' : ''}`}>
                     {menuItems.map((item) => (

@@ -27,7 +27,7 @@ export default function FilmGrid() {
 
     return (
         <section className="film-grid-section">
-            <h2 className="film-grid-title">FILM IN PROGRAMMAZIONE</h2>
+            <h3 className="film-grid-title">FILM IN PROGRAMMAZIONE</h3>
             <div className="film-grid-container">
                 {filmsToDisplay.map((film) => (
                     <FlippableCard key={film.id} filmData={film} />
