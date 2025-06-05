@@ -1,11 +1,11 @@
 // components/DateEventSwitcher.js
-'use client'; // Necessario per usare useState
+'use client';
 
-import React, { useState } from 'react';
-import EventCard from './EventCard'; // Assicurati che il percorso sia corretto
-import '@/app/styles/date-event-switcher.css';
+import React, { useState, useRef } from 'react'; // Importato useRef
+import EventCard from './EventCard';
+import '@/app/styles/date-event-switcher.css'; // Il tuo file CSS per questo componente
 
-
+// I tuoi dati eventsByDate (assicurati che i percorsi posterUrl siano corretti)
 const eventsByDate = [
     {
         id: 'date_15_giu_2025',
@@ -17,9 +17,9 @@ const eventsByDate = [
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "In The Mood For Love',
-            directors: ['Wong Kar-wai'], // Puoi lasciare questo o rimuoverlo se metti i registi nella descrizione
-            ticketLink: '/biglietti/in-the-mood-for-love' // Link placeholder
+            description: 'Una breve sinossi o descrizione del film "In The Mood For Love..."',
+            directors: ['Wong Kar-wai'],
+            ticketLink: '/biglietti/in-the-mood-for-love'
         }
     },
     {
@@ -32,7 +32,7 @@ const eventsByDate = [
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Her"',
+            description: 'Una breve sinossi o descrizione del film "Her..."',
             directors: ['Spike Jonze'],
             ticketLink: '/biglietti/her'
         }
@@ -47,44 +47,44 @@ const eventsByDate = [
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Ex Machina',
-            directors: ['(Registi da specificare)'],
+            description: 'Una breve sinossi o descrizione del film "Ex Machina..."',
+            directors: ['Alex Garland'], // Esempio regista
             ticketLink: '/biglietti/ex-machina'
         }
     },
     {
         id: 'date_06_lug_2025',
-        shortLabel: '6 Lug', // Modificato da "06 Luglio" per coerenza con gli altri shortLabel
+        shortLabel: '6 Lug',
         fullDateLabel: 'Domenica 06/07/25',
         event: {
             title: 'ANNIE HALL',
-            posterUrl: '/film/hannie_hall.png', // Come da tua lista
+            posterUrl: '/film/hannie_hall.png', // Il nome file era "hannie_hall.png"
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film Annie Hall',
-            directors: ['(Registi da specificare)'],
+            description: 'Una breve sinossi o descrizione del film Annie Hall...',
+            directors: ['Woody Allen'], // Esempio regista
             ticketLink: '/biglietti/annie-hall'
         }
     },
     {
         id: 'date_13_lug_2025',
-        shortLabel: '13 Lug', // Modificato da "13 Luglio"
+        shortLabel: '13 Lug',
         fullDateLabel: 'Domenica 13/07/25',
         event: {
-            title: 'BLUE VELVET', // Film cambiato rispetto al tuo primo esempio, basandomi sulla tua lista di 9 film
+            title: 'BLUE VELVET',
             posterUrl: '/film/blue_velvet.png',
             location: '(Luogo della proiezione da specificare, es. VILLA FLORIDIANA)',
             entryTime: 'Ingresso dalle ore (es. 20:15)',
             startTime: 'Inizio proiezione ore (es. 21:00)',
-            description: 'Una breve sinossi o descrizione del film "Blue Velvet". (Testo da inserire, es. ',
-            directors: ['(Registi da specificare)'],
+            description: 'Una breve sinossi o descrizione del film "Blue Velvet"...',
+            directors: ['David Lynch'], // Esempio regista
             ticketLink: '/biglietti/blue-velvet'
         }
     },
     {
         id: 'date_20_lug_2025',
-        shortLabel: '20 Lug', // Modificato da "20 Luglio"
+        shortLabel: '20 Lug',
         fullDateLabel: 'Domenica 20/07/25',
         event: {
             title: '8½',
@@ -92,29 +92,29 @@ const eventsByDate = [
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "8½". (Testo da inserire). Registi: (Nomi dei registi da specificare).',
-            directors: ['(Registi da specificare)'],
+            description: 'Una breve sinossi o descrizione del film "8½"...',
+            directors: ['Federico Fellini'], // Esempio regista
             ticketLink: '/biglietti/otto-e-mezzo'
         }
     },
     {
         id: 'date_27_lug_2025',
-        shortLabel: '27 Lug', // Modificato da "27 Luglio"
+        shortLabel: '27 Lug',
         fullDateLabel: 'Domenica 27/07/25',
         event: {
-            title: 'ALICE WONDERLAND', // Film cambiato rispetto al tuo primo esempio ("FILM DA DEFINIRE")
+            title: 'ALICE WONDERLAND',
             posterUrl: '/film/alice.png',
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Alice Wonderland". (Testo da inserire). Registi: (Nomi dei registi da specificare).',
-            directors: ['(Registi da specificare)'], // Nota: il tuo primo esempio aveva una lista di registi per Alice, puoi ripristinarla.
+            description: 'Una breve sinossi o descrizione del film "Alice Wonderland"...',
+            directors: ['Clyde Geronimi', 'Wilfred Jackson', 'Hamilton Luske'], // Esempio registi
             ticketLink: '/biglietti/alice-wonderland'
         }
     },
     {
         id: 'date_03_ago_2025',
-        shortLabel: '3 Ago', // Modificato da "03 Agosto"
+        shortLabel: '3 Ago',
         fullDateLabel: 'Domenica 03/08/25',
         event: {
             title: 'BRAZIL',
@@ -122,14 +122,14 @@ const eventsByDate = [
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Brazil". (Testo da inserire). Registi: (Nomi dei registi da specificare).',
-            directors: ['(Registi da specificare)'],
+            description: 'Una breve sinossi o descrizione del film "Brazil"...',
+            directors: ['Terry Gilliam'], // Esempio regista
             ticketLink: '/biglietti/brazil'
         }
     },
     {
         id: 'date_10_ago_2025',
-        shortLabel: '10 Ago', // Modificato da "10 Agosto"
+        shortLabel: '10 Ago',
         fullDateLabel: 'Domenica 10/08/25',
         event: {
             title: 'PARIS, TEXAS',
@@ -137,27 +137,54 @@ const eventsByDate = [
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Paris, Texas". (Testo da inserire). Registi: (Nomi dei registi da specificare).',
-            directors: ['(Registi da specificare)'],
+            description: 'Una breve sinossi o descrizione del film "Paris, Texas"...',
+            directors: ['Wim Wenders'], // Esempio regista
             ticketLink: '/biglietti/paris-texas'
         }
     }
 ];
 
-// Puoi esportare questo array se lo definisci in un file separato:
-// export { eventsByDate };
-// NOTA: Come prima, crea /public/images/ e metti le locandine lì.
 
 export default function DateEventSwitcher() {
-    // Imposta la data iniziale selezionata (es. la prima, o una specifica come 'date_13_lug')
-    const [selectedDateId, setSelectedDateId] = useState(eventsByDate.find(d => d.shortLabel === '13 Lug')?.id || eventsByDate[0]?.id);
+    const [selectedDateId, setSelectedDateId] = useState(
+        // Cerca l'ID dell'evento con shortLabel '13 Lug', altrimenti usa il primo evento come default
+        eventsByDate.find(d => d.shortLabel === '13 Lug')?.id || (eventsByDate.length > 0 ? eventsByDate[0].id : null)
+    );
+    const dateSelectorRef = useRef(null); // Ref per il contenitore delle date
 
     const selectedEventData = eventsByDate.find(dateObj => dateObj.id === selectedDateId);
+
+    const SCROLL_AMOUNT = 150; // Quantità di pixel per lo scroll, puoi regolarla
+
+    const handleScrollLeft = () => {
+        if (dateSelectorRef.current) {
+            dateSelectorRef.current.scrollBy({
+                left: -SCROLL_AMOUNT,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    const handleScrollRight = () => {
+        if (dateSelectorRef.current) {
+            dateSelectorRef.current.scrollBy({
+                left: SCROLL_AMOUNT,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     return (
         <div className="date-event-switcher-container">
             <div className="date-selector-wrapper">
-                <div className="date-selector">
+                <button
+                    className="date-selector-arrow date-selector-arrow-left"
+                    onClick={handleScrollLeft}
+                    aria-label="Date precedenti"
+                >
+                    &larr; {/* Freccia sinistra HTML entity */}
+                </button>
+                <div className="date-selector" ref={dateSelectorRef}>
                     {eventsByDate.map((dateObj) => (
                         <button
                             key={dateObj.id}
@@ -168,7 +195,13 @@ export default function DateEventSwitcher() {
                         </button>
                     ))}
                 </div>
-
+                <button
+                    className="date-selector-arrow date-selector-arrow-right"
+                    onClick={handleScrollRight}
+                    aria-label="Prossime date"
+                >
+                    &rarr; {/* Freccia destra HTML entity */}
+                </button>
             </div>
 
             {selectedEventData && (
@@ -177,6 +210,7 @@ export default function DateEventSwitcher() {
                 </div>
             )}
 
+            {/* Gestione del caso in cui un evento potrebbe essere null */}
             {selectedEventData ? (
                 <EventCard eventData={selectedEventData.event} />
             ) : (

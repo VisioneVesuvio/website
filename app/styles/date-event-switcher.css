@@ -47,7 +47,7 @@
 }
 
 .date-selector-item:hover {
-    color: var(--text-color, #ffffff);
+    color: var(--accent-bright-blue, #B8C2F2);
     border-color: var(--accent-bright-blue, #B8C2F2);
 }
 
@@ -61,7 +61,7 @@
 .date-selector-arrow {
     background: none;
     border: none;
-    color: var(--text-color, #ffffff);
+    color: var(--accent-bright-blue, #B8C2F2);
     font-size: 1.8rem;
     padding: 0.5rem;
     cursor: pointer;
@@ -76,7 +76,7 @@
 .selected-date-display {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--text-color, #ffffff);
+    color: var(--accent-bright-blue, #B8C2F2);
     margin-bottom: 1.5rem;
     padding-left: 0.5rem; /* Allineamento con le card se hanno padding */
 }
@@ -147,7 +147,7 @@
 
 .event-card-button {
     display: inline-block;
-    align-self: flex-start; /* Allinea il bottone a sinistra nel suo contenitore flex (dettagli) */
+    align-self: flex-end; /* Allinea il bottone a sinistra nel suo contenitore flex (dettagli) */
     padding: 0.7rem 1.5rem;
     font-size: 0.95rem;
     font-weight: 500;

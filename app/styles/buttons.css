@@ -38,7 +38,6 @@ input[type="button"]:focus-visible {
     background-color: var(--button-hover-bg);
     color: var(--button-hover-text);
     border-color: var(--button-hover-border);
-    box-shadow: 0 0 12px var(--shadow-color), 0 0 20px var(--shadow-color);
     transform: scale(1.05);
 }
 

@@ -156,3 +156,256 @@ a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
     .event-headline { font-size: 2rem; }
 }
 
+
+/* Contenitore per l'immagine Hero a tutta larghezza */
+.about-hero-image-container {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 0; /* Rimuove eventuale spazio sotto l'immagine */
+    background-color: var(--bg-color, #161444); /* Fallback se l'immagine non copre o è trasparente */
+    /* L'altezza è implicitamente definita dall'immagine interna con objectFit e maxHeight */
+    /* Se vuoi un'altezza fissa per l'area hero, impostala qui e usa objectFit sull'immagine */
+    /* height: 70vh; */ /* Esempio di altezza fissa */
+    /* overflow: hidden; */ /* Se imposti un'altezza fissa */
+}
+/* L'immagine hero dentro .about-hero-image-container ha uno style inline che la rende
+   width: 100%, height: auto, object-fit: cover, e maxHeight: 75vh.
+   Questo significa che sarà larga quanto il viewport, l'altezza si adatterà
+   mantenendo le proporzioni, ma non supererà il 75% dell'altezza del viewport.
+   Se diventa più alta del 75vh a causa della sua larghezza, 'object-fit: cover'
+   la taglierà per adattarsi, mantenendo le proporzioni. */
+
+
+/* Sezioni di contenuto all'interno del .page-content-wrapper */
+.about-content-section {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem; /* Spazio tra le sezioni "L'IDEA" e "UNA NUOVA REALTÀ..." */
+}
+
+.about-content-section:last-child {
+    margin-bottom: 9rem; /* Nessun margine per l'ultima sezione */
+}
+
+.about-section-title { /* Per "L'IDEA", "UNA NUOVA REALTÀ PER CINEFILI" */
+    font-family: var(--font-main, 'Syne', sans-serif);
+    font-size: 2.2rem; /* Dimensione Titolo Sezione */
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-color, #ffffff);
+    margin-top: 0; /* Rimuovi margine superiore se il padding di page-content-wrapper è sufficiente */
+    margin-bottom: 2rem; /* Spazio sotto il titolo della sezione */
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--accent-bright-blue, #B8C2F2); /* Linea sotto il titolo */
+    display: inline-block; /* Fa sì che il bordo sia lungo quanto il testo */
+}
+
+.about-map-container {
+    margin-bottom: 2rem; /* Spazio dopo l'area della mappa */
+    text-align: center; /* Centra l'immagine della mappa e la sua didascalia */
+}
+
+.about-map-image-wrapper {
+    width: 100%; /* La mappa occupa la larghezza disponibile nel .page-content-wrapper */
+    /* max-width: 800px; /* Opzionale: se vuoi limitare la larghezza della mappa */
+    margin: 0 auto 0.75rem auto; /* Centra la mappa e aggiunge spazio sotto per la didascalia */
+    line-height: 0; /* Rimuove spazio extra sotto l'immagine */
+    background-color: var(--placeholder-bg, #2a2a40); /* Sfondo per il wrapper della mappa */
+    border-radius: 4px; /* Leggero arrotondamento per il wrapper mappa */
+    padding: 0.5rem; /* Piccolo padding interno se vuoi un bordo visibile attorno alla mappa */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Ombra delicata opzionale */
+}
+
+.map-caption-text {
+    font-family: var(--font-main, 'Syne', sans-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color, #ffffff);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.map-caption-country-text {
+    font-weight: 400;
+    font-size: 0.8em; /* Leggermente più piccolo */
+    display: block; /* Mette "ITALY" su una nuova riga */
+    opacity: 0.8; /* Leggermente meno enfasi */
+    letter-spacing: 0.05em;
+}
+
+.about-text-content {
+    font-size: 1rem; /* O la tua dimensione base per il corpo del testo */
+    line-height: 1.75;
+    color: var(--text-color-secondary, rgba(255, 255, 255, 0.85)); /* Colore per il testo principale */
+}
+
+.about-text-content p {
+    margin-bottom: 1.25em; /* Spazio tra i paragrafi */
+}
+
+.about-text-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Media Query per la Pagina About --- */
+@media (max-width: 768px) {
+    .about-hero-image-container img { /* Se vuoi cambiare maxHeight su mobile */
+        /* maxHeight: 60vh; */
+    }
+
+    .about-section-title {
+        font-size: 1.8rem; /* Titoli di sezione più piccoli */
+        display: block;    /* Titolo a tutta larghezza per centrarlo meglio con text-align */
+        text-align: center;
+        border-bottom: none; /* Rimuovi bordo e usa un pseudo-elemento se vuoi una linea centrata */
+        padding-bottom: 0;
+        margin-bottom: 1.5rem; /* Spazio sotto il titolo */
+    }
+    .about-section-title::after { /* Linea decorativa centrata sotto il titolo su mobile */
+        content: '';
+        display: block;
+        width: 80px; /* Larghezza della linea */
+        height: 2px;
+        background: var(--accent-bright-blue, #B8C2F2);
+        margin: 0.75rem auto 0 auto; /* Spazio sopra/sotto la linea e centrata */
+    }
+
+    .about-map-image-wrapper {
+        padding: 0.3rem;
+    }
+    .map-caption-text {
+        font-size: 0.9rem;
+    }
+    .about-text-content {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+
+
+.contatti-page-title {
+    font-family: var(--font-main, 'Syne', sans-serif);
+    font-size: 2.8rem; /* Coerente con .rassegne-main-title */
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem; /* Spazio prima del contenuto dei contatti */
+    text-align: left; /* Come nell'immagine */
+    color: var(--text-color, #ffffff);
+}
+
+    .contact-section-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem; /* Spazio tra i blocchi: ASSOCIAZIONE, SEGUICI, EMAIL */
+    }
+
+    .contact-block {
+        /* Questo contenitore non ha bisogno di stili specifici se i figli si auto-dimensionano
+           e .contact-section-layout gestisce la spaziatura. */
+    }
+
+    .contact-block-heading { /* Per ASSOCIAZIONE, SEGUICI, EMAIL */
+        font-family: var(--font-main, 'Syne', sans-serif);
+        font-size: 1.3rem; /* Dimensione per i titoli di blocco */
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--text-color, #ffffff); /* O un colore di accento come var(--accent-bright-blue) */
+        margin-bottom: 1rem; /* Spazio sotto il titolo del blocco */
+    }
+
+    .contact-logo-container {
+        margin-bottom: 0.75rem; /* Spazio tra logo e P.IVA */
+        /* Il componente Image imposterà le dimensioni del logo.
+           Puoi aggiungere una max-width qui se necessario. */
+        /* max-width: 300px; */
+        line-height: 0; /* Per evitare spazi extra se l'immagine fosse inline */
+    }
+
+    .contact-info-text { /* Classe generica per testi informativi */
+        font-family: var(--font-main, 'Syne', sans-serif);
+        font-size: 0.95rem;
+        color: var(--text-color-secondary, rgba(255, 255, 255, 0.85));
+        line-height: 1.6;
+    }
+
+    .contact-piva { /* Specifico per la Partita IVA */
+        /* Eredita da .contact-info-text, puoi aggiungere specificità se serve */
+    }
+
+    .contact-social-icons-group {
+        display: flex;
+        gap: 1.2rem; /* Spazio tra le icone social */
+        align-items: center; /* Allinea verticalmente le icone se hanno altezze diverse */
+    }
+
+    .contact-social-link {
+        color: var(--text-color, #ffffff); /* Colore base dell'icona */
+        transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+        display: inline-block; /* Per permettere transform */
+    }
+
+    .contact-social-link:hover,
+    .contact-social-link:focus-visible {
+        color: var(--primary, #ff3cac); /* Colore primario (rosa neon) al passaggio del mouse */
+        transform: scale(1.15); /* Leggero ingrandimento */
+    }
+
+    .social-svg-icon-contact { /* Classe per gli SVG nella pagina contatti */
+        width: 30px;  /* Dimensione icone social */
+        height: 30px;
+        fill: currentColor; /* L'SVG usa il colore del genitore .contact-social-link */
+    }
+
+    .contact-email-address {
+        font-family: var(--font-main, 'Syne', sans-serif);
+        font-size: 1.1rem;
+        color: var(--accent-bright-blue, #B8C2F2); /* Colore email cliccabile */
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+        word-break: break-all; /* Evita overflow su schermi piccoli */
+    }
+
+    .contact-email-address:hover,
+    .contact-email-address:focus-visible {
+        color: var(--primary, #ff3cac); /* Colore primario hover */
+        text-decoration: underline;
+    }
+
+
+    /* --- Media Query per Responsività Pagina Contatti --- */
+    @media (max-width: 768px) {
+        .contatti-page-title {
+            font-size: 2.2rem;
+            text-align: center; /* Centra titolo principale su mobile */
+            margin-bottom: 2rem;
+        }
+
+        .contact-block {
+            text-align: center; /* Centra il contenuto dei blocchi su mobile */
+        }
+
+        .contact-block-heading {
+            font-size: 1.15rem;
+        }
+
+        .contact-logo-container {
+            /* Centra il logo se il blocco è text-align: center */
+            display: inline-block; /* Per rispettare text-align:center del genitore */
+        }
+        /* Se il logo è un <Image> con width/height fisse, si centrerà se il suo contenitore
+           .contact-logo-container è reso inline-block e il genitore .contact-block è text-align:center */
+
+
+        .contact-social-icons-group {
+            justify-content: center; /* Centra le icone quando il blocco è text-align:center */
+        }
+
+        .contact-email-address {
+            font-size: 1rem;
+        }
+    }
+}
+
