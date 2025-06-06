@@ -8,9 +8,9 @@ import '@/app/styles/date-event-switcher.css'; // Il tuo file CSS per questo com
 // I tuoi dati eventsByDate (assicurati che i percorsi posterUrl siano corretti)
 const eventsByDate = [
     {
-        id: 'date_15_giu_2025',
-        shortLabel: '15 Giu',
-        fullDateLabel: 'Domenica 15/06/25',
+        id: 'date_22_giu_2025',
+        shortLabel: '22 Giu',
+        fullDateLabel: 'Domenica 22/06/25',
         event: {
             title: 'IN THE MOOD FOR LOVE',
             posterUrl: '/film/in_the_mood_for_love.png',
@@ -23,9 +23,9 @@ const eventsByDate = [
         }
     },
     {
-        id: 'date_22_giu_2025',
-        shortLabel: '22 Giu',
-        fullDateLabel: 'Domenica 22/06/25',
+        id: 'date_29_giu_2025',
+        shortLabel: '29 Giu',
+        fullDateLabel: 'Domenica 29/06/25',
         event: {
             title: 'HER',
             posterUrl: '/film/her.png',
@@ -38,9 +38,9 @@ const eventsByDate = [
         }
     },
     {
-        id: 'date_29_giu_2025',
-        shortLabel: '29 Giu',
-        fullDateLabel: 'Domenica 29/06/25',
+        id: 'date_06_lug_2025',
+        shortLabel: '06 Lug',
+        fullDateLabel: 'Domenica 06/07/25',
         event: {
             title: 'EX MACHINA',
             posterUrl: '/film/ex_machina.png',
@@ -53,9 +53,9 @@ const eventsByDate = [
         }
     },
     {
-        id: 'date_06_lug_2025',
-        shortLabel: '6 Lug',
-        fullDateLabel: 'Domenica 06/07/25',
+        id: 'date_13_lug_2025',
+        shortLabel: '13 Lug',
+        fullDateLabel: 'Domenica 13/07/25',
         event: {
             title: 'ANNIE HALL',
             posterUrl: '/film/hannie_hall.png', // Il nome file era "hannie_hall.png"
@@ -68,33 +68,18 @@ const eventsByDate = [
         }
     },
     {
-        id: 'date_13_lug_2025',
-        shortLabel: '13 Lug',
-        fullDateLabel: 'Domenica 13/07/25',
+        id: 'date_20_lug_2025',
+        shortLabel: '20 Lug',
+        fullDateLabel: 'Domenica 20/07/25',
         event: {
-            title: 'BLUE VELVET',
-            posterUrl: '/film/blue_velvet.png',
+            title: 'ALICE IN WONDERLAND',
+            posterUrl: '/film/alice.png',
             location: '(Luogo della proiezione da specificare, es. VILLA FLORIDIANA)',
             entryTime: 'Ingresso dalle ore (es. 20:15)',
             startTime: 'Inizio proiezione ore (es. 21:00)',
             description: 'Una breve sinossi o descrizione del film "Blue Velvet"...',
             directors: ['David Lynch'], // Esempio regista
-            ticketLink: '/biglietti/blue-velvet'
-        }
-    },
-    {
-        id: 'date_20_lug_2025',
-        shortLabel: '20 Lug',
-        fullDateLabel: 'Domenica 20/07/25',
-        event: {
-            title: '8½',
-            posterUrl: '/film/8_1_2.png',
-            location: '(Luogo della proiezione da specificare)',
-            entryTime: 'Ingresso dalle ore (orario da specificare)',
-            startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "8½"...',
-            directors: ['Federico Fellini'], // Esempio regista
-            ticketLink: '/biglietti/otto-e-mezzo'
+            ticketLink: '/biglietti/alice-wonderland'
         }
     },
     {
@@ -102,19 +87,19 @@ const eventsByDate = [
         shortLabel: '27 Lug',
         fullDateLabel: 'Domenica 27/07/25',
         event: {
-            title: 'ALICE WONDERLAND',
-            posterUrl: '/film/alice.png',
+            title: 'BLUE VELVET',
+            posterUrl: '/film/blue_velvet.png',
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Alice Wonderland"...',
-            directors: ['Clyde Geronimi', 'Wilfred Jackson', 'Hamilton Luske'], // Esempio registi
-            ticketLink: '/biglietti/alice-wonderland'
+            description: 'Una breve sinossi o descrizione del film "8½"...',
+            directors: ['Federico Fellini'], // Esempio regista
+            ticketLink: '/biglietti/blue_velvet'
         }
     },
     {
         id: 'date_03_ago_2025',
-        shortLabel: '3 Ago',
+        shortLabel: '03 Ago',
         fullDateLabel: 'Domenica 03/08/25',
         event: {
             title: 'BRAZIL',
@@ -122,14 +107,29 @@ const eventsByDate = [
             location: '(Luogo della proiezione da specificare)',
             entryTime: 'Ingresso dalle ore (orario da specificare)',
             startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Brazil"...',
-            directors: ['Terry Gilliam'], // Esempio regista
+            description: 'Una breve sinossi o descrizione del film "Alice Wonderland"...',
+            directors: ['Clyde Geronimi', 'Wilfred Jackson', 'Hamilton Luske'], // Esempio registi
             ticketLink: '/biglietti/brazil'
         }
     },
     {
-        id: 'date_10_ago_2025',
-        shortLabel: '10 Ago',
+        id: 'date_03_ago_2025',
+        shortLabel: '03 Ago',
+        fullDateLabel: 'Domenica 03/08/25',
+        event: {
+            title: '8½',
+            posterUrl: '/film/8_1_2.png',
+            location: '(Luogo della proiezione da specificare)',
+            entryTime: 'Ingresso dalle ore (orario da specificare)',
+            startTime: 'Inizio proiezione ore (orario da specificare)',
+            description: 'Una breve sinossi o descrizione del film "Brazil"...',
+            directors: ['Terry Gilliam'], // Esempio regista
+            ticketLink: '/biglietti/8_1_2'
+        }
+    },
+    {
+        id: 'date_14_set_2025',
+        shortLabel: '14 Set',
         fullDateLabel: 'Domenica 10/08/25',
         event: {
             title: 'PARIS, TEXAS',
