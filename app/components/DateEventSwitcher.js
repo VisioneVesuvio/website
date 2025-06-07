@@ -14,10 +14,10 @@ const eventsByDate = [
         event: {
             title: 'IN THE MOOD FOR LOVE',
             posterUrl: '/film/in_the_mood_for_love.png',
-            location: '(Luogo della proiezione da specificare)',
-            entryTime: 'Ingresso dalle ore (orario da specificare)',
-            startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "In The Mood For Love..."',
+            location: 'Villa Floridiana, Napoli',
+            entryTime: 'Ingresso dalle ore 20:00',
+            startTime: 'Inizio proiezione ore 21:00',
+            description: 'A Hong Kong negli anni ’60 due anime ferite si incontrano nell’intimità di corridoi e sguardi rubati. In un crescendo di desiderio trattenuto, l’amore nasce dove non può compiersi.',
             directors: ['Wong Kar-wai'],
             ticketLink: '/biglietti/in-the-mood-for-love'
         }
@@ -29,10 +29,10 @@ const eventsByDate = [
         event: {
             title: 'HER',
             posterUrl: '/film/her.png',
-            location: '(Luogo della proiezione da specificare)',
-            entryTime: 'Ingresso dalle ore (orario da specificare)',
-            startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Her..."',
+            location: 'Villa Floridiana, Napoli',
+            entryTime: 'Ingresso dalle ore 20:00',
+            startTime: 'Inizio proiezione ore 21:00',
+            description: 'In un futuro vicino, un uomo solitario si innamora di un\'intelligenza artificiale. Un racconto toccante sull\'amore, la tecnologia e la solitudine.\n',
             directors: ['Spike Jonze'],
             ticketLink: '/biglietti/her'
         }
@@ -44,10 +44,10 @@ const eventsByDate = [
         event: {
             title: 'EX MACHINA',
             posterUrl: '/film/ex_machina.png',
-            location: '(Luogo della proiezione da specificare)',
-            entryTime: 'Ingresso dalle ore (orario da specificare)',
-            startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Ex Machina..."',
+            location: 'Villa Floridiana, Napoli',
+            entryTime: 'Ingresso dalle ore 20:00',
+            startTime: 'Inizio proiezione ore 21:00',
+            description: 'Un giovane programmatore partecipa a un test sull\'intelligenza artificiale in una villa isolata. La linea tra umano e artificiale si fa inquietante.',
             directors: ['Alex Garland'], // Esempio regista
             ticketLink: '/biglietti/ex-machina'
         }
@@ -59,10 +59,10 @@ const eventsByDate = [
         event: {
             title: 'ANNIE HALL',
             posterUrl: '/film/hannie_hall.png', // Il nome file era "hannie_hall.png"
-            location: '(Luogo della proiezione da specificare)',
-            entryTime: 'Ingresso dalle ore (orario da specificare)',
-            startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film Annie Hall...',
+            location: 'Villa Floridiana, Napoli',
+            entryTime: 'Ingresso dalle ore 20:00',
+            startTime: 'Inizio proiezione ore 21:00',
+            description: 'Un comico nevrotico di New York ripercorre la sua storia d\'amore con la stravagante Annie. Ironico e profondo, è un cult della commedia romantica.',
             directors: ['Woody Allen'], // Esempio regista
             ticketLink: '/biglietti/annie-hall'
         }
@@ -72,13 +72,13 @@ const eventsByDate = [
         shortLabel: '20 Lug',
         fullDateLabel: 'Domenica 20/07/25',
         event: {
-            title: 'ALICE IN WONDERLAND',
+            title: 'ALICE IN WONDERLAND (1956)',
             posterUrl: '/film/alice.png',
-            location: '(Luogo della proiezione da specificare, es. VILLA FLORIDIANA)',
-            entryTime: 'Ingresso dalle ore (es. 20:15)',
-            startTime: 'Inizio proiezione ore (es. 21:00)',
-            description: 'Una breve sinossi o descrizione del film "Blue Velvet"...',
-            directors: ['David Lynch'], // Esempio regista
+            location: 'Villa Floridiana, Napoli',
+            entryTime: 'Ingresso dalle ore 20:00',
+            startTime: 'Inizio proiezione ore 21:00',
+            description: 'Adattamento televisivo del classico di Lewis Carroll. Un viaggio surreale e visionario nel mondo dell’assurdo e dell’immaginazione.',
+            directors: ['Herbert M. Prentice'], // Esempio regista
             ticketLink: '/biglietti/alice-wonderland'
         }
     },
@@ -89,11 +89,11 @@ const eventsByDate = [
         event: {
             title: 'BLUE VELVET',
             posterUrl: '/film/blue_velvet.png',
-            location: '(Luogo della proiezione da specificare)',
-            entryTime: 'Ingresso dalle ore (orario da specificare)',
-            startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "8½"...',
-            directors: ['Federico Fellini'], // Esempio regista
+            location: 'Villa Floridiana, Napoli',
+            entryTime: 'Ingresso dalle ore 20:00',
+            startTime: 'Inizio proiezione ore 21:00',
+            description: 'Un giovane scopre un misterioso orecchio umano in un campo. Lynch mescola noir e incubo in un’indagine sul lato oscuro della provincia americana.',
+            directors: ['David Lynch'], // Esempio regista
             ticketLink: '/biglietti/blue_velvet'
         }
     },
@@ -104,26 +104,26 @@ const eventsByDate = [
         event: {
             title: 'BRAZIL',
             posterUrl: '/film/brazil.png',
-            location: '(Luogo della proiezione da specificare)',
-            entryTime: 'Ingresso dalle ore (orario da specificare)',
-            startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Alice Wonderland"...',
-            directors: ['Clyde Geronimi', 'Wilfred Jackson', 'Hamilton Luske'], // Esempio registi
+            location: 'Villa Floridiana, Napoli',
+            entryTime: 'Ingresso dalle ore 20:00',
+            startTime: 'Inizio proiezione ore 21:00',
+            description: 'Un impiegato vive in un futuro distopico dominato dalla burocrazia. Tra sogno e incubo, una satira grottesca del controllo e della libertà.',
+            directors: ['Terry Gilliam'], // Esempio registi
             ticketLink: '/biglietti/brazil'
         }
     },
     {
-        id: 'date_03_ago_2025',
-        shortLabel: '03 Ago',
+        id: 'date_07_set_2025',
+        shortLabel: '07 Set',
         fullDateLabel: 'Domenica 03/08/25',
         event: {
             title: '8½',
             posterUrl: '/film/8_1_2.png',
-            location: '(Luogo della proiezione da specificare)',
-            entryTime: 'Ingresso dalle ore (orario da specificare)',
-            startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Brazil"...',
-            directors: ['Terry Gilliam'], // Esempio regista
+            location: 'Villa Floridiana, Napoli',
+            entryTime: 'Ingresso dalle ore 20:00',
+            startTime: 'Inizio proiezione ore 21:00',
+            description: 'Un regista in crisi creativa si perde nei suoi sogni, ricordi e fantasie. Fellini firma un capolavoro sul caos interiore dell’artista.',
+            directors: ['Federico Fellini'], // Esempio regista
             ticketLink: '/biglietti/8_1_2'
         }
     },
@@ -134,10 +134,10 @@ const eventsByDate = [
         event: {
             title: 'PARIS, TEXAS',
             posterUrl: '/film/paris_texas.png',
-            location: '(Luogo della proiezione da specificare)',
-            entryTime: 'Ingresso dalle ore (orario da specificare)',
-            startTime: 'Inizio proiezione ore (orario da specificare)',
-            description: 'Una breve sinossi o descrizione del film "Paris, Texas"...',
+            location: 'Villa Floridiana, Napoli',
+            entryTime: 'Ingresso dalle ore 20:00',
+            startTime: 'Inizio proiezione ore 21:00',
+            description: 'Un uomo ricompare dopo anni di assenza, cercando di ricostruire il rapporto con il figlio. Un viaggio silenzioso e toccante tra solitudine e redenzione.',
             directors: ['Wim Wenders'], // Esempio regista
             ticketLink: '/biglietti/paris-texas'
         }

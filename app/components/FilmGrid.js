@@ -12,7 +12,7 @@ const sampleFilmsData = [
     { id: 2, title: 'Her', frontImage: '/film/her.png', frontText: null, backText: '29 Giugno' },
     { id: 3, title: 'Ex Machina', frontImage: '/film/ex_machina.png', frontText: null, backText: '06 Luglio' },
     { id: 4, title: 'Annie Hall', frontImage: '/film/hannie_hall.png', frontText: null, backText: '13 Luglio' }, // Card solo testo
-    { id: 5, title: 'Alice in Wonderland', frontImage: '/film/alice.png', frontText: null, backText: '20 Luglio' }, // Card solo testo
+    { id: 5, title: 'Alice in Wonderland (1956)', frontImage: '/film/alice.png', frontText: null, backText: '20 Luglio' }, // Card solo testo
     { id: 6, title: 'Blue Velvet', frontImage: '/film/blue_velvet.png', frontText: null, backText: '27 Luglio' },
     { id: 7, title: 'Brazil', frontImage: '/film/brazil.png', frontText: null, backText: '03 Agosto' },
     { id: 8, title: '8½', frontImage: '/film/8_1_2.png', frontText: null, backText: '07 Settembre' }, // Card solo testo
