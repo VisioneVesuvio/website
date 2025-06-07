@@ -81,11 +81,7 @@ export default function AboutPage() {
                             Cinema Streetview presso Villa Floridiana la nostra intenzione come associazione è quella di
                             restituire ai cinefili napoletani un luogo di incontro e dialogo.
                         </p>
-                        <p>
-                            Seguendo il modello dei ragazzi del piccolo America, organizzeremo rassegne, facendo
-                            presentare i film ai talents del panorama cinetelevisivo italiano, in modo da attirare non
-                            solo gli appassionati, ma anche chi negli anni ha perso l’abitudine di andare in sala.
-                        </p>
+
                     </div>
                 </section>
 

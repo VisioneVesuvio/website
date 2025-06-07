@@ -3,8 +3,8 @@
 /* --- Contenitore Principale del DateEventSwitcher --- */
 .date-event-switcher-container {
     width: 100%;
-    max-width: 900px; /* Larghezza massima del componente */
-    margin: 2rem auto; /* Centrato, con spazio sopra/sotto */
+    max-width: 900px;
+    margin: 2rem auto;
     padding: 0 1rem;
     box-sizing: border-box;
     font-family: var(--font-main, 'Syne', sans-serif);
@@ -12,38 +12,37 @@
 
 /* --- Selettore Date Orizzontale --- */
 .date-selector-wrapper {
-    display: flex; /* Per allineare la lista date e la freccia */
+    display: flex;
     align-items: center;
     margin-bottom: 1rem;
-    position: relative; /* Per posizionare la freccia se necessario */
+    position: relative;
 }
 
 .date-selector {
     display: flex;
-    gap: 0.5rem; /* Spazio tra le date */
+    gap: 0.5rem;
     padding: 0.5rem 0;
-    overflow-x: auto; /* Abilita lo scroll orizzontale se le date non ci stanno */
-    flex-grow: 1; /* Fa sì che occupi lo spazio disponibile */
-    /* Nascondi la scrollbar di default se vuoi un look più pulito (poi gestisci scroll con frecce JS) */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    overflow-x: auto;
+    flex-grow: 1;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
-.date-selector::-webkit-scrollbar { /* Chrome, Safari, Opera */
+.date-selector::-webkit-scrollbar {
     display: none;
 }
-
 
 .date-selector-item {
     padding: 0.6rem 1.2rem;
     font-size: 1.1rem;
     font-weight: 500;
-    color: var(#B8C2F2);
+    /* CORREZIONE SINTASSI: var() richiede un nome di variabile che inizia con --. */
+    color: var(--text-color-secondary, #B8C2F2);
     background-color: transparent;
-    border: 2px solid transparent; /* Bordo trasparente per mantenere dimensioni */
-    border-radius: 999px; /* Forma a pillola */
+    border: 2px solid transparent;
+    border-radius: 999px;
     cursor: pointer;
     transition: color 0.2s, background-color 0.2s, border-color 0.2s;
-    white-space: nowrap; /* Non mandare a capo il testo della data */
+    white-space: nowrap;
 }
 
 .date-selector-item:hover {
@@ -52,24 +51,39 @@
 }
 
 .date-selector-item.active {
-    color: var(--bg-color, #161444); /* Testo scuro */
-    background-color: var(--accent-bright-blue, #B8C2F2); /* Sfondo brillante */
+    color: var(--bg-color, #161444);
+    background-color: var(--accent-bright-blue, #B8C2F2);
     border-color: var(--accent-bright-blue, #B8C2F2);
     font-weight: 700;
 }
 
+/* --- MODIFICHE MIRATE ALLE FRECCE --- */
 .date-selector-arrow {
     background: none;
     border: none;
     color: var(--accent-bright-blue, #B8C2F2);
     font-size: 1.8rem;
-    padding: 0.5rem;
-    cursor: pointer;
-    margin-left: 0.5rem; /* Spazio dalla lista date */
+    padding: 0.5rem; /* RIDOTTO: Padding piccolo per non creare un "contorno" visibile */
+    cursor: pointer;  /* CORRETTO: Cursore standard per elementi cliccabili */
+    margin: 0;        /* RIMOSSO margine di default da qui */
+    transition: color 0.2s ease-out, transform 0.2s ease-out; /* Aggiunta transizione per hover */
+    line-height: 1;
+    flex-shrink: 0;
 }
+
 .date-selector-arrow:hover {
-    color: var(--accent-bright-blue, #B8C2F2);
+    color: var(--primary, #ff3cac); /* Colore primario (rosa) per l'hover */
+    transform: scale(1.1); /* Leggero effetto di ingrandimento */
 }
+
+/* NUOVO: Classi specifiche per spaziare le frecce */
+.date-selector-arrow-left {
+    margin-right: 1.5rem; /* Aggiunge spazio a DESTRA della freccia sinistra */
+}
+.date-selector-arrow-right {
+    margin-left: 1.5rem; /* Aggiunge spazio a SINISTRA della freccia destra */
+}
+/* --- FINE MODIFICHE --- */
 
 
 /* --- Display Data Selezionata (es. "Domenica 13/07/25") --- */
@@ -78,48 +92,46 @@
     font-weight: 600;
     color: var(--accent-bright-blue, #B8C2F2);
     margin-bottom: 1.5rem;
-    padding-left: 0.5rem; /* Allineamento con le card se hanno padding */
+    padding-left: 0.5rem;
 }
 
 /* --- Stili per EventCard --- */
 .event-card {
     display: flex;
-    gap: 1.5rem; /* Spazio tra locandina e dettagli */
-    background-color: var(--accent-bright-blue, #B8C2F2); /* Sfondo chiaro per la card */
-    color: var(--bg-color, #161444); /* Testo scuro sulla card chiara */
+    gap: 1.5rem;
+    background-color: var(--accent-bright-blue, #B8C2F2);
+    color: var(--bg-color, #161444);
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
-.event-card-placeholder { /* Stile per quando non c'è un evento */
+.event-card-placeholder {
     color: var(--text-color, #ffffff);
     padding: 2rem;
     text-align: center;
     font-style: italic;
-    background-color: rgba(var(--accent-bright-blue-rgb, 184, 194, 242), 0.1); /* Usa versione RGB per trasparenza */
+    background-color: rgba(var(--accent-bright-blue-rgb, 184, 194, 242), 0.1);
     border-radius: 12px;
 }
 
 
 .event-card-poster-wrapper {
-    flex-shrink: 0; /* Impedisce alla locandina di restringersi */
-    width: 180px; /* Larghezza fissa per la locandina, regola se necessario */
-    /* height: 270px; /* Altezza fissa, o lascia che sia determinata da aspect-ratio dell'immagine */
+    flex-shrink: 0;
+    width: 180px;
     border-radius: 8px;
-    overflow: hidden; /* Per i bordi arrotondati dell'immagine */
-    background-color: #B8C2F2; /* Placeholder se l'immagine non carica */
+    overflow: hidden;
+    background-color: #B8C2F2;
 }
 
-.event-card-poster { /* Classe per il tag Image di Next.js */
-    display: block; /* Rimuove eventuale spazio extra sotto l'immagine */
-    width: 100% !important; /* Forzature per next/image con width/height props */
-    height: auto !important; /* Forzature per next/image con width/height props, o usa layout="fill" */
-    /* Se usi layout="fill" su Image, assicurati che .event-card-poster-wrapper abbia position:relative e un'altezza definita */
+.event-card-poster {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
 }
 
 .event-card-details {
-    flex-grow: 1; /* Occupa lo spazio rimanente */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
@@ -142,18 +154,17 @@
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
     line-height: 1.6;
-    flex-grow: 1; /* Spinge il bottone in fondo se la descrizione è corta */
+    flex-grow: 1;
 }
 
 .event-card-button {
     display: inline-block;
-    align-self: flex-end; /* Allinea il bottone a sinistra nel suo contenitore flex (dettagli) */
+    align-self: flex-end;
     padding: 0.7rem 1.5rem;
     font-size: 0.95rem;
     font-weight: 500;
-    color: var(--accent-bright-blue, #B8C2F2); /* Testo chiaro */
-    background: linear-gradient(90deg, #3a3db8, #5d60e0); /* Esempio gradiente blu/viola, come nell'immagine */
-    /* Oppure usa variabili: background: var(--button-secondary-bg, #4A00E0); */
+    color: var(--accent-bright-blue, #B8C2F2);
+    background: linear-gradient(90deg, #3a3db8, #5d60e0);
     border: none;
     border-radius: 999px;
     text-decoration: none;
@@ -164,29 +175,28 @@
 .event-card-button:hover,
 .event-card-button:focus-visible {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 10px rgba(var(--bg-color-rgb, 22, 20, 68), 0.3); /* Usa RGB del tuo bg-color per ombra */
+    box-shadow: 0 4px 10px rgba(var(--bg-color-rgb, 22, 20, 68), 0.3);
 }
 
 
 /* --- Media Query per Responsività --- */
 @media (max-width: 768px) {
+    /* NUOVO: Nasconde le frecce su schermi con larghezza <= 768px */
+    .date-selector-wrapper .date-selector-arrow {
+        display: none !important; /* Forziamo la scomparsa */
+    }
+
     .event-card {
-        flex-direction: column; /* Locandina sopra, dettagli sotto */
+        flex-direction: column;
         gap: 1rem;
     }
 
     .event-card-poster-wrapper {
-        width: 100%; /* Locandina a tutta larghezza */
-        max-width: 250px; /* Ma non troppo grande */
-        margin: 0 auto; /* Centra la locandina */
-        /* height: auto; /* L'altezza sarà determinata dall'aspect-ratio dell'immagine */
-        aspect-ratio: 2/3; /* Per mantenere le proporzioni della locandina */
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+        aspect-ratio: 2/3;
     }
-    .event-card-poster {
-        /* Se usi layout="fill" per next/image, questo assicura che riempia il wrapper */
-        /* width: 100%; height: 100%; */
-    }
-
 
     .event-card-title {
         font-size: 1.5rem;
@@ -197,13 +207,13 @@
     }
 
     .event-card-button {
-        align-self: stretch; /* Bottone a tutta larghezza su mobile */
+        align-self: stretch;
         text-align: center;
     }
 
     .selected-date-display {
         font-size: 1.3rem;
-        text-align: center; /* Centra anche la data su mobile */
+        text-align: center;
         margin-bottom: 1.2rem;
     }
 
