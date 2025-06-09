@@ -12,7 +12,7 @@ const sampleFilmsData = [
     { id: 3, title: 'Ex Machina', frontImage: '/film/ex_machina.png', backVideo: '/film/ex_machina.webm', fullVideoSrc: '/film/ex_machina.mp4', youtubeUrl: 'https://youtu.be/EoQuVnKhxaM?si=zBImMqBMPTVGf9QM', backText: '06 Luglio', locationInfo: 'Villa Floridiana, Napoli' },
     { id: 4, title: 'Annie Hall', frontImage: '/film/hannie_hall.png', backVideo: null, fullVideoSrc: null, youtubeUrl: null, backText: '13 Luglio', locationInfo: 'Villa Floridiana, Napoli.' },
     // ... e così via per gli altri film
-    { id: 5, title: 'Alice in Wonderland (1956)', frontImage: '/film/alice.png', backVideo: null, fullVideoSrc: null, youtubeUrl: null, backText: '20 Luglio', locationInfo: 'Villa Floridiana, Napoli.' },
+    { id: 5, title: 'Alice in Wonderland (1956)', frontImage: '/film/alice.png', backVideo: '/film/alice.mp4', fullVideoSrc: '/film/alice.mp4', youtubeUrl: 'https://youtu.be/XMVwQcjn3NY?si=dsM2B875fma3oSYv', backText: '20 Luglio', locationInfo: 'Villa Floridiana, Napoli.' },
     { id: 6, title: 'Blue Velvet', frontImage: '/film/blue_velvet.png', backVideo: null, fullVideoSrc: null, youtubeUrl: null, backText: '27 Luglio', locationInfo: 'Villa Floridiana, Napoli.' },
     { id: 7, title: 'Brazil', frontImage: '/film/brazil.png', backVideo: '/film/brazil.mp4', fullVideoSrc: '/film/brazil.mp4', youtubeUrl: null, backText: '03 Agosto', locationInfo: 'Villa Floridiana, Napoli.' },
     { id: 8, title: '8½', frontImage: '/film/8_1_2.png', backVideo: null, fullVideoSrc: null, youtubeUrl: null, backText: '07 Settembre', locationInfo: 'Villa Floridiana, Napoli.' },
