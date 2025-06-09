@@ -14,8 +14,10 @@
     "next": "15.3.0",
     "next-auth": "^4.24.11",
     "openai": "^4.93.0",
-    "react": "^19.0.0",
+    "react": "^19.1.0",
     "react-dom": "^19.0.0",
-    "stripe": "^18.2.1"
+    "react-youtube": "^10.1.0",
+    "stripe": "^18.2.1",
+    "youtube": "^0.1.0"
   }
 }
