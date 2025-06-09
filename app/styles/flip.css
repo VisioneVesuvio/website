@@ -1,198 +1,68 @@
 /* globals.css o un file CSS importato globalmente */
 
-/* --- Sezione Griglia Film --- */
-.film-grid-section {
-    width: 100%;
-    max-width: 1200px;
-    margin: 4rem auto;
-    padding: 0 1rem;
-    box-sizing: border-box;
-    text-align: center;
+/* ... stili fino al retro della card ... */
+.film-grid-section { width: 100%; max-width: 1200px; margin: 4rem auto; padding: 0 1rem; box-sizing: border-box; text-align: center; }
+.film-grid-title { text-align: left; font-family: var(--font-main, 'Syne', sans-serif); font-size: 2.8rem; font-weight: 700; color: var(--accent-bright-blue); margin-bottom: 6rem; text-transform: uppercase; }
+.film-grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+.flippable-card-container { width: 100%; aspect-ratio: 1080 / 1352; background-color: transparent; perspective: 1000px; cursor: pointer; }
+.flippable-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.7s; transform-style: preserve-3d; border-radius: 15px; }
+.flippable-card-container:hover .flippable-card-inner { transform: rotateY(180deg); }
+.card-face { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; isolation: isolate; }
+.card-front { background-color: var(--card-bg, #1a1a2e); color: var(--text-color, white); }
+.card-text-content { padding: 1rem; font-family: var(--font-main, 'Syne', sans-serif); font-size: 1.5rem; font-weight: 600; display: flex; align-items: center; justify-content: center; height: 100%; text-align: center; color: var(--text-color, #ffffff); background-color: var(--card-bg, #2c2c54); }
+.card-back { background-color: var(--card-bg, #1a1a2e); transform: rotateY(180deg); }
+.card-back-background-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; z-index: 0; }
+.play-button-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 1; }
+.play-button-icon { width: 100px; height: 100px; background-color: rgba(255, 255, 255, 0.2); border: 2px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.play-button-container:hover .play-button-icon { animation: bounce-soft 0.9s ease-in-out 2; }
+.play-button-icon svg { width: 50%; fill: #fff; transform: translateX(10%); }
+.card-back-content { position: absolute; top: 0; left: 0; width: 100%; padding: 1.5rem; box-sizing: border-box; z-index: 2; color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
+.card-back-text { text-align: center; font-size: 1.9rem; font-weight: 700; margin: 0; }
+.card-back-location-info { position: absolute; bottom: 1.5rem; left: 0; width: 100%; padding: 1rem; box-sizing: border-box; z-index: 2; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.6); text-align: center; }
+.card-back-location-info p { margin: 0; font-size: 1.1rem; line-height: 1.5; font-weight: 500; white-space: pre-line; }
+
+/* NUOVI STILI PER L'ICONA DEL BIGLIETTO */
+.ticket-link-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 3; /* Sopra tutti gli altri testi */
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    opacity: 0.8;
+    transition: all 0.2s ease-in-out;
+    animation: fadeIn-ticket 0.3s ease-out; /* Animazione di entrata */
 }
 
-.film-grid-title {
-    text-align: left;
-    font-family: var(--font-main, 'Syne', sans-serif);
-    font-size: 2.8rem;
-    font-weight: 700;
+.ticket-link-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
     color: var(--accent-bright-blue);
-    margin-bottom: 6rem;
-    text-transform: uppercase;
 }
 
-.film-grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-/* --- Stili per Flippable Card --- */
-.flippable-card-container {
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    background-color: transparent;
-    perspective: 1000px;
-    cursor: pointer;
-}
-
-.flippable-card-inner {
-    position: relative;
+.ticket-link-icon svg {
     width: 100%;
     height: 100%;
-    text-align: center;
-    transition: transform 0.7s;
-    transform-style: preserve-3d;
-    border-radius: 10px;
-}
-
-.flippable-card-container:hover .flippable-card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
-    border-radius: 10px; /* Eredita o specifica di nuovo */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* Importante per tagliare l'immagine ai bordi arrotondati */
-}
-
-.card-front {
-    background-color: var(--card-bg, #1a1a2e);
-    color: var(--text-color, white);
-    /* position: relative; /* next/image con layout="fill" lo gestisce internamente */
-}
-
-.card-image { /* Classe per il componente next/image sul fronte */
-    /* next/image con layout="fill" e objectFit="cover" gestirà il riempimento.
-       Il border-radius è gestito da overflow:hidden su .card-face */
-}
-
-.card-text-content {
-    padding: 1rem;
-    font-family: var(--font-main, 'Syne', sans-serif);
-    font-size: 1.5rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    text-align: center;
-    color: var(--text-color, #ffffff);
-    background-color: var(--card-bg, #2c2c54);
-}
-
-/* --- MODIFICHE PER IL RETRO DELLA CARD --- */
-.card-back {
-    background-color: var(--accent-bright-blue, #B8C2F2); /* Colore di base sotto l'immagine trasparente */
-    color: var(--bg-color, #161444); /* Colore del testo, come prima */
-    transform: rotateY(180deg);
-    font-family: var(--font-main, 'Syne', sans-serif);
-    padding: 1rem; /* Padding per il contenuto testuale */
-    position: relative; /* Per posizionare l'immagine di sfondo e il contenuto */
-    /* display, align-items, justify-content sono già su .card-face */
-    /* overflow: hidden; è già su .card-face */
-}
-
-.card-back-background-image { /* Classe per l'Image component sul retro */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.3; /* Immagine con 60% di trasparenza (40% opacità) */
-    z-index: 0;   /* Sta sotto il contenuto testuale */
-    /* objectFit="cover" e layout="fill" sono gestiti dalle props del componente Image */
-    /* Il border-radius è gestito da overflow:hidden su .card-face (che è .card-back) */
-}
-
-.card-back-content { /* Wrapper per il testo sul retro */
-    position: relative; /* Per assicurare che sia sopra l'immagine di sfondo */
-    z-index: 1;
-    /* Eventuali stili aggiuntivi per questo blocco di testo se necessario */
-}
-
-.card-back-text {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin: 0;
-    /* Il colore è ereditato da .card-back */
-}
-/* --- FINE MODIFICHE RETRO CARD --- */
-
-
-/* --- Stili per il Bottone --- */
-.film-grid-button-container {
-    text-align: center;
-}
-
-.film-grid-button {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    font-family: var(--font-main, 'Syne', sans-serif);
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-color, #ffffff);
-    background: linear-gradient(90deg, #8A2BE2, #4B0082);
-    border: none;
-    border-radius: 999px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.film-grid-button:hover,
-.film-grid-button:focus-visible {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 12px rgba(var(--primary-rgb, 138, 43, 226), 0.5);
+    fill: currentColor; /* Eredita il colore dal genitore (<a>) */
 }
 
 
-/* --- Media Query per Responsività Griglia Film --- */
-@media (max-width: 768px) {
-    .film-grid-title {
-        font-size: 2.2rem;
-        margin-bottom: 2rem;
-    }
+/* ... Stili per Modal, Bottone, Media Query, etc ... */
+.video-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; cursor: default; }
+.video-modal-content { position: relative; width: 90%; max-width: 960px; background-color: #000; }
+.modal-video-player { width: 100%; height: auto; display: block; }
+.video-modal-close-button { position: absolute; top: -40px; right: 0; background: transparent; border: none; color: #fff; font-size: 3rem; font-weight: 300; cursor: pointer; line-height: 1; }
+.youtube-link-in-modal { position: absolute; bottom: 15px; right: 15px; z-index: 10; width: 60px; opacity: 0.7; transition: opacity 0.2s ease, transform 0.2s ease; }
+.youtube-link-in-modal:hover { opacity: 1; transform: scale(1.05); }
+.youtube-link-in-modal svg { width: 100%; height: auto; fill: #fff; }
 
-    .film-grid-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-}
+@keyframes bounce-soft { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+/* NUOVA ANIMAZIONE PER L'ICONA DEL BIGLIETTO */
+@keyframes fadeIn-ticket { from { opacity: 0; transform: translateY(-10px); } to { opacity: 0.8; transform: translateY(0); } }
 
-@media (max-width: 480px) {
-    .film-grid-title {
-        font-size: 1.8rem;
-    }
-
-    .film-grid-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .flippable-card-container {
-        max-width: 300px;
-        margin: 0 auto;
-    }
-
-    .card-text-content span { /* Assumendo che il testo sia dentro uno span se necessario */
-        font-size: 1.3rem;
-    }
-
-    .card-back-text {
-        font-size: 1.5rem;
-    }
-
-    .film-grid-button {
-        padding: 0.7rem 1.5rem;
-        font-size: 0.9rem;
-    }
-}
+.film-grid-button-container { text-align: center; }
+.film-grid-button { display: inline-block; padding: 0.8rem 2rem; font-family: var(--font-main, 'Syne', sans-serif); font-size: 1rem; font-weight: 500; color: var(--text-color, #ffffff); background: linear-gradient(90deg, #8A2BE2, #4B0082); border: none; border-radius: 999px; text-decoration: none; cursor: pointer; transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+.film-grid-button:hover, .film-grid-button:focus-visible { transform: translateY(-2px) scale(1.02); box-shadow: 0 4px 12px rgba(var(--primary-rgb, 138, 43, 226), 0.5); }
+@media (max-width: 768px) { .film-grid-title { font-size: 2.2rem; margin-bottom: 2rem; } .film-grid-container { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
+@media (max-width: 480px) { .film-grid-title { font-size: 1.8rem; } .film-grid-container { grid-template-columns: 1fr; gap: 1.5rem; } .flippable-card-container { max-width: 300px; margin: 0 auto; } .card-text-content span { font-size: 1.3rem; } .card-back-text { font-size: 1.5rem; } .film-grid-button { padding: 0.7rem 1.5rem; font-size: 0.9rem; } }
