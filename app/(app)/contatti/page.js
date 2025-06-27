@@ -38,8 +38,11 @@ export default function ContattiPage() {
                         <Image
                             src="/logo_visione_vesuvio.png"
                             alt="Logo Associazione Visione Vesuvio"
-                            width={logoDisplayWidth}
-                            height={logoDisplayHeight}
+                            style={{
+                                width: '100%',      // L'immagine occuperà il 100% della larghezza del suo contenitore
+                                height: '100%',     // L'immagine occuperà il 100% dell'altezza del suo contenitore
+                                objectFit: 'contain' // Adatta l'immagine mantenendo le proporzioni
+                            }}
                         />
                     </div>
                     <p>.</p>
