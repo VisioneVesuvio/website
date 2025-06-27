@@ -38,7 +38,7 @@ const rassegneData = {
         },
         {
             id: 'invernale2025-tarantino',
-            title: 'Visione Vesuvio Presenta',
+            title: '',
             largePoster: {
                 src: '/festival/poster_tarantino.png', // SOSTITUISCI
                 alt: 'Locandina principale Stagione Invernale 2025',
