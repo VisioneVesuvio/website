@@ -1,4 +1,3 @@
-
 /* --- Struttura Principale Navbar --- */
 .navbar {
     width: 100%;
@@ -6,7 +5,7 @@
     background-color: var(--navbar-bg-color);
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* <-- Questo già centra verticalmente i figli (logo e menu) */
     position: static;
     top: 0;
     z-index: 1000;
@@ -16,7 +15,7 @@
 /* --- Contenitore Logo (Sinistra) --- */
 .navbar-logo-container {
     display: flex;
-    align-items: center;
+    align-items: center; /* <-- E questo centra verticalmente il logo dentro il suo contenitore */
     flex-shrink: 0;
 }
 
@@ -30,7 +29,7 @@
     object-fit: contain;
     width: auto;
     height: auto;
-    max-height: 120px; /* Mantenuto come da tuo CSS fornito */
+    max-height: 40px; /* MODIFICATO: 1/3 di 120px */
     transition: max-height 0.3s ease-in-out;
 }
 
@@ -53,28 +52,23 @@
 .navbar-menu li a {
     font-family: var(--font-main, 'Syne', sans-serif);
     font-weight: 500;
-    font-size: 21px; /* Mantenuto come da tuo CSS fornito */
+    font-size: 21px;
     line-height: 1;
     letter-spacing: 0;
-
-    padding: 0.8rem 1.3rem; /* Mantenuto come da tuo CSS fornito */
+    padding: 0.8rem 1.3rem;
     border-radius: var(--button-border-radius, 999px);
     border-width: 2px;
     border-style: solid;
-    border-color: transparent; /* Stato base del bordo */
-
+    border-color: transparent;
     color: var(--button-base-text-color);
-    background-color: transparent; /* Stato base dello sfondo */
+    background-color: transparent;
     text-decoration: none !important;
     white-space: nowrap;
-    box-shadow: none; /* Stato base dell'ombra */
-    transform: none; /* Stato base della trasformazione */
-
+    box-shadow: none;
+    transform: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    /* Transizione solo per le proprietà che cambiano effettivamente */
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
     border-color 0.2s ease-in-out;
 }
@@ -84,19 +78,18 @@
 .navbar-menu li a:focus-visible:not(.active-menu-btn) {
     color: var(--button-hover-text);
     background-color: var(--button-hover-bg);
-    /* Applica lo stesso stile di bordo dell'hover mobile */
     border-color: var(--button-hover-border, var(--primary));
-    box-shadow: none; /* Rimuove l'effetto glow */
-    transform: none; /* Rimuove l'effetto scale */
+    box-shadow: none;
+    transform: none;
     text-decoration: none !important;
 }
 
-/* Voce ATTIVA del menu (Desktop) - Mantenuto come da tuo CSS fornito */
+/* Voce ATTIVA del menu (Desktop) */
 .navbar-menu li a.active-menu-btn {
     color: var(--button-base-text-color);
     background-color: transparent;
     border-color: var(--button-base-border-color);
-    transform: none; /* Già a none, ma esplicito per coerenza con hover */
+    transform: none;
     text-decoration: none !important;
 }
 
@@ -117,7 +110,7 @@
     height: 3px;
     background-color: var(--navbar-link-color, #fff);
     margin: 5px 0;
-    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out; /* Leggermente affinata transizione */
+    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 .navbar-hamburger-button[aria-expanded="true"] .hamburger-bar:nth-child(1) {
@@ -138,7 +131,7 @@
     }
 
     .navbar-logo-image {
-        max-height: 45px; /* Mantenuto come da tuo CSS */
+        max-height: 15px; /* MODIFICATO: 1/3 di 45px */
     }
 
     .navbar-right-section .navbar-menu:not(.mobile-active) {
@@ -162,7 +155,6 @@
         padding: 1rem;
         box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
         border-top: 1px solid var(--border-color, rgba(255,255,255,0.1));
-        /* z-index non necessario qui se .navbar è 1000 e .navbar-hamburger-button è 1005 */
     }
 
     .navbar-menu.mobile-active li {
@@ -172,13 +164,11 @@
     .navbar-menu.mobile-active li a {
         width: 100%;
         justify-content: center;
-        padding: 0.8rem 1rem; /* Mantenuto come da tuo CSS */
-        font-size: 18px; /* Mantenuto come da tuo CSS */
+        padding: 0.8rem 1rem;
+        font-size: 18px;
         text-decoration: none !important;
-        /* Gli stili di hover e active sono ereditati o specificati sotto */
     }
 
-    /* Hover e Focus su voci NON attive (Mobile) - Mantenuto come da tuo CSS */
     .navbar-menu.mobile-active li a:hover:not(.active-menu-btn),
     .navbar-menu.mobile-active li a:focus-visible:not(.active-menu-btn) {
         transform: none;
@@ -189,12 +179,9 @@
         text-decoration: none !important;
     }
 
-    /* Voce ATTIVA del menu (Mobile) - Mantenuto come da tuo CSS */
     .navbar-menu.mobile-active li a.active-menu-btn {
         border-color: var(--button-base-border-color);
         text-decoration: none !important;
-        /* background-color: transparent; Assicurati sia trasparente se non diversamente specificato */
-        /* color: var(--button-base-text-color); Assicurati il colore testo sia corretto se diverso da hover */
     }
 }
 
@@ -205,11 +192,11 @@
     }
 
     .navbar-logo-image {
-        max-height: 40px; /* Mantenuto come da tuo CSS */
+        max-height: 14px; /* MODIFICATO: 1/3 di 40px (arrotondato) */
     }
 
     .navbar-menu.mobile-active li a {
-        font-size: 16px; /* Mantenuto come da tuo CSS */
-        padding: 0.7rem 1rem; /* Mantenuto come da tuo CSS */
+        font-size: 16px;
+        padding: 0.7rem 1rem;
     }
 }

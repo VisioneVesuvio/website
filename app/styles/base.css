@@ -57,33 +57,30 @@ a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    height: 90vh; /* Tua preferenza per l'altezza. '120vh' è più alto del viewport. */
+    height: 90vh;
     background-color: #000;
     overflow: hidden;
-    border-radius: 0; /* Niente bordi arrotondati per effetto edge-to-edge */
+    border-radius: 0;
     box-shadow: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 0; /* Lo spazio sotto sarà gestito dal padding-top del .page-content-wrapper */
+    margin-bottom: 0;
 }
 
 .looping-video-global {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 'cover' è generalmente preferito a 'fill' per evitare distorsioni.
-                          Se preferisci 'fill' come nel tuo ultimo CSS, puoi cambiarlo,
-                          ma 'cover' mantiene le proporzioni e riempie. */
+    object-fit: cover;
 }
 
 /* --- WRAPPER PER CONTENUTO PADDATO (SOTTO IL VIDEO) --- */
 .page-content-wrapper {
     width: 100%;
-    max-width: 1100px; /* Larghezza massima standard del contenuto (come per .rassegne-page-container) */
-    margin: 0 auto;    /* Centra questo contenitore */
-    padding: 2rem 1.5rem; /* Padding generale per il contenuto (2rem sopra/sotto, 1.5rem ai lati) */
-    /* Il padding-top qui crea lo spazio sotto il video. */
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
     box-sizing: border-box;
 }
 
@@ -93,22 +90,20 @@ a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /* Non serve padding qui se .page-content-wrapper lo gestisce già */
 }
 
 /* --- DETTAGLI EVENTO (dentro .home-section) --- */
 .event-details-wrapper {
-    width: 100%; /* Occupa la larghezza di .home-section */
+    width: 100%;
     margin-bottom: 2rem;
-    box-sizing: border-box; /* Ereditato, ma esplicito */
-    /* position: relative; z-index: 1; /* Necessario solo se ci sono problemi di sovrapposizione specifici */
+    box-sizing: border-box;
 }
 
 .event-details-row {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 19rem; /* Tuo valore molto grande, mantenuto */
+    gap: 19rem;
     color: var(--text-color, #B8C2F2);
 }
 
@@ -119,22 +114,21 @@ a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
 .event-date-location { font-family: var(--font-main, 'Syne', sans-serif); font-size: 0.9rem; font-weight: 400; color: var(--text-color, #B8C2F2); margin: 0; }
 
 /* --- IMMAGINE "S&A" (dentro .home-section) --- */
-.fullwidth-image-wrapper { /* "fullwidth" relativo al .page-content-wrapper ora */
+.fullwidth-image-wrapper {
     width: 100%;
     margin-bottom: 2rem;
     line-height: 0;
-    /* position: relative; z-index: 1; /* Come sopra */
 }
 
 /* --- MEDIA QUERIES --- */
 @media (max-width: 768px) {
     .video-container-global {
         height: 45vh;
-        border-radius: 0 !important; /* Assicura NESSUN border-radius */
+        border-radius: 0 !important;
     }
 
     .page-content-wrapper {
-        padding: 1.5rem 1rem; /* Padding leggermente ridotto per mobile */
+        padding: 1.5rem 1rem;
     }
 
     .event-details-row {
@@ -150,8 +144,7 @@ a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
 @media (max-width: 480px) {
     .video-container-global {
         height: 28vh;
-        border-radius: 0 !important; /* Assicura NESSUN border-radius */
-
+        border-radius: 0 !important;
     }
     .event-headline { font-size: 2rem; }
 }
@@ -163,58 +156,46 @@ a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    line-height: 0; /* Rimuove eventuale spazio sotto l'immagine */
-    background-color: var(--bg-color, #161444); /* Fallback se l'immagine non copre o è trasparente */
-    /* L'altezza è implicitamente definita dall'immagine interna con objectFit e maxHeight */
-    /* Se vuoi un'altezza fissa per l'area hero, impostala qui e usa objectFit sull'immagine */
-    /* height: 70vh; */ /* Esempio di altezza fissa */
-    /* overflow: hidden; */ /* Se imposti un'altezza fissa */
+    line-height: 0;
+    background-color: var(--bg-color, #161444);
 }
-/* L'immagine hero dentro .about-hero-image-container ha uno style inline che la rende
-   width: 100%, height: auto, object-fit: cover, e maxHeight: 75vh.
-   Questo significa che sarà larga quanto il viewport, l'altezza si adatterà
-   mantenendo le proporzioni, ma non supererà il 75% dell'altezza del viewport.
-   Se diventa più alta del 75vh a causa della sua larghezza, 'object-fit: cover'
-   la taglierà per adattarsi, mantenendo le proporzioni. */
-
 
 /* Sezioni di contenuto all'interno del .page-content-wrapper */
 .about-content-section {
     margin-top: 3.5rem;
-    margin-bottom: 3.5rem; /* Spazio tra le sezioni "L'IDEA" e "UNA NUOVA REALTÀ..." */
+    margin-bottom: 3.5rem;
 }
 
 .about-content-section:last-child {
-    margin-bottom: 9rem; /* Nessun margine per l'ultima sezione */
+    margin-bottom: 9rem;
 }
 
-.about-section-title { /* Per "L'IDEA", "UNA NUOVA REALTÀ PER CINEFILI" */
+.about-section-title {
     font-family: var(--font-main, 'Syne', sans-serif);
-    font-size: 2.2rem; /* Dimensione Titolo Sezione */
+    font-size: 2.2rem;
     font-weight: 700;
     text-transform: uppercase;
     color: var(--text-color, #ffffff);
-    margin-top: 0; /* Rimuovi margine superiore se il padding di page-content-wrapper è sufficiente */
-    margin-bottom: 2rem; /* Spazio sotto il titolo della sezione */
+    margin-top: 0;
+    margin-bottom: 2rem;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--accent-bright-blue, #B8C2F2); /* Linea sotto il titolo */
-    display: inline-block; /* Fa sì che il bordo sia lungo quanto il testo */
+    border-bottom: 2px solid var(--accent-bright-blue, #B8C2F2);
+    display: inline-block;
 }
 
 .about-map-container {
-    margin-bottom: 2rem; /* Spazio dopo l'area della mappa */
-    text-align: center; /* Centra l'immagine della mappa e la sua didascalia */
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .about-map-image-wrapper {
-    width: 100%; /* La mappa occupa la larghezza disponibile nel .page-content-wrapper */
-    /* max-width: 800px; /* Opzionale: se vuoi limitare la larghezza della mappa */
-    margin: 0 auto 0.75rem auto; /* Centra la mappa e aggiunge spazio sotto per la didascalia */
-    line-height: 0; /* Rimuove spazio extra sotto l'immagine */
-    background-color: var(--placeholder-bg, #2a2a40); /* Sfondo per il wrapper della mappa */
-    border-radius: 4px; /* Leggero arrotondamento per il wrapper mappa */
-    padding: 0.5rem; /* Piccolo padding interno se vuoi un bordo visibile attorno alla mappa */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Ombra delicata opzionale */
+    width: 100%;
+    margin: 0 auto 0.75rem auto;
+    line-height: 0;
+    background-color: var(--placeholder-bg, #2a2a40);
+    border-radius: 4px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .map-caption-text {
@@ -230,20 +211,20 @@ a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
 
 .map-caption-country-text {
     font-weight: 400;
-    font-size: 0.8em; /* Leggermente più piccolo */
-    display: block; /* Mette "ITALY" su una nuova riga */
-    opacity: 0.8; /* Leggermente meno enfasi */
+    font-size: 0.8em;
+    display: block;
+    opacity: 0.8;
     letter-spacing: 0.05em;
 }
 
 .about-text-content {
-    font-size: 1rem; /* O la tua dimensione base per il corpo del testo */
+    font-size: 1rem;
     line-height: 1.75;
-    color: var(--text-color-secondary, rgba(255, 255, 255, 0.85)); /* Colore per il testo principale */
+    color: var(--text-color-secondary, rgba(255, 255, 255, 0.85));
 }
 
 .about-text-content p {
-    margin-bottom: 1.25em; /* Spazio tra i paragrafi */
+    margin-bottom: 1.25em;
 }
 
 .about-text-content p:last-child {
@@ -252,25 +233,21 @@ a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
 
 /* --- Media Query per la Pagina About --- */
 @media (max-width: 768px) {
-    .about-hero-image-container img { /* Se vuoi cambiare maxHeight su mobile */
-        /* maxHeight: 60vh; */
-    }
-
     .about-section-title {
-        font-size: 1.8rem; /* Titoli di sezione più piccoli */
-        display: block;    /* Titolo a tutta larghezza per centrarlo meglio con text-align */
+        font-size: 1.8rem;
+        display: block;
         text-align: center;
-        border-bottom: none; /* Rimuovi bordo e usa un pseudo-elemento se vuoi una linea centrata */
+        border-bottom: none;
         padding-bottom: 0;
-        margin-bottom: 1.5rem; /* Spazio sotto il titolo */
+        margin-bottom: 1.5rem;
     }
-    .about-section-title::after { /* Linea decorativa centrata sotto il titolo su mobile */
+    .about-section-title::after {
         content: '';
         display: block;
-        width: 80px; /* Larghezza della linea */
+        width: 80px;
         height: 2px;
         background: var(--accent-bright-blue, #B8C2F2);
-        margin: 0.75rem auto 0 auto; /* Spazio sopra/sotto la linea e centrata */
+        margin: 0.75rem auto 0 auto;
     }
 
     .about-map-image-wrapper {
@@ -283,140 +260,127 @@ a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
         font-size: 0.95rem;
         line-height: 1.7;
     }
-
-
+}
 
 .contatti-page-title {
     font-family: var(--font-main, 'Syne', sans-serif);
-    font-size: 2.8rem; /* Coerente con .rassegne-main-title */
+    font-size: 2.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 2.5rem; /* Spazio prima del contenuto dei contatti */
-    text-align: left; /* Come nell'immagine */
+    margin-bottom: 2.5rem;
+    text-align: left;
     color: var(--text-color, #ffffff);
 }
 
-    .contact-section-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 2.5rem; /* Spazio tra i blocchi: ASSOCIAZIONE, SEGUICI, EMAIL */
+.contact-section-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.contact-block {
+}
+
+.contact-block-heading {
+    font-family: var(--font-main, 'Syne', sans-serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-color, #ffffff);
+    margin-bottom: 1rem;
+}
+
+.contact-logo-container {
+    margin-bottom: 0.75rem;
+    line-height: 0;
+}
+
+.contact-info-text {
+    font-family: var(--font-main, 'Syne', sans-serif);
+    font-size: 0.95rem;
+    color: var(--text-color-secondary, rgba(255, 255, 255, 0.85));
+    line-height: 1.6;
+}
+
+.contact-piva {
+}
+
+.contact-social-icons-group {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+}
+
+.contact-social-link {
+    color: var(--text-color, #ffffff);
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    display: inline-block;
+}
+
+.contact-social-link:hover,
+.contact-social-link:focus-visible {
+    color: var(--primary, #ff3cac);
+    transform: scale(1.15);
+}
+
+.social-svg-icon-contact {
+    width: 30px;
+    height: 30px;
+    fill: currentColor;
+}
+
+.contact-email-address {
+    font-family: var(--font-main, 'Syne', sans-serif);
+    font-size: 1.1rem;
+    color: var(--accent-bright-blue, #B8C2F2);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    word-break: break-all;
+}
+
+.contact-email-address:hover,
+.contact-email-address:focus-visible {
+    color: var(--primary, #ff3cac);
+    text-decoration: underline;
+}
+
+/* --- Media Query per Responsività Pagina Contatti --- */
+@media (max-width: 768px) {
+    .contatti-page-title {
+        font-size: 2.2rem;
+        text-align: center;
+        margin-bottom: 2rem;
     }
 
     .contact-block {
-        /* Questo contenitore non ha bisogno di stili specifici se i figli si auto-dimensionano
-           e .contact-section-layout gestisce la spaziatura. */
+        text-align: center;
     }
 
-    .contact-block-heading { /* Per ASSOCIAZIONE, SEGUICI, EMAIL */
-        font-family: var(--font-main, 'Syne', sans-serif);
-        font-size: 1.3rem; /* Dimensione per i titoli di blocco */
-        font-weight: 600;
-        text-transform: uppercase;
-        color: var(--text-color, #ffffff); /* O un colore di accento come var(--accent-bright-blue) */
-        margin-bottom: 1rem; /* Spazio sotto il titolo del blocco */
+    .contact-block-heading {
+        font-size: 1.15rem;
     }
 
     .contact-logo-container {
-        margin-bottom: 0.75rem; /* Spazio tra logo e P.IVA */
-        /* Il componente Image imposterà le dimensioni del logo.
-           Puoi aggiungere una max-width qui se necessario. */
-        /* max-width: 300px; */
-        line-height: 0; /* Per evitare spazi extra se l'immagine fosse inline */
+        display: flex;
+        justify-content: center;
+        width: 30vw;
+        max-width: 200px;
+        height: 10vh;
+        margin: 0 auto;
+        position: relative;
     }
 
-    .contact-info-text { /* Classe generica per testi informativi */
-        font-family: var(--font-main, 'Syne', sans-serif);
-        font-size: 0.95rem;
-        color: var(--text-color-secondary, rgba(255, 255, 255, 0.85));
-        line-height: 1.6;
-    }
-
-    .contact-piva { /* Specifico per la Partita IVA */
-        /* Eredita da .contact-info-text, puoi aggiungere specificità se serve */
+    .contact-logo-container img {
+        max-width: 100%;
+        height: auto;
     }
 
     .contact-social-icons-group {
-        display: flex;
-        gap: 1.2rem; /* Spazio tra le icone social */
-        align-items: center; /* Allinea verticalmente le icone se hanno altezze diverse */
-    }
-
-    .contact-social-link {
-        color: var(--text-color, #ffffff); /* Colore base dell'icona */
-        transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-        display: inline-block; /* Per permettere transform */
-    }
-
-    .contact-social-link:hover,
-    .contact-social-link:focus-visible {
-        color: var(--primary, #ff3cac); /* Colore primario (rosa neon) al passaggio del mouse */
-        transform: scale(1.15); /* Leggero ingrandimento */
-    }
-
-    .social-svg-icon-contact { /* Classe per gli SVG nella pagina contatti */
-        width: 30px;  /* Dimensione icone social */
-        height: 30px;
-        fill: currentColor; /* L'SVG usa il colore del genitore .contact-social-link */
+        justify-content: center;
     }
 
     .contact-email-address {
-        font-family: var(--font-main, 'Syne', sans-serif);
-        font-size: 1.1rem;
-        color: var(--accent-bright-blue, #B8C2F2); /* Colore email cliccabile */
-        text-decoration: none;
-        transition: color 0.2s ease-in-out;
-        word-break: break-all; /* Evita overflow su schermi piccoli */
-    }
-
-    .contact-email-address:hover,
-    .contact-email-address:focus-visible {
-        color: var(--primary, #ff3cac); /* Colore primario hover */
-        text-decoration: underline;
-    }
-
-
-    /* --- Media Query per Responsività Pagina Contatti --- */
-    @media (max-width: 768px) {
-        .contatti-page-title {
-            font-size: 2.2rem;
-            text-align: center; /* Centra titolo principale su mobile */
-            margin-bottom: 2rem;
-        }
-
-        .contact-block {
-            text-align: center; /* Centra il contenuto dei blocchi su mobile */
-        }
-
-        .contact-block-heading {
-            font-size: 1.15rem;
-        }
-
-        .contact-logo-container {
-            display: flex;
-            justify-content: center;
-            width: 30vw;
-            max-width: 200px; /* Aggiungo un max-width per schermi grandi, è una buona pratica */
-            height: 10vh; /* Esempio: imposta un'altezza o usa aspect-ratio */
-            margin: 0 auto; /* Semplificato per la centratura */
-
-            position: relative; /* <-- FONDAMENTALE */
-        }
-
-        .contact-logo-container img { /* Assumendo che il logo sia un'immagine */
-            max-width: 100%; /* Assicura che l'immagine non superi la larghezza del container */
-            height: auto;    /* Mantiene le proporzioni dell'immagine */
-        }
-        /* Se il logo è un <Image> con width/height fisse, si centrerà se il suo contenitore
-           .contact-logo-container è reso inline-block e il genitore .contact-block è text-align:center */
-
-
-        .contact-social-icons-group {
-            justify-content: center; /* Centra le icone quando il blocco è text-align:center */
-        }
-
-        .contact-email-address {
-            font-size: 1rem;
-        }
+        font-size: 1rem;
     }
 }
 
