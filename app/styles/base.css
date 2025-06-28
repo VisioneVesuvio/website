@@ -394,9 +394,9 @@ a:not([class*="navbar-"]):not([class*="button"]):focus-visible {
         .contact-logo-container {
             display: flex;
             justify-content: center;
-            width: 80vw;
-            max-width: 500px; /* Aggiungo un max-width per schermi grandi, è una buona pratica */
-            height: 30vh; /* Esempio: imposta un'altezza o usa aspect-ratio */
+            width: 30vw;
+            max-width: 200px; /* Aggiungo un max-width per schermi grandi, è una buona pratica */
+            height: 10vh; /* Esempio: imposta un'altezza o usa aspect-ratio */
             margin: 0 auto; /* Semplificato per la centratura */
 
             position: relative; /* <-- FONDAMENTALE */
