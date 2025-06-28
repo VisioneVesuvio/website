@@ -125,23 +125,29 @@
 
 
 /* --- Stili per Responsività e Menu Mobile --- */
+
+/* Breakpoint per Tablet e Mobile (menu hamburger) */
 @media (max-width: 992px) {
     .navbar {
         padding: 1rem 1.5rem;
     }
 
     .navbar-logo-image {
-        max-height: 15px; /* MODIFICATO: 1/3 di 45px */
+        /* Logo raddoppiato rispetto ai 15px precedenti */
+        max-height: 30px;
     }
 
+    /* Nasconde il menu desktop */
     .navbar-right-section .navbar-menu:not(.mobile-active) {
         display: none;
     }
 
+    /* Mostra il pulsante hamburger */
     .navbar-hamburger-button {
         display: block;
     }
 
+    /* Stile del menu a tendina quando è attivo */
     .navbar-menu.mobile-active {
         display: flex;
         flex-direction: column;
@@ -169,6 +175,7 @@
         text-decoration: none !important;
     }
 
+    /* Stile per i link quando in hover (non attivi) */
     .navbar-menu.mobile-active li a:hover:not(.active-menu-btn),
     .navbar-menu.mobile-active li a:focus-visible:not(.active-menu-btn) {
         transform: none;
@@ -179,12 +186,14 @@
         text-decoration: none !important;
     }
 
+    /* Stile per il link della pagina attiva */
     .navbar-menu.mobile-active li a.active-menu-btn {
         border-color: var(--button-base-border-color);
         text-decoration: none !important;
     }
 }
 
+/* Breakpoint specifico per schermi più piccoli */
 @media (max-width: 768px) {
     .navbar {
         padding: 0.8rem 1rem;
@@ -192,7 +201,8 @@
     }
 
     .navbar-logo-image {
-        max-height: 14px; /* MODIFICATO: 1/3 di 40px (arrotondato) */
+        /* Logo raddoppiato rispetto ai 14px precedenti */
+        max-height: 28px;
     }
 
     .navbar-menu.mobile-active li a {
