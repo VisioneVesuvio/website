@@ -7,7 +7,8 @@ import Footer from '@/app/components/Footer';
 
 export const metadata = {
     title: 'Visione Vesuvio',
-    description: 'Una descrizione è un insieme di indicazioni che determinano la natura della realtà che osserviamo',
+    description: 'Visione Vesuvio è un’associazione culturale nata a Napoli per promuovere il cinema come esperienza condivisa.\n' +
+        'Uno spazio pensato da cinefili per cinefili, dove vedere film, scambiare idee e immaginare nuove visioni.',
 };
 
 export default function RootLayout({ children }) {
