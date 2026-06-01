@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Design Migration
+
+The repository now includes a detailed Figma-to-code migration plan for the new Visione Vesuvio redesign, including code cleanup, de-hardcoding, and future admin-ready content architecture:
+
+- `docs/figma-migration-strategy.md`
+
+Use that document as the implementation reference for replacing the current UI screen by screen.
+
 ## Getting Started
 
 First, run the development server:

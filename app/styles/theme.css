@@ -1,57 +1,67 @@
-/* globals.css o il tuo file CSS principale */
-
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
 
 :root {
-    /* TEMA BASE - DARK FUTURISTICO */
-    --bg-color: #161444;
-    --text-color: #b8c2f2;
-    --primary: rgba(201, 223, 251, 0.34);
+    --bg-color: #0c1127;
+    --bg-color-rgb: 12, 17, 39;
+    --bg-elevated: #111735;
+    --bg-elevated-rgb: 17, 23, 53;
+    --surface-1: rgba(19, 26, 58, 0.8);
+    --surface-2: rgba(24, 33, 72, 0.92);
+    --surface-3: rgba(191, 204, 255, 0.1);
+    --card-bg: var(--surface-2);
 
-    --card-bg: #161444;
+    --text-color: #e3e9ff;
+    --text-color-rgb: 227, 233, 255;
+    --text-color-secondary: rgba(227, 233, 255, 0.76);
+    --text-color-muted: rgba(227, 233, 255, 0.58);
+    --heading-color: #f7f9ff;
 
-    /* Colori specifici per la Navbar */
-    --navbar-bg-color: var(--bg-color);
+    --accent-bright-blue: #a85fff;
+    --accent-soft-blue: #7f3fe0;
+    --accent-ice: #c79bff;
+    --accent-warm: #ffb38f;
+    --primary: rgba(124, 231, 255, 0.24);
+    --primary-rgb: 124, 231, 255;
+
+    --link-color: #111111;
+    --link-hover-color: #7f3fe0;
+
+    --border-color: rgba(198, 210, 255, 0.22);
+    --border-strong: rgba(198, 210, 255, 0.42);
+    --shadow-color: rgba(4, 10, 32, 0.42);
+    --shadow-soft: 0 24px 70px rgba(5, 10, 29, 0.32);
+    --shadow-medium: 0 16px 40px rgba(5, 10, 29, 0.4);
+
+    --navbar-bg-color: rgba(8, 12, 31, 0.72);
     --navbar-link-color: var(--text-color);
 
-    --accent-bright-blue: #B8C2F2;
-
-    --navbar-active-link-bg: var(--accent-bright-blue);
-    --navbar-active-link-text: #161444;
-    --navbar-active-link-border-color: var(--accent-bright-blue);
-    --navbar-active-link-shadow: none;
-    --navbar-link-hover-shadow: var(--shadow-color);
-
-    /* --- NUOVE PROPRIETÀ FONT PER NAVBAR MENU (da immagine) --- */
-    --navbar-font-family: 'Syne', sans-serif; /* Ora Syne dovrebbe essere disponibile */
-    --navbar-font-weight: 500;
-    --navbar-font-size: 25px;
-    --navbar-line-height: 100%;
-    --navbar-letter-spacing: 0%;
-
-    /* Colori per Bottoni Generici */
     --button-base-bg-color: transparent;
-    --button-base-text-color: var(--accent-bright-blue);
-    --button-base-border-color: var(--accent-bright-blue);
-
-    --button-hover-bg: var(--accent-bright-blue);
-    --button-hover-text: #000000;
-    --button-hover-border: var(--accent-bright-blue);
+    --button-base-text-color: #111111;
+    --button-base-border-color: rgba(17, 17, 17, 0.72);
+    --button-hover-bg: var(--button-base-bg-color);
+    --button-hover-text: var(--button-base-text-color);
+    --button-hover-border: var(--button-base-border-color);
     --button-border-radius: 999px;
 
-    /* Colori per Link Generici */
-    --link-color: var(--text-color);
-    --link-hover-color: var(--accent-bright-blue);
+    --radius-xs: 8px;
+    --radius-sm: 14px;
+    --radius-md: 22px;
+    --radius-lg: 32px;
+    --radius-pill: 999px;
 
-    /* Bordi e Ombre */
-    --border-color: var(--accent-bright-blue);
-    --shadow-color: var(--accent-bright-blue);
+    --content-max-width: 1220px;
+    --content-narrow-width: 920px;
+    --shell-padding-x: clamp(18px, 2.8vw, 38px);
+    --section-gap: clamp(2.5rem, 5vw, 5rem);
 
-    /* Extra */
-    --accent-blue: #2bd2ff;
-
-    /* Font Globale */
-    --font-main: 'Syne', sans-serif; /* Applica Syne globalmente */
+    --font-main: 'Inter', sans-serif;
+    --font-nav: 'Inter', sans-serif;
+    --font-display-condensed: 'Six Caps', sans-serif;
+    --font-size-body: 1rem;
+    --font-size-caption: 0.9rem;
+    --font-size-title: clamp(2.4rem, 5vw, 4.8rem);
+    --font-size-section: clamp(1.8rem, 3vw, 3rem);
+    --font-size-card-title: clamp(1.25rem, 2vw, 1.8rem);
 }
 
 body {
@@ -59,6 +69,3 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
 }
-
-/* Assicurati che globals.css sia importato nel tuo _app.js o _app.tsx */
-/* Esempio in _app.js: import '../styles/globals.css'; */

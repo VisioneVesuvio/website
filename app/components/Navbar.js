@@ -1,79 +1,124 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import '@/app/styles/navbar.css'; // Assicurati che il percorso sia corretto
+import '@/app/styles/navbar.css';
+import { getNavigationItems, headerMarqueeItems } from '@/app/content/site';
 
-/**
- * Componente Navbar principale.
- */
 export default function Navbar() {
     const pathname = usePathname();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const menuItems = getNavigationItems();
+    const desktopMenuItems = menuItems.filter((item) => item.isPrimaryHeaderItem !== false);
+    const leftMenuItems = desktopMenuItems.slice(0, 2);
+    const rightMenuItems = desktopMenuItems.slice(2);
+    const marqueeSequence = Array.from({ length: 6 }, (_, index) => ({
+        id: `marquee-group-${index}`,
+        content: headerMarqueeItems,
+    }));
 
-    const menuItems = [
-        { label: 'Home', href: '/' },
-        { label: 'Estate 2k25', href: '/calendario' },
-        { label: 'Rassegne', href: '/rassegne' },
-        { label: 'About', href: '/about' },
-        { label: 'Store', href: '/store' },
-        { label: 'Contatti', href: '/contatti' },
-    ];
+    const isActivePath = (href) => {
+        if (href === '/') {
+            return pathname === '/';
+        }
+
+        return pathname === href || pathname.startsWith(`${href}/`);
+    };
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
-    // Chiudi il menu mobile quando si naviga a una nuova pagina
     useEffect(() => {
         if (isMobileMenuOpen) {
             setIsMobileMenuOpen(false);
         }
-    }, [pathname]);
+    }, [pathname, isMobileMenuOpen]);
 
     return (
-        // La classe "navbar" è quella che riceve position: sticky dal tuo CSS
-        <nav className="navbar">
-            <div className="navbar-logo-container">
-                <Link href="/" className="navbar-logo-link">
-                    <Image
-                        src="/logo_visione_vesuvio.png"
-                        alt="Logo Visione Vesuvio"
-                        width={550}
-                        height={94}
-                        priority
-                        className="navbar-logo-image"
-                    />
-                </Link>
-            </div>
-
-            <div className="navbar-right-section">
-                <ul className={`navbar-menu ${isMobileMenuOpen ? 'mobile-active' : ''}`}>
-                    {menuItems.map((item) => (
+        <header className="site-header">
+            <nav className="navbar">
+                <ul className="navbar-menu navbar-menu-desktop navbar-menu-left">
+                    {leftMenuItems.map((item) => (
                         <li key={item.href}>
                             <Link
                                 href={item.href}
-                                className={pathname === item.href ? 'active-menu-btn' : ''}
+                                className={isActivePath(item.href) ? 'active-menu-btn' : ''}
                             >
                                 {item.label}
                             </Link>
                         </li>
                     ))}
                 </ul>
-            </div>
 
-            <button
-                className="navbar-hamburger-button"
-                aria-label="Toggle menu"
-                aria-expanded={isMobileMenuOpen}
-                onClick={toggleMobileMenu}
-            >
-                <span className="hamburger-bar"></span>
-                <span className="hamburger-bar"></span>
-                <span className="hamburger-bar"></span>
-            </button>
-        </nav>
+                <div className="navbar-logo-container">
+                    <Link href="/" className="navbar-logo-link" aria-label="Visione Vesuvio">
+                        <Image
+                            src="/logo_minimal.png"
+                            alt="Logo Visione Vesuvio"
+                            width={166}
+                            height={184}
+                            className="navbar-mark-image"
+                            priority
+                        />
+                    </Link>
+                </div>
+
+                <div className="navbar-right-section">
+                    <ul className="navbar-menu navbar-menu-desktop navbar-menu-right">
+                        {rightMenuItems.map((item) => (
+                            <li key={item.href}>
+                                <Link
+                                    href={item.href}
+                                    className={isActivePath(item.href) ? 'active-menu-btn' : ''}
+                                >
+                                    {item.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <button
+                    className="navbar-hamburger-button"
+                    aria-label="Toggle menu"
+                    aria-expanded={isMobileMenuOpen}
+                    onClick={toggleMobileMenu}
+                >
+                    <span className="hamburger-bar"></span>
+                    <span className="hamburger-bar"></span>
+                    <span className="hamburger-bar"></span>
+                </button>
+
+                <ul className={`navbar-menu navbar-menu-mobile ${isMobileMenuOpen ? 'mobile-active' : ''}`}>
+                    {menuItems.map((item) => (
+                        <li key={item.href}>
+                            <Link
+                                href={item.href}
+                                className={isActivePath(item.href) ? 'active-menu-btn' : ''}
+                            >
+                                {item.label}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+
+            <div className="navbar-marquee" aria-label="Festival marquee">
+                <div className="navbar-marquee-track">
+                    {marqueeSequence.map((group) => (
+                        <span key={group.id} className="navbar-marquee-group">
+                            {group.content.map((item) => (
+                                <span key={`${group.id}-${item}`} className="navbar-marquee-item">
+                                    {item}
+                                </span>
+                            ))}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        </header>
     );
 }

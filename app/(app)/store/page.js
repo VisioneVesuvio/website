@@ -1,19 +1,14 @@
-// app/negozio/page.js
-'use client'; // Necessario per l'handler del bottone e fetch
-
-import React from 'react';
+export const metadata = {
+    title: 'Shop - Visione Vesuvio',
+    description: 'Shop Visione Vesuvio.',
+};
 
 export default function NegozioPage() {
-
-
     return (
-        <div style={{padding: '50px', textAlign: 'center'}}>
-            <br></br>
-            <br></br>
-            <br></br><br></br><br></br>
-
-            <h1>COMING SOON...</h1>
-
+        <div className="store-coming-page">
+            <section className="store-coming-panel">
+                <h1 className="store-coming-title">Coming soon</h1>
+            </section>
         </div>
     );
 }

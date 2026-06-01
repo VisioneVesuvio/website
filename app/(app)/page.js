@@ -1,57 +1,79 @@
-// app/page.js
 import Image from 'next/image';
-import FilmGrid from '@/app/components/FilmGrid';
+import Link from 'next/link';
+import { homePageContent } from '@/app/content/home';
+import FeaturedProgramSection from '@/app/components/FeaturedProgramSection';
+import HorizontalPosterSlider from '@/app/components/HorizontalPosterSlider';
+import ShopPosterStack from '@/app/components/ShopPosterStack';
 
 export default function HomePage() {
+    const shopItems = homePageContent.shopShowcase.items;
+
     return (
-        <> {/* Questo Fragment è figlio del tag <main> nel tuo RootLayout */}
+        <div className="home-figma-page">
+            <section className="home-display-board">
+                <div className="home-display-board-inner">
+                    <Image
+                        src={homePageContent.displayBoard.heroImage.src}
+                        alt={homePageContent.displayBoard.heroImage.alt}
+                        width={homePageContent.displayBoard.heroImage.width}
+                        height={homePageContent.displayBoard.heroImage.height}
+                        className="home-display-board-image"
+                        priority
+                    />
+                </div>
+            </section>
 
-            {/* --- VIDEO A TUTTA LARGHEZZA --- */}
-            <div className="video-container-global">
-                <video
-                    className="looping-video-global"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                >
-                    {/* Ricorda di convertire .mov in .mp4 e usare il percorso corretto! */}
-                    <source src="/loop_sito.mov" type="video/mp4" />
-                    {/* <source src="/loop_sito.webm" type="video/webm" /> */}
-                    Il tuo browser non supporta il tag video o i formati forniti.
-                </video>
-            </div>
+            <div className="home-gradient-flow">
+                <FeaturedProgramSection />
 
-            {/* --- NUOVO WRAPPER PER IL CONTENUTO PADDATO DELLA PAGINA --- */}
-            <div className="page-content-wrapper">
-                <section className="home-section"> {/* Ora figlio di page-content-wrapper */}
+                <section className="home-manifesto-section">
+                    <h2 className="home-manifesto-title">{homePageContent.manifesto.title}</h2>
+                    <HorizontalPosterSlider
+                        items={homePageContent.horizontalSlider.items}
+                        ariaLabel={homePageContent.horizontalSlider.ariaLabel}
+                    />
+                </section>
 
-                    <div className="event-details-wrapper">
-                        <div className="event-details-row">
-                            <div className="event-text-left">
-                                <p className="event-kicker">Cinefilia partenopea</p>
-                                <h2 className="event-headline">ESTATE 2K25</h2>
-                            </div>
-                            <div className="event-text-right">
-                                <p className="event-date-location">Giugno-Settembre, 2025 | Napoli</p>
-                            </div>
+                <section className="home-shop-section">
+                    <h2 className="home-shop-title">{homePageContent.shopShowcase.title}</h2>
+                    <ShopPosterStack items={shopItems} />
+                    <Link href={homePageContent.shopShowcase.cta.href} className="home-shop-link">
+                        {homePageContent.shopShowcase.cta.label} -&gt;
+                    </Link>
+                </section>
+
+                <section className="home-rassegne-section">
+                    <h2 className="home-rassegne-title">{homePageContent.rassegnePreview.title}</h2>
+                    <p className="home-rassegne-status">{homePageContent.rassegnePreview.status}</p>
+                    <article className="home-rassegne-card">
+                        <div className="home-rassegne-image-stack">
+                            {homePageContent.rassegnePreview.images.map((image, index) => (
+                                <Image
+                                    key={image.id}
+                                    src={image.src}
+                                    alt={image.alt}
+                                    width={image.width}
+                                    height={image.height}
+                                    className={`home-rassegne-image home-rassegne-image-${index + 1}`}
+                                />
+                            ))}
                         </div>
-                    </div>
-
-                    <div className="fullwidth-image-wrapper"> {/* "fullwidth" ora relativo a page-content-wrapper */}
-                        <Image
-                            src="/S&A.png"
-                            alt="Artwork S&A"
-                            width={1920} // SOSTITUISCI con LARGHEZZA REALE
-                            height={1080} // SOSTITUISCI con ALTEZZA REALE
-                            style={{ width: '100%', height: 'auto', display: 'block' }}
-                            priority
-                        />
-                    </div>
-
-                    <FilmGrid />
+                        <div className="home-rassegne-copy">
+                            <div className="home-rassegne-tags">
+                                {homePageContent.rassegnePreview.tags.map((tag) => (
+                                    <span key={tag} className="home-rassegne-tag">{tag}</span>
+                                ))}
+                            </div>
+                            <h3>{homePageContent.rassegnePreview.heading}</h3>
+                            <p className="home-rassegne-subtitle">{homePageContent.rassegnePreview.subtitle}</p>
+                            <p className="home-rassegne-description">{homePageContent.rassegnePreview.description}</p>
+                            <Link href="/rassegne" className="home-rassegne-ticket-link">
+                                Biglietti
+                            </Link>
+                        </div>
+                    </article>
                 </section>
             </div>
-        </>
+        </div>
     );
 }

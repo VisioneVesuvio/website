@@ -8,8 +8,14 @@ import Link from 'next/link';
 import YouTube from 'react-youtube';
 
 export default function FlippableCard({ filmData }) {
-    // Props pulite: abbiamo solo youtubeVideoId per i video
-    const { frontImage, frontText, backText, title, youtubeVideoId, locationInfo } = filmData;
+    const poster = filmData?.poster;
+    const frontImage = poster?.src ?? filmData?.frontImage;
+    const frontImageAlt = poster?.alt ?? `Locandina: ${filmData?.title}`;
+    const frontText = filmData?.frontText;
+    const backText = filmData?.programLabel ?? filmData?.shortLabel ?? filmData?.fullDateLabel ?? filmData?.backText;
+    const title = filmData?.title;
+    const youtubeVideoId = filmData?.trailer?.youtubeVideoId ?? filmData?.youtubeVideoId;
+    const locationInfo = filmData?.venue ?? filmData?.locationInfo;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
@@ -46,7 +52,7 @@ export default function FlippableCard({ filmData }) {
                 <div className="flippable-card-inner">
                     <div className="card-face card-front">
                         {frontImage ? (
-                            <Image src={frontImage} alt={`Locandina: ${title}`} layout="fill" objectFit="cover" />
+                            <Image src={frontImage} alt={frontImageAlt} fill style={{ objectFit: 'cover' }} />
                         ) : (
                             <div className="card-text-content"><span>{frontText || title}</span></div>
                         )}
@@ -54,10 +60,15 @@ export default function FlippableCard({ filmData }) {
 
                     <div className="card-face card-back">
                         {frontImage && (
-                            <Image src={frontImage} alt="" layout="fill" objectFit="cover" className="card-back-background-image"/>
+                            <Image
+                                src={frontImage}
+                                alt=""
+                                fill
+                                style={{ objectFit: 'cover' }}
+                                className="card-back-background-image"
+                            />
                         )}
 
-                        {/* MODIFICA: Il tasto Play appare se esiste un youtubeVideoId */}
                         {youtubeVideoId && (
                             <div className="play-button-container" onClick={openModal}>
                                 <div className="play-button-icon">
@@ -89,7 +100,7 @@ export default function FlippableCard({ filmData }) {
                 <div className="video-modal" onClick={closeModal}>
                     <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
                         <YouTube videoId={youtubeVideoId} opts={playerOptions} className="modal-video-player" />
-                        <button onClick={closeModal} className="video-modal-close-button">×</button>
+                        <button onClick={closeModal} className="video-modal-close-button">x</button>
                     </div>
                 </div>
             )}

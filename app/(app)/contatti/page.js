@@ -1,61 +1,68 @@
 // app/contatti/page.js
-// NESSUNA direttiva "use client"; QUI ALL'INIZIO DEL FILE
-
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-// Se hai stili specifici in un file .css per questa pagina, importali:
-// import './contatti-page.module.css'; // Esempio se usi CSS Modules
-// Altrimenti, si affiderà a globals.css
+import { contactPageContent, getContactBlocks, getContactSocialLinks } from '@/app/content/contacts';
+import HorizontalPosterSlider from '@/app/components/HorizontalPosterSlider';
 
-// Definisci i componenti SVG per le icone social qui o importali
-
-
-// Esportazione dei metadati - questo è consentito solo se non c'è "use client" nel file
 export const metadata = {
     title: 'Contatti - Visione Vesuvio',
     description: 'Mettiti in contatto con l\'associazione Visione Vesuvio.',
 };
 
 export default function ContattiPage() {
-
-
-    const logoDisplayWidth = 600;
-    // Calcola l'altezza mantenendo l'aspect ratio originale del tuo logo (es. 550x94)
-    const logoOriginalWidth = 420;
-    const logoOriginalHeight = 94;
-    const logoDisplayHeight = (logoDisplayWidth * logoOriginalHeight) / logoOriginalWidth;
-
+    const contactBlocks = getContactBlocks();
+    const socialLinks = getContactSocialLinks();
     return (
-        <div className="page-content-wrapper">
-            <h1 className="contatti-page-title">CONTATTI</h1>
-            <p>.</p>
+        <div className="contact-page">
+            <section className="contact-page-header">
+                <h1 className="contact-page-title">{contactPageContent.title}</h1>
+                <p className="contact-page-intro">{contactPageContent.intro}</p>
+            </section>
 
-            <section className="contact-section-layout">
-                <div className="contact-block">
-                    <h2 className="contact-block-heading">ASSOCIAZIONE</h2>
-                    <div className="contact-logo-container">
-                        <Image
-                            src="/logo_visione_vesuvio.png"
-                            alt="Logo Associazione Visione Vesuvio"
-                            style={{
-                                width: '100%',      // L'immagine occuperà il 100% della larghezza del suo contenitore
-                                height: '100%',     // L'immagine occuperà il 100% dell'altezza del suo contenitore
-                                objectFit: 'contain' // Adatta l'immagine mantenendo le proporzioni
-                            }}
-                        />
+            <section className="contact-page-slider-shell">
+                <HorizontalPosterSlider
+                    items={contactPageContent.sliderItems}
+                    ariaLabel={contactPageContent.sliderAriaLabel}
+                />
+            </section>
+
+            <section className="contact-page-grid">
+                {contactBlocks.map((block) => (
+                    <div key={block.id} className="contact-page-block">
+                        <h2 className="contact-page-block-title">{block.title}</h2>
+
+                        {block.type === 'association' && (
+                            <>
+                                <div className="contact-logo-container">
+                                    <Image
+                                        src={contactPageContent.logo.src}
+                                        alt={contactPageContent.logo.alt}
+                                        width={contactPageContent.logo.width}
+                                        height={contactPageContent.logo.height}
+                                        style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+                                    />
+                                </div>
+                                <p className="contact-info-text">P.IVA {block.pIva}</p>
+                            </>
+                        )}
+
+                        {block.type === 'email' && (
+                            <a href={`mailto:${block.value}`} className="contact-email-address">
+                                {block.value}
+                            </a>
+                        )}
                     </div>
-                    <p>.</p>
-                    <p className="contact-info-text contact-piva">Partita IVA 10621671212</p>
-                    <p>.</p>
-                </div>
+                ))}
 
-
-                <div className="contact-block">
-                    <h2 className="contact-block-heading">EMAIL</h2>
-                    <a href="mailto:associazione.visionevesuvio@gmail.com" className="contact-email-address">
-                        associazione.visionevesuvio@gmail.com
-                    </a>
+                <div className="contact-page-block">
+                    <h2 className="contact-page-block-title">Social</h2>
+                    <div className="contact-page-links">
+                        {socialLinks.map((link) => (
+                            <Link key={link.id} href={link.href} target="_blank" rel="noreferrer" className="contact-page-link">
+                                {link.platform === 'instagram' ? 'Instagram' : link.platform === 'facebook' ? 'Facebook' : 'X'}
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </section>
         </div>

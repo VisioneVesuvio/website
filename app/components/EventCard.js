@@ -11,25 +11,28 @@ export default function EventCard({ eventData }) {
 
     const {
         title,
+        poster,
         posterUrl,
+        venue,
         location,
         entryTime,
         startTime,
         description,
-        directors, // Array di registi
-        ticketLink
+        directors,
+        ticketLink,
+        ticketUrl,
     } = eventData;
 
     return (
         <div className="event-card">
             <div className="event-card-poster-wrapper">
-                {posterUrl && (
+                {(poster?.src || posterUrl) && (
                     <Image
-                        src={posterUrl}
-                        alt={`Locandina ${title}`}
-                        width={200} // Specifica una larghezza (o usa layout="fill" con un contenitore dimensionato)
-                        height={300} // Specifica un'altezza
-                        objectFit="cover" // o "contain"
+                        src={poster?.src ?? posterUrl}
+                        alt={poster?.alt ?? `Locandina ${title}`}
+                        width={poster?.width ?? 200}
+                        height={poster?.height ?? 300}
+                        style={{ objectFit: 'cover' }}
                         className="event-card-poster"
                     />
                 )}
@@ -37,7 +40,7 @@ export default function EventCard({ eventData }) {
             <div className="event-card-details">
                 <h3 className="event-card-title">{title}</h3>
                 <p className="event-card-location-time">
-                    {location}.<br />
+                    {(venue ?? location)}.<br />
                     {entryTime}. {startTime}.
                 </p>
                 <p className="event-card-description">
@@ -49,8 +52,8 @@ export default function EventCard({ eventData }) {
                         </>
                     )}
                 </p>
-                {ticketLink && (
-                    <Link href={ticketLink} legacyBehavior>
+                {(ticketUrl ?? ticketLink) && (
+                    <Link href={ticketUrl ?? ticketLink} legacyBehavior>
                         <a className="event-card-button">
                             Biglietti &rarr;
                         </a>

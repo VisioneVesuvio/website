@@ -1,29 +1,24 @@
-/* globals.css o un file CSS importato globalmente */
-
 .film-grid-section {
     width: 100%;
-    max-width: 1200px;
-    margin: 4rem auto;
-    padding: 0 1rem;
-    box-sizing: border-box;
+    max-width: 100%;
+    margin: 0 auto;
     text-align: center;
 }
 
 .film-grid-title {
     text-align: left;
-    font-family: var(--font-main, 'Syne', sans-serif);
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--accent-bright-blue);
-    margin-bottom: 6rem;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 800;
+    color: var(--heading-color);
+    margin-bottom: 2rem;
     text-transform: uppercase;
 }
 
 .film-grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
 }
 
 .flippable-card-container {
@@ -41,7 +36,7 @@
     text-align: center;
     transition: transform 0.7s;
     transform-style: preserve-3d;
-    border-radius: 15px;
+    border-radius: var(--radius-lg);
 }
 
 .flippable-card-container:hover .flippable-card-inner {
@@ -54,55 +49,49 @@
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: 15px;
+    border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     isolation: isolate;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-medium);
 }
 
 .card-front {
-    background-color: var(--card-bg, #1a1a2e);
-    color: var(--text-color, white);
+    background: linear-gradient(180deg, rgba(18, 25, 53, 0.96), rgba(11, 16, 36, 0.98));
+    color: var(--text-color);
 }
 
 .card-text-content {
     padding: 1rem;
-    font-family: var(--font-main, 'Syne', sans-serif);
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.45rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
     text-align: center;
-    color: var(--text-color, #ffffff);
-    background-color: var(--card-bg, #2c2c54);
+    color: var(--text-color);
 }
 
 .card-back {
-    background-color: var(--card-bg, #1a1a2e);
+    background-color: #101731;
     transform: rotateY(180deg);
 }
 
 .card-back-background-image {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     object-fit: cover;
-    opacity: 0.15;
+    opacity: 0.18;
     z-index: 0;
 }
 
 .play-button-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,14 +99,15 @@
 }
 
 .play-button-icon {
-    width: 100px;
-    height: 100px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 2px solid #fff;
+    width: 90px;
+    height: 90px;
+    background-color: rgba(227, 233, 255, 0.12);
+    border: 1px solid rgba(227, 233, 255, 0.55);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(8px);
 }
 
 .play-button-container:hover .play-button-icon {
@@ -132,11 +122,9 @@
 
 .card-back-content {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0 auto auto 0;
     width: 100%;
-    padding: 1.5rem;
-    box-sizing: border-box;
+    padding: 1.35rem;
     z-index: 2;
     color: #ffffff;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
@@ -144,18 +132,18 @@
 
 .card-back-text {
     text-align: center;
-    font-size: 1.9rem;
-    font-weight: 700;
+    font-size: 1.6rem;
+    font-weight: 800;
     margin: 0;
+    text-transform: uppercase;
 }
 
 .card-back-location-info {
     position: absolute;
-    bottom: 1.5rem;
+    bottom: 1.25rem;
     left: 0;
     width: 100%;
-    padding: 1rem;
-    box-sizing: border-box;
+    padding: 0 1.15rem;
     z-index: 2;
     color: #fff;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
@@ -164,29 +152,29 @@
 
 .card-back-location-info p {
     margin: 0;
-    font-size: 1.1rem;
-    line-height: 1.5;
-    font-weight: 500;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    font-weight: 600;
     white-space: pre-line;
 }
 
 .ticket-link-icon {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 18px;
+    right: 18px;
     z-index: 3;
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     color: #fff;
-    opacity: 0.8;
+    opacity: 0.88;
     transition: all 0.2s ease-in-out;
     animation: fadeIn-ticket 0.3s ease-out;
 }
 
 .ticket-link-icon:hover {
     opacity: 1;
-    transform: scale(1.1);
-    color: var(--accent-bright-blue);
+    transform: scale(1.08);
+    color: var(--accent-ice);
 }
 
 .ticket-link-icon svg {
@@ -197,10 +185,7 @@
 
 .video-modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
     background-color: rgba(0, 0, 0, 0.85);
     display: flex;
     align-items: center;
@@ -230,8 +215,8 @@
     background: transparent;
     border: none;
     color: #fff;
-    font-size: 3rem;
-    font-weight: 300;
+    font-size: 2rem;
+    font-weight: 400;
     cursor: pointer;
     line-height: 1;
 }
@@ -252,68 +237,58 @@
         transform: translateY(-10px);
     }
     to {
-        opacity: 0.8;
+        opacity: 0.88;
         transform: translateY(0);
     }
 }
 
 .film-grid-button-container {
-    text-align: center;
+    text-align: left;
 }
 
 .film-grid-button {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    font-family: var(--font-main, 'Syne', sans-serif);
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-color, #ffffff);
-    background: linear-gradient(90deg, #8A2BE2, #4B0082);
-    border: none;
-    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.84rem 1.6rem;
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #0c1127;
+    background: var(--accent-bright-blue);
+    border: 1px solid var(--accent-bright-blue);
+    border-radius: var(--radius-pill);
     text-decoration: none;
     cursor: pointer;
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 .film-grid-button:hover,
 .film-grid-button:focus-visible {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 12px rgba(var(--primary-rgb, 138, 43, 226), 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 22px rgba(198, 210, 255, 0.16);
 }
 
-@media (max-width: 768px) {
-    .film-grid-title {
-        font-size: 2.2rem;
-        margin-bottom: 2rem;
-    }
+@media (max-width: 900px) {
     .film-grid-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-@media (max-width: 480px) {
-    .film-grid-title {
-        font-size: 1.8rem;
-    }
+@media (max-width: 640px) {
     .film-grid-container {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1rem;
     }
+
     .flippable-card-container {
-        max-width: 300px;
+        max-width: 320px;
         margin: 0 auto;
     }
-    .card-text-content span {
-        font-size: 1.3rem;
-    }
-    .card-back-text {
-        font-size: 1.5rem;
-    }
-    .film-grid-button {
-        padding: 0.7rem 1.5rem;
-        font-size: 0.9rem;
+
+    .film-grid-button-container,
+    .film-grid-title {
+        text-align: center;
     }
 }
