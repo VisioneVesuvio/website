@@ -127,6 +127,12 @@ video {
     border-bottom: 1px solid rgba(17, 17, 17, 0.84);
 }
 
+.home-display-board-mobile-links,
+.home-program-mobile,
+.home-shop-mobile-scroller {
+    display: none;
+}
+
 .home-display-board-image {
     display: block;
     width: 100%;
@@ -180,6 +186,10 @@ video {
 
 .home-program-section {
     width: 100%;
+}
+
+.home-program-desktop {
+    display: block;
 }
 
 .home-program-heading {
@@ -480,6 +490,10 @@ video {
 
 .home-shop-title {
     text-transform: none;
+}
+
+.home-shop-desktop-stack {
+    display: block;
 }
 
 .shop-poster-stack {
@@ -1576,128 +1590,254 @@ video {
             linear-gradient(180deg, #fbf9fd 0%, #fbf9fd 47%, #f2e7ff 62%, #c28aff 84%, #8838ff 100%);
     }
 
+    .home-display-board {
+        background:
+            linear-gradient(180deg, #fbf9fd 0%, #fbf9fd 45%, #f1e5ff 68%, #c286ff 100%);
+    }
+
+    .home-display-board-inner {
+        border-bottom: 0;
+    }
+
     .home-display-board-image {
-        min-height: 12rem;
+        min-height: 15.2rem;
+        object-fit: contain;
+        object-position: center top;
+    }
+
+    .home-display-board-mobile-links {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.1rem 0.72rem 0.95rem;
+    }
+
+    .home-display-board-mobile-link,
+    .home-display-board-mobile-link:visited {
+        color: #111111;
+        font-family: var(--font-main, 'Inter', sans-serif);
+        font-size: 0.52rem;
+        font-weight: 500;
+    }
+
+    .home-program-desktop {
+        display: none;
+    }
+
+    .home-program-mobile {
+        display: block;
+        padding: 0 0.72rem 1.25rem;
+        background: #ffffff;
+    }
+
+    .home-program-mobile-heading {
+        padding: 0.8rem 0 0.45rem;
+        border-bottom: 1px solid rgba(17, 17, 17, 0.84);
+        font-family: var(--font-main, 'Inter', sans-serif);
+        font-size: 0.96rem;
+        font-weight: 500;
+        line-height: 1;
+        color: #111111;
+    }
+
+    .home-program-mobile-list {
+        display: grid;
+    }
+
+    .home-program-mobile-card {
+        padding: 0.75rem 0 0.7rem;
+        border-bottom: 1px solid rgba(17, 17, 17, 0.84);
+    }
+
+    .home-program-mobile-venue,
+    .home-program-mobile-date,
+    .home-program-mobile-time {
+        font-family: var(--font-main, 'Inter', sans-serif);
+        color: #111111;
+    }
+
+    .home-program-mobile-venue {
+        font-size: 0.42rem;
+        line-height: 1.1;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    .home-program-mobile-date,
+    .home-program-mobile-time {
+        margin-top: 0.22rem;
+        font-size: 0.58rem;
+        font-weight: 500;
+        line-height: 1;
+    }
+
+    .home-program-mobile-image {
+        display: block;
+        width: 100%;
+        height: 8.5rem;
+        margin-top: 0.55rem;
         object-fit: cover;
     }
 
-    .home-program-heading {
-        font-size: 1.15rem;
-        padding: 0.22rem 0.18rem 0.35rem;
-        border-bottom-width: 1px;
-        letter-spacing: 0;
+    .home-program-mobile-copy {
+        padding-top: 0.45rem;
     }
 
-    .home-program-grid {
-        grid-template-columns: 49.2% minmax(0, 1fr);
-    }
-
-    .home-program-visual-image {
-        min-height: 21.6rem;
-        object-position: 44% 50%;
-    }
-
-    .home-program-panel {
-        padding: 0 0.25rem 0 0.32rem;
-    }
-
-    .home-program-event-card {
-        padding: 0.34rem 0 0.32rem;
-        border-top-color: rgba(17, 17, 17, 0.66);
-    }
-
-    .home-program-event-meta {
-        grid-template-columns: 1.05fr 1.05fr 1.25fr;
-        gap: 0.22rem;
-        margin-bottom: 0.35rem;
-    }
-
-    .home-program-pill,
-    .home-program-ticket-link {
-        height: 1rem;
-        padding-inline: 0.2rem;
+    .home-program-mobile-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 2.1rem;
+        height: 0.84rem;
+        padding: 0 0.42rem;
+        border: 1px solid rgba(17, 17, 17, 0.74);
+        border-radius: 999px;
+        font-family: var(--font-main, 'Inter', sans-serif);
         font-size: 0.42rem;
-        border-width: 1px;
+        font-weight: 500;
+        color: #111111;
+        background: #ffffff;
     }
 
-    .home-program-event-body {
-        gap: 0.52rem;
+    .home-program-mobile-title {
+        margin-top: 0.42rem;
+        font-family: var(--font-main, 'Inter', sans-serif);
+        font-size: 0.8rem;
+        font-weight: 500;
+        line-height: 1;
+        color: #111111;
     }
 
-    .home-program-event-title {
-        width: min(100%, 7.2rem);
+    .home-program-mobile-director {
+        margin-top: 0.12rem;
+        font-family: var(--font-main, 'Inter', sans-serif);
         font-size: 0.62rem;
-        line-height: 1.02;
+        line-height: 1;
+        color: rgba(17, 17, 17, 0.9);
     }
 
-    .home-program-event-director,
-    .home-program-event-venue,
-    .home-program-detail-link {
-        font-size: 0.5rem;
-        line-height: 1.08;
+    .home-program-mobile-detail,
+    .home-program-mobile-detail:visited {
+        display: inline-flex;
+        margin-top: 0.28rem;
+        font-family: var(--font-main, 'Inter', sans-serif);
+        font-size: 0.48rem;
+        font-weight: 500;
+        color: #111111;
+        text-decoration: underline;
+        text-decoration-color: currentColor;
     }
 
-    .home-program-event-bottom {
-        gap: 0.25rem;
+    .home-program-mobile-ticket,
+    .home-program-mobile-ticket:visited {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 1rem;
+        margin-top: 0.62rem;
+        border-radius: 999px;
+        background: #ff5a1f;
+        color: #ffffff;
+        font-family: var(--font-main, 'Inter', sans-serif);
+        font-size: 0.48rem;
+        font-weight: 500;
+        text-transform: uppercase;
     }
 
     .home-manifesto-section {
-        padding: 2.45rem 0.72rem 0.65rem;
+        padding: 1.75rem 0.72rem 0.65rem;
     }
 
     .home-manifesto-title {
-        max-width: 18.4rem;
-        font-size: 1.42rem;
-        line-height: 0.98;
+        max-width: 11rem;
+        font-size: 0.98rem;
+        line-height: 1.18;
         letter-spacing: -0.045em;
     }
 
     .home-horizontal-slider {
-        margin-top: 2.2rem;
+        margin-top: 1.7rem;
     }
 
     .home-horizontal-slider-track {
-        gap: 0.36rem;
+        gap: 0.28rem;
         padding-bottom: 0;
     }
 
     .home-horizontal-slider-item {
-        flex-basis: 75vw;
+        flex-basis: 9.6rem;
     }
 
     .home-horizontal-slider-image {
-        height: 10.65rem;
+        height: 7.7rem;
     }
 
     .home-shop-section {
-        padding: 2.1rem 0.72rem 3.35rem;
+        padding: 2rem 0.72rem 2.7rem;
     }
 
     .home-shop-title,
     .home-rassegne-title {
-        font-size: 1.95rem;
+        font-size: 1.12rem;
         letter-spacing: -0.06em;
     }
 
-    .shop-poster-stack {
-        width: calc(100% - 0.75rem);
-        height: 8.85rem;
-        margin-top: 1.15rem;
+    .home-shop-desktop-stack {
+        display: none;
     }
 
-    .shop-poster-stack-item {
-        left: calc(var(--stack-index) * 1.9rem);
-        width: 7.35rem;
+    .home-shop-mobile-scroller {
+        display: block;
+        width: 100%;
+        margin-top: 0.7rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
     }
 
-    .shop-poster-stack-item.is-active {
-        transform: translateY(-0.7rem);
+    .home-shop-mobile-scroller::-webkit-scrollbar {
+        display: none;
+    }
+
+    .home-shop-mobile-track {
+        display: flex;
+        gap: 0.65rem;
+        width: max-content;
+        padding-bottom: 0.2rem;
+    }
+
+    .home-shop-mobile-card {
+        position: relative;
+        flex: 0 0 11.9rem;
+    }
+
+    .home-shop-mobile-image {
+        display: block;
+        width: 100%;
+        height: 14.2rem;
+        object-fit: cover;
+    }
+
+    .home-shop-mobile-plus {
+        position: absolute;
+        right: 0.4rem;
+        bottom: 0.4rem;
+        width: 1.55rem;
+        height: 1.55rem;
+        border: 0;
+        border-radius: 0.28rem;
+        background: #ff8a00;
+        color: #ffffff;
+        font-family: var(--font-main, 'Inter', sans-serif);
+        font-size: 1.1rem;
+        line-height: 1;
     }
 
     .home-shop-link {
-        width: calc(100% - 0.75rem);
-        margin-top: 0.55rem;
-        font-size: 0.62rem;
+        width: 100%;
+        margin-top: 0.4rem;
+        font-size: 0.42rem;
     }
 
     .program-page-spacer {
@@ -1819,51 +1959,51 @@ video {
     }
 
     .home-rassegne-section {
-        padding: 0 0.72rem 3rem;
+        padding: 0 0.72rem 2.6rem;
     }
 
     .home-rassegne-status {
-        margin-top: 0.55rem;
-        padding-bottom: 0.3rem;
-        font-size: 0.68rem;
+        margin-top: 0.4rem;
+        padding-bottom: 0.25rem;
+        font-size: 0.52rem;
     }
 
     .home-rassegne-card {
-        grid-template-columns: 49% minmax(0, 1fr);
-        gap: 0.42rem;
+        grid-template-columns: 1fr;
+        gap: 0.55rem;
         padding-top: 0.55rem;
     }
 
     .home-rassegne-image-stack {
-        height: 7.45rem;
+        height: 10.8rem;
     }
 
     .home-rassegne-tags {
-        gap: 0.18rem;
-        margin-bottom: 0.28rem;
+        gap: 0.26rem;
+        margin-bottom: 0.4rem;
     }
 
     .home-rassegne-tag {
-        padding: 0.14rem 0.3rem;
-        font-size: 0.42rem;
+        padding: 0.16rem 0.42rem;
+        font-size: 0.4rem;
     }
 
     .home-rassegne-copy h3,
     .home-rassegne-subtitle {
-        font-size: 0.78rem;
-        line-height: 0.98;
+        font-size: 0.76rem;
+        line-height: 1;
         letter-spacing: -0.035em;
     }
 
     .home-rassegne-description {
-        margin-top: 0.34rem;
-        font-size: 0.5rem;
+        margin-top: 0.28rem;
+        font-size: 0.46rem;
         line-height: 1.22;
     }
 
     .home-rassegne-ticket-link {
         height: 1rem;
-        margin-top: 0.55rem;
+        margin-top: 0.62rem;
         font-size: 0.5rem;
     }
 

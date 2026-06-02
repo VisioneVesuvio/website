@@ -14,6 +14,14 @@ export default function Navbar() {
     const desktopMenuItems = menuItems.filter((item) => item.isPrimaryHeaderItem !== false);
     const leftMenuItems = desktopMenuItems.slice(0, 2);
     const rightMenuItems = desktopMenuItems.slice(2);
+    const mobileOverlayItems = [
+        { id: 'programmazione', label: 'Programmazione', href: '/programmazione' },
+        { id: 'festival', label: 'Mubi Fest', href: null, isHighlight: true },
+        { id: 'rassegne', label: 'Rassegne', href: '/rassegne' },
+        { id: 'shop', label: 'Shop', href: '/store', isAccent: true },
+        { id: 'about', label: 'Chi siamo', href: '/about' },
+        { id: 'sostienici', label: 'Sostienici', href: '/contatti' },
+    ];
     const marqueeSequence = Array.from({ length: 6 }, (_, index) => ({
         id: `marquee-group-${index}`,
         content: headerMarqueeItems,
@@ -36,6 +44,14 @@ export default function Navbar() {
             setIsMobileMenuOpen(false);
         }
     }, [pathname, isMobileMenuOpen]);
+
+    useEffect(() => {
+        document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isMobileMenuOpen]);
 
     return (
         <header className="site-header">
@@ -83,27 +99,12 @@ export default function Navbar() {
 
                 <button
                     className="navbar-hamburger-button"
-                    aria-label="Toggle menu"
+                    aria-label={isMobileMenuOpen ? 'Chiudi menu' : 'Apri menu'}
                     aria-expanded={isMobileMenuOpen}
                     onClick={toggleMobileMenu}
                 >
-                    <span className="hamburger-bar"></span>
-                    <span className="hamburger-bar"></span>
-                    <span className="hamburger-bar"></span>
+                    {isMobileMenuOpen ? 'Chiudi' : 'Menu'}
                 </button>
-
-                <ul className={`navbar-menu navbar-menu-mobile ${isMobileMenuOpen ? 'mobile-active' : ''}`}>
-                    {menuItems.map((item) => (
-                        <li key={item.href}>
-                            <Link
-                                href={item.href}
-                                className={isActivePath(item.href) ? 'active-menu-btn' : ''}
-                            >
-                                {item.label}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
             </nav>
 
             <div className="navbar-marquee" aria-label="Festival marquee">
@@ -118,6 +119,53 @@ export default function Navbar() {
                         </span>
                     ))}
                 </div>
+            </div>
+
+            <div className={`navbar-mobile-overlay ${isMobileMenuOpen ? 'is-open' : ''}`} aria-hidden={!isMobileMenuOpen}>
+                <div className="navbar-mobile-overlay-top">
+                    <Link href="/" className="navbar-mobile-overlay-logo" aria-label="Visione Vesuvio">
+                        <Image
+                            src="/logo_minimal.png"
+                            alt="Logo Visione Vesuvio"
+                            width={166}
+                            height={184}
+                            className="navbar-mobile-overlay-mark"
+                        />
+                    </Link>
+
+                    <button
+                        type="button"
+                        className="navbar-mobile-overlay-close"
+                        aria-label="Chiudi menu"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+
+                <ul className="navbar-mobile-overlay-list">
+                    {mobileOverlayItems.map((item) => (
+                        <li key={item.id}>
+                            {item.href ? (
+                                <Link
+                                    href={item.href}
+                                    className={[
+                                        'navbar-mobile-overlay-link',
+                                        item.isHighlight ? 'is-highlight' : '',
+                                        item.isAccent ? 'is-accent' : '',
+                                    ].filter(Boolean).join(' ')}
+                                >
+                                    {item.label}
+                                </Link>
+                            ) : (
+                                <span className="navbar-mobile-overlay-link is-highlight">{item.label}</span>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+
+                <p className="navbar-mobile-overlay-rights">@VISIONEVESUVIO ALL RIGHTS RESERVED</p>
             </div>
         </header>
     );

@@ -21,6 +21,14 @@ export default function HomePage() {
                         priority
                     />
                 </div>
+                <div className="home-display-board-mobile-links">
+                    <Link href="/programmazione" className="home-display-board-mobile-link">
+                        Programmazione
+                    </Link>
+                    <Link href="/store" className="home-display-board-mobile-link">
+                        Shop
+                    </Link>
+                </div>
             </section>
 
             <div className="home-gradient-flow">
@@ -36,7 +44,27 @@ export default function HomePage() {
 
                 <section className="home-shop-section">
                     <h2 className="home-shop-title">{homePageContent.shopShowcase.title}</h2>
-                    <ShopPosterStack items={shopItems} />
+                    <div className="home-shop-desktop-stack">
+                        <ShopPosterStack items={shopItems} />
+                    </div>
+                    <div className="home-shop-mobile-scroller">
+                        <div className="home-shop-mobile-track">
+                            {shopItems.map((item) => (
+                                <article key={`${item.id}-mobile`} className="home-shop-mobile-card">
+                                    <Image
+                                        src={item.src}
+                                        alt={item.alt}
+                                        width={item.width}
+                                        height={item.height}
+                                        className="home-shop-mobile-image"
+                                    />
+                                    <button type="button" className="home-shop-mobile-plus" aria-label={`Apri ${item.alt}`}>
+                                        +
+                                    </button>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
                     <Link href={homePageContent.shopShowcase.cta.href} className="home-shop-link">
                         {homePageContent.shopShowcase.cta.label} -&gt;
                     </Link>
