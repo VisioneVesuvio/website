@@ -200,11 +200,11 @@ export default function CinefiliaHero() {
             };
         });
 
-        const duration = 5400;
-        const wavelength = Math.max(hero.clientWidth * 0.9, 320);
-        const frontWidth = Math.max(hero.clientWidth * 1.2, 430);
-        const speed = Math.max(hero.clientWidth * 0.41, 150);
-        const amplitude = 80;
+        const duration = 2200;
+        const wavelength = Math.max(hero.clientWidth * 0.44, 155);
+        const frontWidth = Math.max(hero.clientWidth * 0.72, 260);
+        const speed = Math.max(hero.clientWidth * 1.42, 520);
+        const amplitude = 20;
         const startTime = performance.now();
 
         window.cancelAnimationFrame(mobileRippleFrameRef.current);
@@ -213,8 +213,8 @@ export default function CinefiliaHero() {
         function animateRipple(now) {
             const elapsed = now - startTime;
             const progress = clamp(elapsed / duration, 0, 1);
-            const timeFade = Math.exp(-progress * 1.38);
-            const attack = 1 - Math.exp(-elapsed / 180);
+            const timeFade = Math.exp(-progress * 2.35);
+            const attack = 1 - Math.exp(-elapsed / 110);
             const travelled = elapsed / 1000 * speed;
 
             samples.forEach(({ pair, direction, distance }) => {
@@ -222,7 +222,7 @@ export default function CinefiliaHero() {
                 const frontFade = Math.exp(-Math.abs(frontDistance) / frontWidth);
                 const wave = Math.sin((frontDistance / wavelength) * Math.PI * 2);
                 const delta = wave * frontFade * timeFade * attack * amplitude;
-                const height = clamp(92 + (delta * direction), 52, 100);
+                const height = clamp(92 + (delta * direction), 72, 100);
 
                 pair.style.setProperty('--mobile-height', `${height.toFixed(2)}%`);
                 pair.classList.add('is-mobile-morphed');
@@ -233,12 +233,8 @@ export default function CinefiliaHero() {
                 return;
             }
 
-            samples.forEach(({ pair, direction }, sampleIndex) => {
-                const randomOffset = (Math.random() - 0.5) * 26;
-                const harmonicOffset = Math.sin(sampleIndex * 1.72) * 10;
-                const settledHeight = clamp(86 + ((randomOffset + harmonicOffset) * direction), 58, 100);
-
-                pair.style.setProperty('--mobile-height', `${settledHeight.toFixed(2)}%`);
+            samples.forEach(({ pair }) => {
+                pair.style.setProperty('--mobile-height', '92%');
             });
         }
 
