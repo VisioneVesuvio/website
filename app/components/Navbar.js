@@ -20,7 +20,6 @@ export default function Navbar({ marqueeItems = headerMarqueeItems }) {
         { id: 'rassegne', label: 'Rassegne', href: '/rassegne' },
         { id: 'shop', label: 'Shop', href: '/store' },
         { id: 'about', label: 'Chi siamo', href: '/about' },
-        { id: 'sostienici', label: 'Sostienici', href: '/contatti' },
     ];
     const marqueeSequence = Array.from({ length: 6 }, (_, index) => ({
         id: `marquee-group-${index}`,
@@ -151,19 +150,24 @@ export default function Navbar({ marqueeItems = headerMarqueeItems }) {
                 </div>
 
                 <ul className="navbar-mobile-overlay-list">
-                    {mobileOverlayItems.map((item) => (
-                        <li key={item.id}>
-                            <Link
-                                href={item.href}
-                                className={[
-                                    'navbar-mobile-overlay-link',
-                                    isMobileOverlayItemActive(item) ? 'is-active' : '',
-                                ].filter(Boolean).join(' ')}
-                            >
-                                {item.label}
-                            </Link>
-                        </li>
-                    ))}
+                    {mobileOverlayItems.map((item) => {
+                        const isActive = isMobileOverlayItemActive(item);
+
+                        return (
+                            <li key={item.id}>
+                                <Link
+                                    href={item.href}
+                                    className={[
+                                        'navbar-mobile-overlay-link',
+                                        isActive ? 'is-active' : '',
+                                    ].filter(Boolean).join(' ')}
+                                    style={{ color: isActive ? '#ff6a1a' : '#ffffff' }}
+                                >
+                                    {item.label}
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ul>
 
                 <p className="navbar-mobile-overlay-rights">@VISIONEVESUVIO ALL RIGHTS RESERVED</p>

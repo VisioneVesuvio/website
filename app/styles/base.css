@@ -729,6 +729,10 @@ video {
     padding-top: 1.2rem;
 }
 
+.home-rassegne-list-row {
+    margin-top: 1.2rem;
+}
+
 .home-rassegne-image-stack {
     position: relative;
     width: 100%;
@@ -2289,15 +2293,15 @@ video {
 
     .home-program-mobile {
         display: block;
-        padding: 0 0.42rem 1.65rem;
+        padding: 0 0.5rem 2.6rem;
         background: #ffffff;
     }
 
     .home-program-mobile-heading {
-        padding: 0.85rem 0 0.8rem;
+        padding: 0.95rem 0 0.9rem;
         border-bottom: 1px solid rgba(17, 17, 17, 0.84);
         font-family: var(--font-main, 'Inter', sans-serif);
-        font-size: 1.45rem;
+        font-size: 1.75rem;
         font-weight: 500;
         line-height: 1;
         color: #111111;
@@ -2309,8 +2313,8 @@ video {
     }
 
     .home-program-mobile-card {
-        padding: 0.72rem 0 0.82rem;
-        border-bottom: 1px solid rgba(17, 17, 17, 0.84);
+        padding: 1.55rem 0 1.65rem;
+        border-bottom: 1.5px solid rgba(17, 17, 17, 0.72);
     }
 
     .home-program-mobile-venue,
@@ -2321,31 +2325,40 @@ video {
     }
 
     .home-program-mobile-venue {
-        font-size: 0.44rem;
-        line-height: 1.1;
+        font-size: 0.52rem;
+        font-weight: 500;
+        line-height: 1.18;
         letter-spacing: 0.04em;
         text-transform: uppercase;
     }
 
-    .home-program-mobile-date,
+    .home-program-mobile-date {
+        margin-top: 0.5rem;
+        font-size: 0.98rem;
+        font-weight: 800;
+        line-height: 1.08;
+        text-transform: uppercase;
+    }
+
     .home-program-mobile-time {
-        margin-top: 0.18rem;
-        font-size: 0.72rem;
+        margin-top: 0.22rem;
+        font-size: 0.9rem;
         font-weight: 500;
         line-height: 1.08;
+        text-transform: uppercase;
     }
 
     .home-program-mobile-image {
         display: block;
         width: 100%;
         height: clamp(5.5rem, 55vw, 11rem);
-        margin-top: 0.46rem;
+        margin-top: 0.8rem;
         object-fit: cover;
         object-position: center 46%;
     }
 
     .home-program-mobile-copy {
-        padding-top: 0.38rem;
+        padding-top: 0.62rem;
     }
 
     .home-program-mobile-pills {
@@ -2364,35 +2377,36 @@ video {
         border: 1px solid rgba(17, 17, 17, 0.74);
         border-radius: 999px;
         font-family: var(--font-main, 'Inter', sans-serif);
-        font-size: 0.48rem;
+        font-size: 0.58rem;
         font-weight: 500;
         color: #111111;
         background: #ffffff;
     }
 
     .home-program-mobile-title {
-        margin-top: 0.34rem;
+        margin-top: 0.48rem;
         font-family: var(--font-main, 'Inter', sans-serif);
-        font-size: 0.86rem;
-        font-weight: 500;
-        line-height: 1.05;
+        font-size: 1.08rem;
+        font-weight: 600;
+        line-height: 1.08;
         color: #111111;
     }
 
     .home-program-mobile-director {
-        margin-top: 0.16rem;
+        margin-top: 0.22rem;
         font-family: var(--font-main, 'Inter', sans-serif);
-        font-size: 0.68rem;
-        line-height: 1.08;
+        font-size: 0.86rem;
+        line-height: 1.16;
         color: rgba(17, 17, 17, 0.9);
     }
 
     .home-program-mobile-detail,
     .home-program-mobile-detail:visited {
         display: inline-flex;
-        margin-top: 0.56rem;
+        margin-top: 1.05rem;
+        margin-bottom: 0.9rem;
         font-family: var(--font-main, 'Inter', sans-serif);
-        font-size: 0.68rem;
+        font-size: 0.82rem;
         font-weight: 500;
         color: #111111;
         text-decoration: underline;
@@ -2401,39 +2415,41 @@ video {
 
     .home-program-mobile-ticket,
     .home-program-mobile-ticket:visited {
-        width: 100%;
-        min-height: clamp(0.95rem, 4.2vw, 1.25rem);
-        margin-top: 0.55rem;
+        width: calc(100% - 1.05rem);
+        min-height: 0.85rem;
+        margin: 0 auto;
         padding: 0 0.7rem;
-        font-size: 0.48rem;
+        font-size: 0.36rem;
     }
 
     .home-manifesto-section {
-        padding: 1.75rem 0.72rem 0.65rem;
+        padding: 1.55rem 0.5rem 1.15rem;
     }
 
     .home-manifesto-title {
-        max-width: 11rem;
-        font-size: 0.98rem;
-        line-height: 1.18;
-        letter-spacing: -0.045em;
+        max-width: 23rem;
+        font-size: clamp(2rem, 9.5vw, 2.55rem);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+        text-align: center;
     }
 
     .home-horizontal-slider {
-        margin-top: 1.7rem;
+        margin-top: 2rem;
     }
 
     .home-horizontal-slider-track {
-        gap: 0.28rem;
+        gap: 0.55rem;
         padding-bottom: 0;
     }
 
     .home-horizontal-slider-item {
-        flex-basis: 9.6rem;
+        flex-basis: calc(100vw - 1rem);
     }
 
     .home-horizontal-slider-image {
-        height: 7.7rem;
+        height: clamp(24rem, 118vw, 31rem);
+        object-fit: cover;
     }
 
     .home-shop-section {
@@ -2444,6 +2460,11 @@ video {
     .home-rassegne-title {
         font-size: 1.12rem;
         letter-spacing: -0.06em;
+    }
+
+    .home-rassegne-title {
+        font-size: 2.35rem;
+        letter-spacing: -0.04em;
     }
 
     .home-shop-desktop-stack {
@@ -2516,8 +2537,8 @@ video {
     .film-detail-program-link,
     .film-detail-program-link:visited {
         margin: 0.5rem 0.5rem 0;
-        font-size: 0.62rem;
-        line-height: 1.1;
+        font-size: 0.82rem;
+        line-height: 1.18;
     }
 
     .film-detail-hero {
@@ -2542,27 +2563,27 @@ video {
     }
 
     .film-detail-tag {
-        min-height: 1.2rem;
-        padding: 0.12rem 0.78rem;
-        font-size: 0.55rem;
+        min-height: 1.45rem;
+        padding: 0.16rem 0.86rem;
+        font-size: 0.68rem;
     }
 
     .film-detail-title {
-        font-size: 1.12rem;
-        line-height: 0.98;
+        font-size: 1.55rem;
+        line-height: 1.02;
     }
 
     .film-detail-director {
-        font-size: 0.84rem;
-        line-height: 1;
+        font-size: 1.05rem;
+        line-height: 1.08;
     }
 
     .film-detail-meta {
-        gap: 0.18rem;
+        gap: 0.28rem;
         width: min(100%, 18rem);
         margin-top: 0.8rem;
-        font-size: 0.52rem;
-        line-height: 1.25;
+        font-size: 0.76rem;
+        line-height: 1.32;
     }
 
     .film-detail-meta-row {
@@ -2571,9 +2592,9 @@ video {
     }
 
     .film-detail-description {
-        margin-top: 0.85rem;
-        font-size: 0.56rem;
-        line-height: 1.35;
+        margin-top: 1rem;
+        font-size: 0.88rem;
+        line-height: 1.38;
     }
 
     .film-detail-actions {
@@ -2656,13 +2677,13 @@ video {
     }
 
     .contact-page-title {
-        font-size: 1.2rem;
+        font-size: 1.55rem;
     }
 
     .contact-page-intro {
         margin-top: 0.7rem;
-        font-size: 0.62rem;
-        line-height: 1.14;
+        font-size: 0.9rem;
+        line-height: 1.28;
     }
 
     .contact-page-slider-shell .home-horizontal-slider {
@@ -2679,30 +2700,28 @@ video {
     }
 
     .contact-page-block-title {
-        font-size: 0.66rem;
+        font-size: 0.86rem;
     }
 
     .contact-page-link,
     .contact-page-link:visited,
     .contact-info-text,
     .contact-email-address {
-        font-size: 0.56rem;
+        font-size: 0.78rem;
     }
 
     .home-rassegne-section {
-        padding: 0 0.72rem 2.6rem;
+        padding: 0 0.72rem 3rem;
     }
 
     .home-rassegne-status {
-        margin-top: 0.4rem;
-        padding-bottom: 0.25rem;
-        font-size: 0.52rem;
+        margin-top: 0.85rem;
+        padding-bottom: 0.7rem;
+        font-size: 1.45rem;
     }
 
-    .home-rassegne-card {
-        grid-template-columns: 1fr;
-        gap: 0.55rem;
-        padding-top: 0.55rem;
+    .home-rassegne-list-row {
+        margin-top: 0;
     }
 
     .home-rassegne-image-stack {
@@ -2753,14 +2772,14 @@ video {
 
     .about-page-title,
     .rassegne-page-title {
-        font-size: 1.95rem;
-        letter-spacing: -0.055em;
+        font-size: 2.35rem;
+        letter-spacing: -0.04em;
     }
 
     .about-page-intro,
     .about-page-copy p {
-        font-size: 0.82rem;
-        line-height: 1.16;
+        font-size: 1rem;
+        line-height: 1.28;
     }
 
     .about-page-slider-shell,
@@ -2778,13 +2797,13 @@ video {
     }
 
     .rassegne-page-section-label {
-        font-size: 1.15rem;
+        font-size: 1.45rem;
     }
 
     .rassegne-list-row {
         grid-template-columns: 1fr;
-        gap: 0.58rem;
-        padding: 0.75rem 0 0.88rem;
+        gap: 0.85rem;
+        padding: 1.05rem 0 1.25rem;
     }
 
     .rassegne-list-image-asset {
@@ -2798,42 +2817,44 @@ video {
     }
 
     .rassegne-list-tags {
-        gap: 0.2rem;
-        margin-bottom: 0.38rem;
+        gap: 0.32rem;
+        margin-bottom: 0.62rem;
     }
 
     .rassegne-list-tag {
-        min-height: 0.92rem;
-        padding: 0.08rem 0.34rem;
-        font-size: 0.36rem;
+        min-height: 1.22rem;
+        padding: 0.12rem 0.52rem;
+        font-size: 0.58rem;
         border-width: 1px;
     }
 
     .rassegne-list-title {
-        font-size: 1.08rem;
+        font-size: 1.55rem;
+        line-height: 1.02;
     }
 
     .rassegne-list-subtitle {
-        font-size: 0.86rem;
+        font-size: 1.2rem;
+        line-height: 1.08;
     }
 
     .rassegne-list-description,
     .rassegne-list-lineup,
     .rassegne-list-venue {
-        font-size: 0.52rem;
-        line-height: 1.14;
+        font-size: 0.9rem;
+        line-height: 1.32;
     }
 
     .rassegne-list-film-link {
-        font-size: 0.54rem;
-        margin-top: 0.55rem;
+        font-size: 0.78rem;
+        margin-top: 0.75rem;
     }
 
     .rassegne-list-ticket-link,
     .rassegne-list-ticket-link:visited {
-        min-width: 5.7rem;
-        min-height: 1rem;
-        padding: 0 0.58rem;
-        font-size: 0.44rem;
+        min-width: 7.4rem;
+        min-height: 1.25rem;
+        padding: 0 0.78rem;
+        font-size: 0.58rem;
     }
 }

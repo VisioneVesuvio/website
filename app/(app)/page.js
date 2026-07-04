@@ -14,9 +14,9 @@ export default async function HomePage() {
     const mobileShopItems = repeatShopItems(shopItems, 9);
     const featuredEvents = await getFeaturedProgramEvents();
     const homeRassegna = await getHomeRassegna();
-    const homeRassegnaImages = homeRassegna?.images?.length
-        ? homeRassegna.images
-        : homePageContent.rassegnePreview.images;
+    const homeRassegnaCover = homeRassegna?.images?.[0]
+        ?? homeRassegna?.poster
+        ?? homePageContent.rassegnePreview.images[0];
 
     return (
         <div className="home-figma-page">
@@ -65,34 +65,38 @@ export default async function HomePage() {
                     <section className="home-rassegne-section">
                         <h2 className="home-rassegne-title">{homePageContent.rassegnePreview.title}</h2>
                         <p className="home-rassegne-status">In corso</p>
-                        <article className="home-rassegne-card">
-                            <div className="home-rassegne-image-stack">
-                                {homeRassegnaImages.map((image, index) => (
-                                    <Image
-                                        key={image.id ?? image.src}
-                                        src={image.src}
-                                        alt={image.alt}
-                                        width={image.width}
-                                        height={image.height}
-                                        className="home-rassegne-image"
-                                        style={{
-                                            animationDelay: `${index * 4}s`,
-                                            animationDuration: `${Math.max(homeRassegnaImages.length, 1) * 4}s`,
-                                        }}
-                                    />
-                                ))}
+                        <article className="rassegne-list-row home-rassegne-list-row">
+                            <div className="rassegne-list-image">
+                                <Image
+                                    src={homeRassegnaCover.src}
+                                    alt={homeRassegnaCover.alt}
+                                    width={homeRassegnaCover.width}
+                                    height={homeRassegnaCover.height}
+                                    className="rassegne-list-image-asset"
+                                />
                             </div>
-                            <div className="home-rassegne-copy">
-                                <div className="home-rassegne-tags">
-                                    {homeRassegna.tags.map((tag) => (
-                                        <span key={tag} className="home-rassegne-tag">{tag}</span>
-                                    ))}
+
+                            <div className="rassegne-list-copy">
+                                <div className="rassegne-list-topline">
+                                    <div className="rassegne-list-tags">
+                                        {homeRassegna.tags.map((tag) => (
+                                            <span key={tag} className="rassegne-list-tag">{tag}</span>
+                                        ))}
+                                    </div>
                                 </div>
-                                <h3>{homeRassegna.title}</h3>
-                                <p className="home-rassegne-subtitle">{homeRassegna.subtitle}</p>
-                                <p className="home-rassegne-description">{homeRassegna.description}</p>
-                                <Link href="/programmazione" className="home-rassegne-film-link">
-                                    FILM...
+
+                                <h3 className="rassegne-list-title">{homeRassegna.title}</h3>
+                                <p className="rassegne-list-subtitle">{homeRassegna.subtitle}</p>
+                                <p className="rassegne-list-description">{homeRassegna.description}</p>
+                                {homeRassegna.lineup && (
+                                    <p className="rassegne-list-lineup">{homeRassegna.lineup}</p>
+                                )}
+                                {homeRassegna.venue && (
+                                    <p className="rassegne-list-venue">{homeRassegna.venue}</p>
+                                )}
+
+                                <Link href="/programmazione" className="rassegne-list-film-link">
+                                    FILM -&gt;
                                 </Link>
                             </div>
                         </article>
