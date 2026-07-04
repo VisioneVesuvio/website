@@ -2314,7 +2314,7 @@ video {
         margin-right: -0.026em;
         cursor: default;
         transition:
-            height 2.36s cubic-bezier(0.18, 1.2, 0.22, 1);
+            height 0.16s ease-out;
     }
 
     .cinefilia-hero-mobile-half {

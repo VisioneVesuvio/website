@@ -87,6 +87,7 @@ export default function CinefiliaHero() {
     const snapLockRef = useRef(false);
     const touchStartYRef = useRef(null);
     const mobileResetRef = useRef(null);
+    const mobileRippleFrameRef = useRef(null);
     const letters = useMemo(
         () => Array.from(HERO_TEXT),
         [],
@@ -134,6 +135,11 @@ export default function CinefiliaHero() {
         };
     }, []);
 
+    useEffect(() => () => {
+        window.cancelAnimationFrame(mobileRippleFrameRef.current);
+        window.clearTimeout(mobileResetRef.current);
+    }, []);
+
     function clamp(value, min, max) {
         return Math.min(Math.max(value, min), max);
     }
@@ -178,42 +184,65 @@ export default function CinefiliaHero() {
 
         const topPairs = Array.from(mobileTopRef.current?.querySelectorAll('.cinefilia-hero-mobile-pair') ?? []);
         const bottomPairs = Array.from(mobileBottomRef.current?.querySelectorAll('.cinefilia-hero-mobile-pair') ?? []);
-        const wavelength = Math.max(hero.clientWidth * 1.26, 430);
-        const decay = Math.max(hero.clientWidth * 2.35, 760);
-
-        topPairs.forEach((pair) => {
+        const samples = [
+            ...topPairs.map((pair) => ({ pair, direction: 1 })),
+            ...bottomPairs.map((pair) => ({ pair, direction: -1 })),
+        ].map(({ pair, direction }) => {
             const rect = pair.getBoundingClientRect();
-            const centerX = rect.left + (rect.width / 2);
-            const centerY = rect.top + (rect.height / 2);
-            const distance = Math.hypot(centerX - clientX, (centerY - clientY) * 0.26);
-            const wave = Math.cos(distance / wavelength * Math.PI * 2);
-            const falloff = Math.exp(-distance / decay);
-            const delta = wave * falloff * 16;
-            const topHeight = clamp(92 + delta, 74, 100);
 
-            pair.style.setProperty('--mobile-height', `${topHeight.toFixed(2)}%`);
-            pair.classList.add('is-mobile-morphed');
+            return {
+                pair,
+                direction,
+                distance: Math.hypot(
+                    rect.left + (rect.width / 2) - clientX,
+                    (rect.top + (rect.height / 2) - clientY) * 0.22,
+                ),
+            };
         });
 
-        bottomPairs.forEach((pair) => {
-            const rect = pair.getBoundingClientRect();
-            const centerX = rect.left + (rect.width / 2);
-            const centerY = rect.top + (rect.height / 2);
-            const distance = Math.hypot(centerX - clientX, (centerY - clientY) * 0.26);
-            const wave = Math.cos(distance / wavelength * Math.PI * 2);
-            const falloff = Math.exp(-distance / decay);
-            const bottomHeight = clamp(92 - (wave * falloff * 16), 74, 100);
+        const duration = 5400;
+        const wavelength = Math.max(hero.clientWidth * 0.9, 320);
+        const frontWidth = Math.max(hero.clientWidth * 1.2, 430);
+        const speed = Math.max(hero.clientWidth * 0.41, 150);
+        const amplitude = 80;
+        const startTime = performance.now();
 
-            pair.style.setProperty('--mobile-height', `${bottomHeight.toFixed(2)}%`);
-            pair.classList.add('is-mobile-morphed');
-        });
-
+        window.cancelAnimationFrame(mobileRippleFrameRef.current);
         window.clearTimeout(mobileResetRef.current);
-        mobileResetRef.current = window.setTimeout(() => {
-            [...topPairs, ...bottomPairs].forEach((pair) => {
-                pair.style.setProperty('--mobile-height', '92%');
+
+        function animateRipple(now) {
+            const elapsed = now - startTime;
+            const progress = clamp(elapsed / duration, 0, 1);
+            const timeFade = Math.exp(-progress * 1.38);
+            const attack = 1 - Math.exp(-elapsed / 180);
+            const travelled = elapsed / 1000 * speed;
+
+            samples.forEach(({ pair, direction, distance }) => {
+                const frontDistance = distance - travelled;
+                const frontFade = Math.exp(-Math.abs(frontDistance) / frontWidth);
+                const wave = Math.sin((frontDistance / wavelength) * Math.PI * 2);
+                const delta = wave * frontFade * timeFade * attack * amplitude;
+                const height = clamp(92 + (delta * direction), 52, 100);
+
+                pair.style.setProperty('--mobile-height', `${height.toFixed(2)}%`);
+                pair.classList.add('is-mobile-morphed');
             });
-        }, 2400);
+
+            if (elapsed < duration) {
+                mobileRippleFrameRef.current = window.requestAnimationFrame(animateRipple);
+                return;
+            }
+
+            samples.forEach(({ pair, direction }, sampleIndex) => {
+                const randomOffset = (Math.random() - 0.5) * 26;
+                const harmonicOffset = Math.sin(sampleIndex * 1.72) * 10;
+                const settledHeight = clamp(86 + ((randomOffset + harmonicOffset) * direction), 58, 100);
+
+                pair.style.setProperty('--mobile-height', `${settledHeight.toFixed(2)}%`);
+            });
+        }
+
+        mobileRippleFrameRef.current = window.requestAnimationFrame(animateRipple);
     }
 
     function handleTouchStart(event) {
@@ -227,11 +256,7 @@ export default function CinefiliaHero() {
     }
 
     function handleTouchMove(event) {
-        const touch = event.touches[0];
-
-        if (touch) {
-            applyMobileHarmonicTouch(touch.clientX, touch.clientY);
-        }
+        touchStartYRef.current = touchStartYRef.current ?? event.touches[0]?.clientY ?? null;
     }
 
     function handleTouchEnd(event) {
