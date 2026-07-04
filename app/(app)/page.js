@@ -1,38 +1,29 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { homePageContent } from '@/app/content/home';
+import CinefiliaHero from '@/app/components/CinefiliaHero';
 import FeaturedProgramSection from '@/app/components/FeaturedProgramSection';
 import HorizontalPosterSlider from '@/app/components/HorizontalPosterSlider';
 import ShopPosterStack from '@/app/components/ShopPosterStack';
+import { getFeaturedProgramEvents } from '@/app/services/filmService';
+import { getHomeRassegna } from '@/app/services/rassegnaService';
+import { getHomeShopItems, repeatShopItems } from '@/app/services/shopService';
 
-export default function HomePage() {
-    const shopItems = homePageContent.shopShowcase.items;
+export default async function HomePage() {
+    const shopItems = await getHomeShopItems();
+    const mobileShopItems = repeatShopItems(shopItems, 9);
+    const featuredEvents = await getFeaturedProgramEvents();
+    const homeRassegna = await getHomeRassegna();
+    const homeRassegnaImages = homeRassegna?.images?.length
+        ? homeRassegna.images
+        : homePageContent.rassegnePreview.images;
 
     return (
         <div className="home-figma-page">
-            <section className="home-display-board">
-                <div className="home-display-board-inner">
-                    <Image
-                        src={homePageContent.displayBoard.heroImage.src}
-                        alt={homePageContent.displayBoard.heroImage.alt}
-                        width={homePageContent.displayBoard.heroImage.width}
-                        height={homePageContent.displayBoard.heroImage.height}
-                        className="home-display-board-image"
-                        priority
-                    />
-                </div>
-                <div className="home-display-board-mobile-links">
-                    <Link href="/programmazione" className="home-display-board-mobile-link">
-                        Programmazione
-                    </Link>
-                    <Link href="/store" className="home-display-board-mobile-link">
-                        Shop
-                    </Link>
-                </div>
-            </section>
+            <CinefiliaHero />
 
             <div className="home-gradient-flow">
-                <FeaturedProgramSection />
+                <FeaturedProgramSection events={featuredEvents} />
 
                 <section className="home-manifesto-section">
                     <h2 className="home-manifesto-title">{homePageContent.manifesto.title}</h2>
@@ -49,7 +40,7 @@ export default function HomePage() {
                     </div>
                     <div className="home-shop-mobile-scroller">
                         <div className="home-shop-mobile-track">
-                            {shopItems.map((item) => (
+                            {mobileShopItems.map((item) => (
                                 <article key={`${item.id}-mobile`} className="home-shop-mobile-card">
                                     <Image
                                         src={item.src}
@@ -70,37 +61,43 @@ export default function HomePage() {
                     </Link>
                 </section>
 
-                <section className="home-rassegne-section">
-                    <h2 className="home-rassegne-title">{homePageContent.rassegnePreview.title}</h2>
-                    <p className="home-rassegne-status">{homePageContent.rassegnePreview.status}</p>
-                    <article className="home-rassegne-card">
-                        <div className="home-rassegne-image-stack">
-                            {homePageContent.rassegnePreview.images.map((image, index) => (
-                                <Image
-                                    key={image.id}
-                                    src={image.src}
-                                    alt={image.alt}
-                                    width={image.width}
-                                    height={image.height}
-                                    className={`home-rassegne-image home-rassegne-image-${index + 1}`}
-                                />
-                            ))}
-                        </div>
-                        <div className="home-rassegne-copy">
-                            <div className="home-rassegne-tags">
-                                {homePageContent.rassegnePreview.tags.map((tag) => (
-                                    <span key={tag} className="home-rassegne-tag">{tag}</span>
+                {homeRassegna && (
+                    <section className="home-rassegne-section">
+                        <h2 className="home-rassegne-title">{homePageContent.rassegnePreview.title}</h2>
+                        <p className="home-rassegne-status">In corso</p>
+                        <article className="home-rassegne-card">
+                            <div className="home-rassegne-image-stack">
+                                {homeRassegnaImages.map((image, index) => (
+                                    <Image
+                                        key={image.id ?? image.src}
+                                        src={image.src}
+                                        alt={image.alt}
+                                        width={image.width}
+                                        height={image.height}
+                                        className="home-rassegne-image"
+                                        style={{
+                                            animationDelay: `${index * 4}s`,
+                                            animationDuration: `${Math.max(homeRassegnaImages.length, 1) * 4}s`,
+                                        }}
+                                    />
                                 ))}
                             </div>
-                            <h3>{homePageContent.rassegnePreview.heading}</h3>
-                            <p className="home-rassegne-subtitle">{homePageContent.rassegnePreview.subtitle}</p>
-                            <p className="home-rassegne-description">{homePageContent.rassegnePreview.description}</p>
-                            <Link href="/rassegne" className="home-rassegne-ticket-link">
-                                Biglietti
-                            </Link>
-                        </div>
-                    </article>
-                </section>
+                            <div className="home-rassegne-copy">
+                                <div className="home-rassegne-tags">
+                                    {homeRassegna.tags.map((tag) => (
+                                        <span key={tag} className="home-rassegne-tag">{tag}</span>
+                                    ))}
+                                </div>
+                                <h3>{homeRassegna.title}</h3>
+                                <p className="home-rassegne-subtitle">{homeRassegna.subtitle}</p>
+                                <p className="home-rassegne-description">{homeRassegna.description}</p>
+                                <Link href="/programmazione" className="home-rassegne-film-link">
+                                    FILM...
+                                </Link>
+                            </div>
+                        </article>
+                    </section>
+                )}
             </div>
         </div>
     );

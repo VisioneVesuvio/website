@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import '@/app/styles/navbar.css';
 import { getNavigationItems, headerMarqueeItems } from '@/app/content/site';
 
-export default function Navbar() {
+export default function Navbar({ marqueeItems = headerMarqueeItems }) {
     const pathname = usePathname();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const menuItems = getNavigationItems();
@@ -15,16 +15,16 @@ export default function Navbar() {
     const leftMenuItems = desktopMenuItems.slice(0, 2);
     const rightMenuItems = desktopMenuItems.slice(2);
     const mobileOverlayItems = [
+        { id: 'home', label: 'Home', href: '/' },
         { id: 'programmazione', label: 'Programmazione', href: '/programmazione' },
-        { id: 'festival', label: 'Mubi Fest', href: null, isHighlight: true },
         { id: 'rassegne', label: 'Rassegne', href: '/rassegne' },
-        { id: 'shop', label: 'Shop', href: '/store', isAccent: true },
+        { id: 'shop', label: 'Shop', href: '/store' },
         { id: 'about', label: 'Chi siamo', href: '/about' },
         { id: 'sostienici', label: 'Sostienici', href: '/contatti' },
     ];
     const marqueeSequence = Array.from({ length: 6 }, (_, index) => ({
         id: `marquee-group-${index}`,
-        content: headerMarqueeItems,
+        content: marqueeItems.length ? marqueeItems : headerMarqueeItems,
     }));
 
     const isActivePath = (href) => {
@@ -35,15 +35,21 @@ export default function Navbar() {
         return pathname === href || pathname.startsWith(`${href}/`);
     };
 
+    const isMobileOverlayItemActive = (item) => {
+        if (item.id === 'programmazione' && pathname.startsWith('/film/')) {
+            return true;
+        }
+
+        return isActivePath(item.href);
+    };
+
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
     useEffect(() => {
-        if (isMobileMenuOpen) {
-            setIsMobileMenuOpen(false);
-        }
-    }, [pathname, isMobileMenuOpen]);
+        setIsMobileMenuOpen(false);
+    }, [pathname]);
 
     useEffect(() => {
         document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
@@ -147,20 +153,15 @@ export default function Navbar() {
                 <ul className="navbar-mobile-overlay-list">
                     {mobileOverlayItems.map((item) => (
                         <li key={item.id}>
-                            {item.href ? (
-                                <Link
-                                    href={item.href}
-                                    className={[
-                                        'navbar-mobile-overlay-link',
-                                        item.isHighlight ? 'is-highlight' : '',
-                                        item.isAccent ? 'is-accent' : '',
-                                    ].filter(Boolean).join(' ')}
-                                >
-                                    {item.label}
-                                </Link>
-                            ) : (
-                                <span className="navbar-mobile-overlay-link is-highlight">{item.label}</span>
-                            )}
+                            <Link
+                                href={item.href}
+                                className={[
+                                    'navbar-mobile-overlay-link',
+                                    isMobileOverlayItemActive(item) ? 'is-active' : '',
+                                ].filter(Boolean).join(' ')}
+                            >
+                                {item.label}
+                            </Link>
                         </li>
                     ))}
                 </ul>

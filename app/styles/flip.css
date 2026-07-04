@@ -247,27 +247,12 @@
 }
 
 .film-grid-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     padding: 0.84rem 1.6rem;
     font-size: 0.92rem;
-    font-weight: 800;
-    color: #0c1127;
-    background: var(--accent-bright-blue);
-    border: 1px solid var(--accent-bright-blue);
-    border-radius: var(--radius-pill);
-    text-decoration: none;
-    cursor: pointer;
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
 }
 
 .film-grid-button:hover,
 .film-grid-button:focus-visible {
-    transform: translateY(-1px);
-    box-shadow: 0 12px 22px rgba(198, 210, 255, 0.16);
 }
 
 @media (max-width: 900px) {

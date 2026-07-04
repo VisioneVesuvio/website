@@ -1,7 +1,7 @@
 // components/EventCard.js
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import CommonButton from './CommonButton';
 import '@/app/styles/date-event-switcher.css';
 
 export default function EventCard({ eventData }) {
@@ -53,11 +53,9 @@ export default function EventCard({ eventData }) {
                     )}
                 </p>
                 {(ticketUrl ?? ticketLink) && (
-                    <Link href={ticketUrl ?? ticketLink} legacyBehavior>
-                        <a className="event-card-button">
-                            Biglietti &rarr;
-                        </a>
-                    </Link>
+                    <CommonButton href={ticketUrl ?? ticketLink} external className="event-card-button">
+                        Biglietti &rarr;
+                    </CommonButton>
                 )}
             </div>
         </div>

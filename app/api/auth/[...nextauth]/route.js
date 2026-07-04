@@ -24,7 +24,7 @@ export const authOptions = {
         CredentialsProvider({
             name: 'Credentials',
             credentials: {
-                email: { label: 'Email', type: 'text' },
+                email: { label: 'Email o username', type: 'text' },
                 password: { label: 'Password', type: 'password' },
             },
 
@@ -32,8 +32,13 @@ export const authOptions = {
             async authorize(credentials) {
                 await connectToDatabase();
 
-                // Trova l'utente tramite email
-                const user = await User.findOne({ email: credentials.email });
+                const login = credentials.email?.trim();
+                const user = await User.findOne({
+                    $or: [
+                        { email: login },
+                        { username: login },
+                    ],
+                });
 
                 // Valida utente e password
                 const passwordCorrect = user && await bcrypt.compare(credentials.password, user.password);
@@ -51,6 +56,7 @@ export const authOptions = {
                 return {
                     id: user._id.toString(),
                     email: user.email,
+                    name: user.username ?? user.email,
                     role: user.role,
                 };
             },
@@ -66,6 +72,7 @@ export const authOptions = {
             if (user) {
                 token.id = user.id;
                 token.role = user.role;
+                token.name = user.name;
             }
             return token;
         },
@@ -76,13 +83,14 @@ export const authOptions = {
         async session({ session, token }) {
             if (token?.id) session.user.id = token.id;
             if (token?.role) session.user.role = token.role;
+            if (token?.name) session.user.name = token.name;
             return session;
         },
     },
 
     // 📄 Pagina personalizzata di calendario
     pages: {
-        signIn: '/calendario',
+        signIn: '/admin',
     },
 };
 

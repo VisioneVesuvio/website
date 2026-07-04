@@ -1,15 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getFeaturedProgramEventBySlug, getFeaturedProgramEvents } from '@/app/content/featured-program';
+import CommonButton from '@/app/components/CommonButton';
+import { getFeaturedProgramEventBySlug, getFeaturedProgramEvents } from '@/app/services/filmService';
 
-export function generateStaticParams() {
-    return getFeaturedProgramEvents().map((event) => ({ slug: event.slug }));
+export async function generateStaticParams() {
+    const events = await getFeaturedProgramEvents();
+    return events.map((event) => ({ slug: event.slug }));
 }
 
 export async function generateMetadata({ params }) {
     const resolvedParams = await params;
-    const event = getFeaturedProgramEventBySlug(resolvedParams.slug);
+    const event = await getFeaturedProgramEventBySlug(resolvedParams.slug);
 
     if (!event) {
         return {
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }) {
 
 export default async function FilmDetailPage({ params }) {
     const resolvedParams = await params;
-    const event = getFeaturedProgramEventBySlug(resolvedParams.slug);
+    const event = await getFeaturedProgramEventBySlug(resolvedParams.slug);
 
     if (!event) {
         notFound();
@@ -33,6 +35,10 @@ export default async function FilmDetailPage({ params }) {
 
     return (
         <article className="film-detail-page">
+            <Link href="/programmazione" className="film-detail-program-link">
+                &lt;- Programmazione
+            </Link>
+
             <div className="film-detail-hero">
                 <Image
                     src={event.hero.src}
@@ -53,15 +59,24 @@ export default async function FilmDetailPage({ params }) {
 
                 <h1 className="film-detail-title">{event.title}</h1>
                 <p className="film-detail-director">di {event.director}</p>
+
+                {event.details.length > 0 && (
+                    <dl className="film-detail-meta">
+                        {event.details.map((detail) => (
+                            <div key={detail.label} className="film-detail-meta-row">
+                                <dt>{detail.label}</dt>
+                                <dd>{detail.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+                )}
+
                 <p className="film-detail-description">{event.description}</p>
 
                 <div className="film-detail-actions">
-                    <a href={event.ticketUrl} target="_blank" rel="noreferrer" className="film-detail-ticket-link">
+                    <CommonButton href={event.ticketUrl} external className="film-detail-ticket-link">
                         Biglietti
-                    </a>
-                    <Link href="/programmazione" className="film-detail-back-link">
-                        Torna alla programmazione
-                    </Link>
+                    </CommonButton>
                 </div>
             </div>
         </article>

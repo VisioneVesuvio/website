@@ -1,3 +1,5 @@
+.site-button,
+.site-button:visited,
 .custom-button,
 button.custom-button,
 input[type="submit"],
@@ -5,12 +7,17 @@ input[type="button"] {
     background-color: var(--button-base-bg-color);
     color: var(--button-base-text-color);
     border: 1px solid var(--button-base-border-color);
-    padding: 0.78rem 1.4rem;
+    min-height: 2.5rem;
+    padding: 0.55rem 1.95rem;
     cursor: pointer;
     font-size: 0.95rem;
-    font-weight: 700;
+    font-weight: 500;
     border-radius: var(--button-border-radius);
-    transition: all 0.22s ease-in-out;
+    transition:
+        color 0.22s ease-in-out,
+        background-color 0.22s ease-in-out,
+        border-color 0.22s ease-in-out,
+        transform 0.22s ease-in-out;
     box-shadow: none;
     margin: 0;
     text-align: center;
@@ -22,9 +29,11 @@ input[type="button"] {
     line-height: 1.1;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0;
 }
 
+.site-button:hover,
+.site-button:focus-visible,
 .custom-button:hover,
 input[type="submit"]:hover,
 input[type="button"]:hover,
@@ -34,10 +43,11 @@ input[type="button"]:focus-visible {
     background-color: var(--button-hover-bg);
     color: var(--button-hover-text);
     border-color: var(--button-hover-border);
-    opacity: 0.88;
     transform: translateY(-1px);
+    opacity: 1;
 }
 
+.site-button:active,
 .custom-button:active,
 input[type="submit"]:active,
 input[type="button"]:active {

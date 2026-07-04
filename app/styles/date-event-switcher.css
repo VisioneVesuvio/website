@@ -154,28 +154,13 @@
 }
 
 .event-card-button {
-    display: inline-flex;
     align-self: flex-start;
     padding: 0.82rem 1.4rem;
     font-size: 0.9rem;
-    font-weight: 800;
-    color: var(--heading-color);
-    background: #0c1127;
-    border: 1px solid #0c1127;
-    border-radius: var(--radius-pill);
-    text-decoration: none;
-    cursor: pointer;
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
 }
 
 .event-card-button:hover,
 .event-card-button:focus-visible {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(12, 17, 39, 0.12);
-    background: #0c1127;
-    opacity: 0.9;
 }
 
 @media (max-width: 768px) {

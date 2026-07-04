@@ -3,6 +3,7 @@ import '../styles/globals.css';
 import SessionProviderWrapper from '@/app/providers/SessionProviderWrapper';
 import Navbar from '@/app/components/Navbar'; // Assumendo che questa sia la Navbar che abbiamo modificato
 import Footer from '@/app/components/Footer';
+import { getHeaderMarqueeItems } from '@/app/services/siteBannerService';
 // AuthDropdown non viene più importato se non usato
 
 export const metadata = {
@@ -11,7 +12,14 @@ export const metadata = {
         'Uno spazio pensato da cinefili per cinefili, dove vedere film, scambiare idee e immaginare nuove visioni.',
 };
 
-export default function RootLayout({ children }) {
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
+};
+
+export default async function RootLayout({ children }) {
+    const marqueeItems = await getHeaderMarqueeItems();
+
     return (
         <html lang="it">
         <head>
@@ -22,7 +30,7 @@ export default function RootLayout({ children }) {
         <body>
         <SessionProviderWrapper>
             {/* Navbar senza la prop authComponent se il componente Navbar non la gestisce più */}
-            <Navbar />
+            <Navbar marqueeItems={marqueeItems} />
             <main>{children}</main>
             <Footer />
         </SessionProviderWrapper>
