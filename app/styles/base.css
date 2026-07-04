@@ -2267,7 +2267,7 @@ video {
     }
 
     .cinefilia-hero {
-        --cinefilia-top-offset: 1.15rem;
+        --cinefilia-top-offset: 1.85rem;
         display: block;
         height: calc(100svh - 5.7rem);
         min-height: 32rem;
@@ -2281,7 +2281,7 @@ video {
     .cinefilia-hero-mobile-words {
         display: block;
         position: absolute;
-        inset: var(--cinefilia-top-offset) 0 1.15rem;
+        inset: var(--cinefilia-top-offset) 0 1.95rem;
         overflow: hidden;
     }
 
@@ -2299,22 +2299,22 @@ video {
 
     .cinefilia-hero-mobile-word-top {
         top: 0;
-        height: calc(43% - 0.35rem);
+        height: calc(49.85% - 0.03rem);
     }
 
     .cinefilia-hero-mobile-word-bottom {
         align-items: flex-end;
         bottom: 0;
-        height: calc(43% - 0.35rem);
+        height: calc(49.85% - 0.03rem);
     }
 
     .cinefilia-hero-mobile-pair {
-        --mobile-height: 88%;
+        --mobile-height: 92%;
         height: var(--mobile-height);
-        margin-right: 0;
+        margin-right: -0.026em;
         cursor: default;
         transition:
-            height 1.58s cubic-bezier(0.19, 1.22, 0.28, 1);
+            height 2.36s cubic-bezier(0.18, 1.2, 0.22, 1);
     }
 
     .cinefilia-hero-mobile-half {

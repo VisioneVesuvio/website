@@ -2,9 +2,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { getContactBlocks } from '@/app/content/contacts';
 import '@/app/styles/footer.css';
 
 export default function Footer() {
+    const contactBlocks = getContactBlocks();
+    const association = contactBlocks.find((block) => block.type === 'association');
+    const email = contactBlocks.find((block) => block.type === 'email');
+
     return (
         <footer className="footer">
             <div className="footer-top">
@@ -41,7 +46,20 @@ export default function Footer() {
             </div>
 
             <div className="footer-bottom">
-                <p>P.IVA ESEMPIO44324</p>
+                <div className="footer-contact-info" aria-label="Informazioni di contatto">
+                    {email?.value ? (
+                        <a href={`mailto:${email.value}`}>{email.value}</a>
+                    ) : null}
+                    {association?.pIva ? (
+                        <p>P.IVA {association.pIva}</p>
+                    ) : null}
+                    <p>
+                        Made by{' '}
+                        <a href="https://evolvecompany.tech" target="_blank" rel="noopener noreferrer">
+                            Evolve
+                        </a>
+                    </p>
+                </div>
                 <p>@VISIONEVESUVIO ALL RIGHTS RESERVED</p>
             </div>
         </footer>

@@ -176,29 +176,44 @@ export default function CinefiliaHero() {
             return;
         }
 
-        const pairs = hero.querySelectorAll('.cinefilia-hero-mobile-pair');
-        const wavelength = Math.max(hero.clientWidth * 0.72, 230);
-        const decay = Math.max(hero.clientWidth * 1.35, 430);
+        const topPairs = Array.from(mobileTopRef.current?.querySelectorAll('.cinefilia-hero-mobile-pair') ?? []);
+        const bottomPairs = Array.from(mobileBottomRef.current?.querySelectorAll('.cinefilia-hero-mobile-pair') ?? []);
+        const wavelength = Math.max(hero.clientWidth * 1.26, 430);
+        const decay = Math.max(hero.clientWidth * 2.35, 760);
 
-        pairs.forEach((pair) => {
+        topPairs.forEach((pair) => {
             const rect = pair.getBoundingClientRect();
             const centerX = rect.left + (rect.width / 2);
             const centerY = rect.top + (rect.height / 2);
-            const distance = Math.hypot(centerX - clientX, (centerY - clientY) * 0.45);
+            const distance = Math.hypot(centerX - clientX, (centerY - clientY) * 0.26);
             const wave = Math.cos(distance / wavelength * Math.PI * 2);
             const falloff = Math.exp(-distance / decay);
-            const height = clamp(88 + (wave * falloff * 18), 70, 100);
+            const delta = wave * falloff * 16;
+            const topHeight = clamp(92 + delta, 74, 100);
 
-            pair.style.setProperty('--mobile-height', `${height.toFixed(2)}%`);
+            pair.style.setProperty('--mobile-height', `${topHeight.toFixed(2)}%`);
+            pair.classList.add('is-mobile-morphed');
+        });
+
+        bottomPairs.forEach((pair) => {
+            const rect = pair.getBoundingClientRect();
+            const centerX = rect.left + (rect.width / 2);
+            const centerY = rect.top + (rect.height / 2);
+            const distance = Math.hypot(centerX - clientX, (centerY - clientY) * 0.26);
+            const wave = Math.cos(distance / wavelength * Math.PI * 2);
+            const falloff = Math.exp(-distance / decay);
+            const bottomHeight = clamp(92 - (wave * falloff * 16), 74, 100);
+
+            pair.style.setProperty('--mobile-height', `${bottomHeight.toFixed(2)}%`);
             pair.classList.add('is-mobile-morphed');
         });
 
         window.clearTimeout(mobileResetRef.current);
         mobileResetRef.current = window.setTimeout(() => {
-            pairs.forEach((pair) => {
-                pair.style.setProperty('--mobile-height', '88%');
+            [...topPairs, ...bottomPairs].forEach((pair) => {
+                pair.style.setProperty('--mobile-height', '92%');
             });
-        }, 1400);
+        }, 2400);
     }
 
     function handleTouchStart(event) {
