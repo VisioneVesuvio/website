@@ -82,22 +82,24 @@ function HeroGlyph({ letter, textLength, isSpace, verticalAnchor }) {
 export default function CinefiliaHero() {
     const heroRef = useRef(null);
     const wordRef = useRef(null);
+    const mobileTopRef = useRef(null);
+    const mobileBottomRef = useRef(null);
+    const snapLockRef = useRef(false);
+    const touchStartYRef = useRef(null);
+    const mobileResetRef = useRef(null);
     const letters = useMemo(
         () => Array.from(HERO_TEXT),
         [],
     );
 
     useEffect(() => {
-        function fitWord() {
-            const hero = heroRef.current;
-            const word = wordRef.current;
-
-            if (!hero || !word) {
+        function fitElement(container, word) {
+            if (!container || !word) {
                 return;
             }
 
             word.style.setProperty('--hero-fit-x', '1');
-            const availableWidth = hero.clientWidth;
+            const availableWidth = container.clientWidth;
             const naturalWidth = word.scrollWidth;
 
             if (!availableWidth || !naturalWidth) {
@@ -105,6 +107,15 @@ export default function CinefiliaHero() {
             }
 
             word.style.setProperty('--hero-fit-x', (availableWidth / naturalWidth).toFixed(4));
+        }
+
+        function fitWord() {
+            const hero = heroRef.current;
+            const word = wordRef.current;
+
+            fitElement(hero, word);
+            fitElement(hero, mobileTopRef.current);
+            fitElement(hero, mobileBottomRef.current);
         }
 
         fitWord();
@@ -127,6 +138,100 @@ export default function CinefiliaHero() {
         return Math.min(Math.max(value, min), max);
     }
 
+    function scrollToNextSection() {
+        const hero = heroRef.current;
+        const nextSection = hero?.nextElementSibling;
+
+        if (!hero || !nextSection || snapLockRef.current) {
+            return;
+        }
+
+        const heroRect = hero.getBoundingClientRect();
+
+        if (heroRect.bottom <= window.innerHeight * 0.4) {
+            return;
+        }
+
+        snapLockRef.current = true;
+        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        window.setTimeout(() => {
+            snapLockRef.current = false;
+        }, 900);
+    }
+
+    function handleHeroWheel(event) {
+        if (event.deltaY <= 4) {
+            return;
+        }
+
+        event.preventDefault();
+        scrollToNextSection();
+    }
+
+    function applyMobileHarmonicTouch(clientX, clientY) {
+        const hero = heroRef.current;
+
+        if (!hero || window.matchMedia('(min-width: 481px)').matches) {
+            return;
+        }
+
+        const pairs = hero.querySelectorAll('.cinefilia-hero-mobile-pair');
+        const wavelength = Math.max(hero.clientWidth * 0.72, 230);
+        const decay = Math.max(hero.clientWidth * 1.35, 430);
+
+        pairs.forEach((pair) => {
+            const rect = pair.getBoundingClientRect();
+            const centerX = rect.left + (rect.width / 2);
+            const centerY = rect.top + (rect.height / 2);
+            const distance = Math.hypot(centerX - clientX, (centerY - clientY) * 0.45);
+            const wave = Math.cos(distance / wavelength * Math.PI * 2);
+            const falloff = Math.exp(-distance / decay);
+            const height = clamp(88 + (wave * falloff * 18), 70, 100);
+
+            pair.style.setProperty('--mobile-height', `${height.toFixed(2)}%`);
+            pair.classList.add('is-mobile-morphed');
+        });
+
+        window.clearTimeout(mobileResetRef.current);
+        mobileResetRef.current = window.setTimeout(() => {
+            pairs.forEach((pair) => {
+                pair.style.setProperty('--mobile-height', '88%');
+            });
+        }, 1400);
+    }
+
+    function handleTouchStart(event) {
+        const touch = event.touches[0];
+
+        touchStartYRef.current = touch?.clientY ?? null;
+
+        if (touch) {
+            applyMobileHarmonicTouch(touch.clientX, touch.clientY);
+        }
+    }
+
+    function handleTouchMove(event) {
+        const touch = event.touches[0];
+
+        if (touch) {
+            applyMobileHarmonicTouch(touch.clientX, touch.clientY);
+        }
+    }
+
+    function handleTouchEnd(event) {
+        const startY = touchStartYRef.current;
+        const endY = event.changedTouches[0]?.clientY;
+
+        touchStartYRef.current = null;
+
+        if (startY === null || endY === undefined || startY - endY <= 8) {
+            return;
+        }
+
+        scrollToNextSection();
+    }
+
     function morphPair(event) {
         const pair = event.currentTarget;
 
@@ -144,23 +249,56 @@ export default function CinefiliaHero() {
         pair.classList.add('is-morphed');
     }
 
+    function renderGlyphWord(text, className, ref) {
+        return (
+            <span ref={ref} className={className}>
+                {Array.from(text).map((letter, letterIndex) => {
+                    const width = LETTER_WIDTHS[letter] ?? 0.58;
+                    const textLength = LETTER_LENGTHS[letter] ?? 66;
+
+                    return (
+                        <span
+                            key={`${text}-${letter}-${letterIndex}`}
+                            className="cinefilia-hero-pair cinefilia-hero-mobile-pair"
+                            style={{ '--letter-width': width }}
+                        >
+                            <span className="cinefilia-hero-half cinefilia-hero-mobile-half">
+                                <HeroGlyph
+                                    letter={letter}
+                                    textLength={textLength}
+                                    isSpace={false}
+                                    verticalAnchor="mobile"
+                                />
+                            </span>
+                        </span>
+                    );
+                })}
+            </span>
+        );
+    }
+
     return (
         <section
             ref={heroRef}
             className="cinefilia-hero"
             aria-label="Cinefilia Partenopea"
+            onWheel={handleHeroWheel}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
         >
             <h1 className="cinefilia-hero-title">
                 <span ref={wordRef} className="cinefilia-hero-word">
                     {letters.map((letter, letterIndex) => {
                         const isSpace = letter === ' ';
-                        const width = isSpace ? 0.08 : LETTER_WIDTHS[letter] ?? 0.58;
+                        const wordIndex = letterIndex > HERO_TEXT.indexOf(' ') ? 1 : 0;
+                        const width = isSpace ? 0.16 : LETTER_WIDTHS[letter] ?? 0.58;
                         const textLength = LETTER_LENGTHS[letter] ?? 66;
 
                         return (
                             <span
                                 key={`${letter}-${letterIndex}`}
-                                className={`cinefilia-hero-pair ${isSpace ? 'cinefilia-hero-pair-space' : ''}`}
+                                className={`cinefilia-hero-pair cinefilia-hero-pair-word-${wordIndex} ${isSpace ? 'cinefilia-hero-pair-space' : ''}`}
                                 data-space={isSpace}
                                 style={{ '--letter-width': width }}
                                 onPointerEnter={morphPair}
@@ -187,6 +325,10 @@ export default function CinefiliaHero() {
                     })}
                 </span>
             </h1>
+            <div className="cinefilia-hero-mobile-words" aria-hidden="true">
+                {renderGlyphWord('CINEFILIA', 'cinefilia-hero-mobile-word cinefilia-hero-mobile-word-top', mobileTopRef)}
+                {renderGlyphWord('PARTENOPEA', 'cinefilia-hero-mobile-word cinefilia-hero-mobile-word-bottom', mobileBottomRef)}
+            </div>
             <div className="home-display-board-mobile-links">
                 <Link href="/programmazione" className="home-display-board-mobile-link">
                     Programmazione
