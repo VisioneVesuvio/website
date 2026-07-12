@@ -9,6 +9,8 @@ import { getFeaturedProgramEvents } from '@/app/services/filmService';
 import { getHomeRassegna } from '@/app/services/rassegnaService';
 import { getHomeShopItems, repeatShopItems } from '@/app/services/shopService';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
     const shopItems = await getHomeShopItems();
     const mobileShopItems = repeatShopItems(shopItems, 9);

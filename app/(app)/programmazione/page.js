@@ -6,6 +6,8 @@ export const metadata = {
     description: 'Scopri i film e gli eventi in programmazione.',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProgrammazionePage() {
     const featuredEvents = await getFeaturedProgramEvents();
 

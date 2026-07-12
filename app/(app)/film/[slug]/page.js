@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import CommonButton from '@/app/components/CommonButton';
 import { getFeaturedProgramEventBySlug, getFeaturedProgramEvents } from '@/app/services/filmService';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
     const events = await getFeaturedProgramEvents();
     return events.map((event) => ({ slug: event.slug }));

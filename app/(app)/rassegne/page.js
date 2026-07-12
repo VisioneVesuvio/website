@@ -8,6 +8,8 @@ export const metadata = {
     description: 'Scopri le rassegne Visione Vesuvio.',
 };
 
+export const dynamic = 'force-dynamic';
+
 function RassegnaRow({ season, showTicket = false }) {
     const cover = season.images?.[0] ?? season.poster ?? {
         src: '/film/end_of_the_world.png',
