@@ -8,9 +8,17 @@ export async function middleware(request) {
         return NextResponse.next();
     }
 
-    const token = await getToken({
+    const isHttps = request.nextUrl.protocol === 'https:' || request.headers.get('x-forwarded-proto') === 'https';
+    const tokenOptions = {
         req: request,
         secret: process.env.NEXTAUTH_SECRET,
+    };
+    const token = await getToken({
+        ...tokenOptions,
+        secureCookie: isHttps,
+    }) ?? await getToken({
+        ...tokenOptions,
+        secureCookie: !isHttps,
     });
 
     if (!token || token.role !== 'admin') {
